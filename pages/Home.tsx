@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, Settings } from 'lucide-react';
@@ -122,7 +122,7 @@ const Home: React.FC = () => {
           className="space-y-4 mb-12"
         >
           <p className="text-xl md:text-3xl font-mech text-neonBlue mt-4 mb-8 drop-shadow-[0_0_10px_rgba(0,243,255,0.3)]">
-            ₹300 • Per Participant
+            ₹300 - Per Participant
           </p>
           <div className="h-1 w-24 bg-neonOrange mx-auto rounded-full shadow-[0_0_10px_#ffaa00]"></div>
         </motion.div>
