@@ -5,7 +5,7 @@ import { RegistrationForm } from '../types';
 import { submitRegistration } from '../services/api';
 import { Input } from '../components/Input';
 import { Upload, ChevronDown, CreditCard } from 'lucide-react';
-import { TECH_EVENTS, NON_TECH_EVENTS, WORKSHOP_INFO, BANK_DETAILS } from '../constants';
+import { TECH_EVENTS, NON_TECH_EVENTS, WORKSHOP_INFO, BANK_DETAILS, nonTechEventOptions } from '../constants';
 
 const Register: React.FC = () => {
     const { type } = useParams<{ type: string }>();
@@ -15,9 +15,9 @@ const Register: React.FC = () => {
 
     const [formData, setFormData] = useState<RegistrationForm>({
         teamName: '',
-        eventType: '', 
+        eventType: '',
         eventName: '',
-        nonTechEvent: '', 
+        nonTechEvent: '',
         teamLeaderName: '',
         collegeName: '',
         department: '',
@@ -204,34 +204,35 @@ const Register: React.FC = () => {
                         <Input name="eventName" label="Event Name" value={formData.eventName} readOnly className="bg-white/10 text-gray-400 border-none" />
                     )}
                     {/* Optional Non-Technical Event (ONLY for Tech Registration) */}
-{type === "tech" && showDropdown && (
-    <div className="mb-4 w-full relative">
-        <label className="block text-neonBlue text-sm font-mech tracking-wide mb-2 uppercase">
-            Non-Technical Event Name <span className="text-gray-400">(Optional)</span>
-        </label>
+                    {type === "tech" && showDropdown && (
+                        <div className="mb-4 w-full relative">
+                            <label className="block text-neonBlue text-sm font-mech tracking-wide mb-2 uppercase">
+                                Non-Technical Event Name <span className="text-gray-400">(Optional)</span>
+                            </label>
 
-        <div className="relative">
-            <select
-                name="nonTechEvent"
-                value={formData.nonTechEvent}
-                onChange={handleInputChange}
-                className="bg-black/50 border border-white/20 text-white text-sm rounded-none focus:ring-neonOrange focus:border-neonOrange block w-full p-3 transition-all duration-300 backdrop-blur-sm font-body appearance-none cursor-pointer"
-            >
-                <option value="" className="bg-black text-gray-500">
-                    Select Non-Tech Event (Free)
-                </option>
+                            <div className="relative">
+                                <select
+                                    name="nonTechEvent"
+                                    value={formData.nonTechEvent}
+                                    onChange={handleInputChange}
+                                    disabled={!formData.eventName}
+                                    className="bg-black/50 border border-white/20 text-white text-sm rounded-none focus:ring-neonOrange focus:border-neonOrange block w-full p-3 transition-all duration-300 backdrop-blur-sm font-body appearance-none cursor-pointer"
+                                >
+                                    <option value="" className="bg-black text-gray-500">
+                                        Select Non-Tech Event (Free)
+                                    </option>
 
-                {nonTechEventOptions.map(e => (
-                    <option key={e.id} value={e.title} className="bg-black">
-                        {e.title}
-                    </option>
-                ))}
-            </select>
+                                    {nonTechEventOptions.map(e => (
+                                        <option key={e.id} value={e.title} className="bg-black">
+                                            {e.title}
+                                        </option>
+                                    ))}
+                                </select>
 
-            <ChevronDown className="absolute right-3 top-3 text-neonBlue pointer-events-none w-5 h-5" />
-        </div>
-    </div>
-)}
+                                <ChevronDown className="absolute right-3 top-3 text-neonBlue pointer-events-none w-5 h-5" />
+                            </div>
+                        </div>
+                    )}
 
 
                     <div className="grid md:grid-cols-2 gap-6">

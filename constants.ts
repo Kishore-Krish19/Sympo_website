@@ -2,7 +2,7 @@ import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair
 import { WorkshopDetails, EventDetails, Coordinator } from './types';
 
 // Replace this with your deployed Google Apps Script Web App URL
-export const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQIU_HzFS6A0RkKDmm4V0CzOecAYMbhND0ugEbaq-QIAFtGm_QhbLt0rVAZDwcNq2Wkg/exec";
+export const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxwY11yL47R3yYI_WLVh7_D-gn1bSUS3VtKiB2k88NNLdDP0I1I16YyylJuTW1aXd0Jgw/exec";
 
 export const BANK_DETAILS = {
   accountHolder: "EFFICACY SYMPOSIUM",
@@ -16,15 +16,12 @@ export const TECH_EVENTS: EventDetails[] = [
   { id: 'pp', title: 'Paper Presentation', description: 'Showcase your innovative ideas and research.', icon: PenTool, path: '/register/tech', category: 'tech' },
   { id: 'cad', title: 'CAD Design', description: 'Test your modeling skills in Fusion 360/SolidWorks.', icon: Settings, path: '/register/tech', category: 'tech' },
   { id: 'quiz', title: 'Technical Quiz', description: 'Battle of brains on mechanical concepts.', icon: Brain, path: '/register/tech', category: 'tech' },
-  { id: 'debug', title: 'Debugging', description: 'Find the flaw in the mechanical circuits/code.', icon: Cpu, path: '/register/tech', category: 'tech' },
   { id: 'expo', title: 'Project Expo', description: 'Display your final year or hobby projects.', icon: Zap, path: '/register/tech', category: 'tech' },
 ];
 
 export const NON_TECH_EVENTS: EventDetails[] = [
   { id: 'photo', title: 'Photography', description: 'Capture the moment.', icon: Camera, path: '/register/non-tech', category: 'non-tech' },
   { id: 'meme', title: 'Meme Contest', description: 'Make us laugh with engineering humor.', icon: Gamepad2, path: '/register/non-tech', category: 'non-tech' },
-  { id: 'gaming', title: 'Gaming', description: 'Valorant/BGMI tournament.', icon: Crosshair, path: '/register/non-tech', category: 'non-tech' },
-  { id: 'treasure', title: 'Treasure Hunt', description: 'Solve riddles to find the hidden prize.', icon: Trophy, path: '/register/non-tech', category: 'non-tech' },
 ];
 
 export const WORKSHOP_INFO: WorkshopDetails = {
@@ -43,4 +40,9 @@ export const WORKSHOP_INFO: WorkshopDetails = {
 export const COORDINATORS: Coordinator[] = [
   { name: "Alex Mercer", role: "Student Coordinator", phone: "+91 98765 43210" },
   { name: "Sarah Connor", role: "Event Head", phone: "+91 98765 12345" },
+];
+
+export const nonTechEventOptions = [
+  { id: 1, title: "Short Film" },
+  { id: 2, title: "Photography" }
 ];
