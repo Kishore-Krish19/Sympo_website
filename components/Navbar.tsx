@@ -1,7 +1,7 @@
 // ../components/Navbar.tsx
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Hexagon } from 'lucide-react';
+import { Menu, X, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Navbar: React.FC = () => {
@@ -23,12 +23,12 @@ const Navbar: React.FC = () => {
     <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-black/80 backdrop-blur-md">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse group">
-          <Hexagon className="w-8 h-8 text-neonBlue animate-spin-slow group-hover:text-neonOrange transition-colors" />
+          <Settings className="w-8 h-8 text-neonBlue animate-spin-slow group-hover:text-neonOrange transition-colors" />
           <span className="self-center text-2xl font-mech font-semibold whitespace-nowrap text-white tracking-widest">
             EFFICACY'26
           </span>
         </Link>
-        
+
         <button
           onClick={() => setIsOpen(!isOpen)}
           type="button"

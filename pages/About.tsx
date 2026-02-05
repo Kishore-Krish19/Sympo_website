@@ -1,21 +1,37 @@
 // ../pages/About.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { Settings } from 'lucide-react';
+
+const Piston = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className={className}>
+    <path d="M6 9v12h12V9" />
+    <path d="M4 9h16" />
+    <motion.path
+      d="M7 5h10v4H7z"
+      animate={{ y: [0, 8, 0] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+    />
+    <motion.line
+      x1="12" y1="9" x2="12" y2="21"
+      animate={{ y1: [9, 17, 9], y2: [21, 29, 21] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+    />
+  </svg>
+);
 
 const About: React.FC = () => {
-  const data = [
-    { name: 'Tech Events', value: 400 },
-    { name: 'Non-Tech', value: 300 },
-    { name: 'Workshops', value: 300 },
-    { name: 'Racing', value: 200 },
-  ];
-
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
   return (
-    <div className="min-h-screen pt-24 px-4 container mx-auto text-white">
-      <motion.h1 
+    <div className="min-h-screen pt-24 px-4 container mx-auto text-white relative overflow-hidden">
+      {/* Background Decorations */}
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <Settings className="absolute top-20 -left-10 w-96 h-96 text-gray-500 animate-spin-slow" />
+        <Settings className="absolute bottom-40 -right-10 w-80 h-80 text-gray-500 animate-spin-slow" style={{ animationDirection: 'reverse' }} />
+        <Piston className="absolute top-1/4 right-20 w-64 h-64 text-gray-500 opacity-50" />
+        <Piston className="absolute bottom-1/4 left-20 w-64 h-64 text-gray-500 opacity-50" />
+      </div>
+      <motion.h1
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         className="text-4xl md:text-6xl font-mech text-neonOrange mb-12 border-b border-gray-800 pb-4"
@@ -24,66 +40,40 @@ const About: React.FC = () => {
       </motion.h1>
 
       <div className="grid md:grid-cols-2 gap-12">
-        <div className="space-y-8 font-body text-lg text-gray-300">
-          <section className="bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
-            <h2 className="text-2xl text-neonBlue font-mech mb-4">The Symposium</h2>
+        <div className="font-body text-base md:text-2xl text-gray-300 leading-relaxed">
+          <section className="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm h-full shadow-lg">
+            <h2 className="text-3xl text-neonBlue font-mech mb-6 drop-shadow-[0_0_5px_rgba(0,243,255,0.5)]">The Symposium</h2>
+            <p className="mb-6">
+              EFFICACY is a National Level Technical Symposium organized by the Department of Mechanical Engineering to provide a dynamic platform for young engineers to showcase their technical knowledge, creativity, and innovation. Inspired by the principles of engineering mechanics and foundational concepts such as continuum mechanics, EFFICACY emphasizes analytical thinking, structural understanding, and practical problem-solving.
+            </p>
             <p>
-              EFFICACY is a national-level technical symposium organized by the Department of Mechanical Engineering. 
-              It serves as a platform for aspiring engineers to showcase their technical prowess, innovative ideas, 
-              and competitive spirit.
+              The event is designed to bridge theoretical learning with real-world applications, encouraging participants to approach engineering challenges with precision, efficiency, and scientific reasoning. Through a variety of technical competitions and interactive activities, EFFICACY nurtures innovation, teamwork, and professional excellence among aspiring mechanical engineers.
             </p>
           </section>
+        </div>
 
-          <section className="bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-sm">
-            <h2 className="text-2xl text-neonBlue font-mech mb-4">Guidelines</h2>
-            <ul className="list-disc list-inside space-y-2 marker:text-neonOrange">
-              <li>All participants must carry valid College ID cards.</li>
-              <li>Registration fee is non-refundable.</li>
-              <li>Decisions of the judges will be final.</li>
-              <li>Strict discipline must be maintained within the campus.</li>
+        <div className="space-y-8 font-body text-lg text-gray-300 flex flex-col justify-between">
+          <section className="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
+            <h2 className="text-3xl text-neonBlue font-mech mb-6 drop-shadow-[0_0_5px_rgba(0,243,255,0.5)]">Guidelines</h2>
+            <ul className="list-disc list-inside space-y-3 marker:text-neonOrange text-base md:text-xl">
+              <li>College ID card is mandatary.</li>
+              <li>Maintain discipline and professional behaviour.</li>
+              <li>Malpractice leads to immediate disqualification.</li>
+              <li>Organizers reserve the right to modify rules if necessary.</li>
+              <li>Judges’ decisions are final.</li>
             </ul>
           </section>
 
-          <div className="grid grid-cols-2 gap-4">
-             <div className="bg-blue-900/20 p-4 border border-blue-500/30 rounded text-center">
-                <h3 className="text-neonBlue font-bold">Refreshments</h3>
-                <p className="text-sm">Provided for all registered teams.</p>
-             </div>
-             <div className="bg-orange-900/20 p-4 border border-orange-500/30 rounded text-center">
-                <h3 className="text-neonOrange font-bold">Accommodation</h3>
-                <p className="text-sm">Available on prior request (Charged).</p>
-             </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-auto">
+            <div className="bg-blue-900/10 p-6 border-2 border-neonBlue/50 rounded-xl text-center shadow-[0_0_15px_rgba(0,243,255,0.2)] hover:shadow-[0_0_25px_rgba(0,243,255,0.4)] transition-all duration-300">
+              <h3 className="text-2xl md:text-3xl text-neonBlue font-mech font-bold mb-2 drop-shadow-[0_0_10px_rgba(0,243,255,0.5)]">Refreshments</h3>
+              <p className="text-base md:text-lg text-gray-300">Provided for all registered teams.</p>
+            </div>
+            <div className="bg-blue-900/10 p-6 border-2 border-neonBlue/50 rounded-xl text-center shadow-[0_0_15px_rgba(0,243,255,0.2)] hover:shadow-[0_0_25px_rgba(0,243,255,0.4)] transition-all duration-300">
+              <h3 className="text-2xl md:text-3xl text-neonBlue font-mech font-bold mb-2 drop-shadow-[0_0_10px_rgba(0,243,255,0.5)]">Lunch</h3>
+              <p className="text-base md:text-lg text-gray-300">Provided for all registered participants.</p>
+            </div>
           </div>
-        </div>
-
-        <div className="flex flex-col items-center justify-center bg-white/5 rounded-xl border border-white/10 p-4">
-          <h2 className="text-2xl text-white font-mech mb-4">Event Distribution</h2>
-          <div className="w-full h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={data}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  paddingAngle={5}
-                  dataKey="value"
-                  label
-                >
-                  {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#111', borderColor: '#333' }}
-                  itemStyle={{ color: '#fff' }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-          <p className="text-center text-sm text-gray-500 mt-4 font-mech">Expected Participation Distribution</p>
         </div>
       </div>
     </div>
