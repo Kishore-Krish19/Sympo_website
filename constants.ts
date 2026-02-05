@@ -2,7 +2,15 @@ import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair
 import { WorkshopDetails, EventDetails, Coordinator } from './types';
 
 // Replace this with your deployed Google Apps Script Web App URL
-export const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzP0EvHzp37Aox4HXQ9jnLjjJ4ka_9YmAZL0B20yG9i/exec";
+export const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQIU_HzFS6A0RkKDmm4V0CzOecAYMbhND0ugEbaq-QIAFtGm_QhbLt0rVAZDwcNq2Wkg/exec";
+
+export const BANK_DETAILS = {
+  accountHolder: "EFFICACY SYMPOSIUM",
+  bankName: "State Bank of India",
+  accountNumber: "123456789012",
+  ifscCode: "SBIN0001234",
+  upiId: "efficacy2024@sbi"
+};
 
 export const TECH_EVENTS: EventDetails[] = [
   { id: 'pp', title: 'Paper Presentation', description: 'Showcase your innovative ideas and research.', icon: PenTool, path: '/register/tech', category: 'tech' },

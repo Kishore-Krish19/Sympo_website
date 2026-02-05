@@ -1,19 +1,22 @@
 export interface RegistrationForm {
   teamName: string;
+  eventType: string;
+  eventName: string;
+  nonTechEvent?: string; // ✅ optional
   teamLeaderName: string;
   collegeName: string;
   department: string;
   yearOfStudy: string;
-  leaderPhone: string;
+  phoneNumber: string
   whatsappNumber: string;
   email: string;
-  teamSize: number;
-  teamMembers: string[];
+  teamSize: number; // Values: 1, 2, 3
+  teamMembers: string[]; // Additional members (excluding leader)
   vegCount: number;
   nonVegCount: number;
+  transactionId: string; // New mandatory field
   termsAccepted: boolean;
   paymentScreenshot: string; // Base64 string
-  paymentFileName: string;
 }
 
 export type EventType = 'tech' | 'non-tech' | 'workshop' | 'ev-racing';
