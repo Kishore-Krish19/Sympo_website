@@ -2,7 +2,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { WORKSHOP_INFO } from '../constants';
-import { CheckCircle, Calendar, Clock, User } from 'lucide-react';
+import {
+  CheckCircle,
+  Calendar,
+  Clock,
+  User,
+  MapPin,
+} from 'lucide-react';
 import RegistrationButton from '../components/RegistrationButton';
 
 const Workshop: React.FC = () => {
@@ -28,6 +34,7 @@ const Workshop: React.FC = () => {
 
         {/* CONTENT */}
         <div className="grid md:grid-cols-2 gap-8 mb-10">
+          {/* LEFT INFO */}
           <div className="space-y-6">
             <div className="flex items-center gap-4 text-gray-300">
               <User className="text-neonBlue" />
@@ -43,10 +50,18 @@ const Workshop: React.FC = () => {
               </span>
             </div>
 
-            <div className="flex items-center gap-4 text-gray-300">
+            {/* <div className="flex items-center gap-4 text-gray-300">
               <Clock className="text-neonBlue" />
               <span className="font-body text-xl">
                 {WORKSHOP_INFO.time}
+              </span>
+            </div> */}
+
+            {/* VENUE */}
+            <div className="flex items-center gap-4 text-gray-300">
+              <MapPin className="text-neonBlue" />
+              <span className="font-body text-xl">
+               {WORKSHOP_INFO.location}
               </span>
             </div>
           </div>
@@ -70,7 +85,7 @@ const Workshop: React.FC = () => {
           </div>
         </div>
 
-        {/* REUSABLE REGISTRATION BUTTON */}
+        {/* REGISTRATION BUTTON (REUSABLE) */}
         <div className="text-center">
           <RegistrationButton
             registerPath="/register/workshop"

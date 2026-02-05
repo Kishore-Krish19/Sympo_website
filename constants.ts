@@ -26,15 +26,17 @@ export const NON_TECH_EVENTS: EventDetails[] = [
 ];
 
 export const WORKSHOP_INFO: WorkshopDetails = {
-  topic: "Advanced EV Battery Management Systems",
+  topic: "Drone / UAV ( Unmanned Aerial Vehicle ) ",
   trainer: "Dr. Alan Grant (Tesla Alumni)",
-  date: "October 25, 2024",
-  time: "10:00 AM - 4:00 PM",
+  date: "March 4, 2026",
+  time: "11:00 AM - 1:00 PM",
+  location: "Mechanical department, GCE Erode",
   benefits: [
-    "Hands-on BMS Simulation",
-    "Industry Recognized Certificate",
-    "Networking with EV Experts",
-    "Lunch & Refreshments included"
+    "Basics of Drone & UAV Systems",
+    "Drone Components & Flight Control",
+    "Industrial and Commercial Applications",
+    "Safety, Regulations & Ethics",
+    "Career and Future Trends in Drones"
   ]
 };
 

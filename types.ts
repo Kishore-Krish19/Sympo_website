@@ -36,11 +36,11 @@ export interface WorkshopDetails {
   trainer: string;
   date: string;
   time: string;
+  location: string;
   benefits: string[];
 }
 
 export interface Coordinator {
   name: string;
-  role: string;
   phone: string;
 }
