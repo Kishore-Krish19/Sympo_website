@@ -1,3 +1,4 @@
+// ../pages/About.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
