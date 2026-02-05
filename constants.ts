@@ -1,8 +1,9 @@
+// ../constants.ts
 import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair, Users } from 'lucide-react';
 import { WorkshopDetails, EventDetails, Coordinator } from './types';
 
 // Replace this with your deployed Google Apps Script Web App URL
-export const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxwY11yL47R3yYI_WLVh7_D-gn1bSUS3VtKiB2k88NNLdDP0I1I16YyylJuTW1aXd0Jgw/exec";
+export const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
 export const BANK_DETAILS = {
   accountHolder: "EFFICACY SYMPOSIUM",
@@ -38,11 +39,19 @@ export const WORKSHOP_INFO: WorkshopDetails = {
 };
 
 export const COORDINATORS: Coordinator[] = [
-  { name: "Alex Mercer", role: "Student Coordinator", phone: "+91 98765 43210" },
-  { name: "Sarah Connor", role: "Event Head", phone: "+91 98765 12345" },
+  { name: "Dony Charles",  phone: "+91 78100 85410" },
+  { name: "Venkataprasath", phone: "+91 70105 91904" },
+  { name: "Vedheswar",  phone: "+91 93611 32882" },
+  { name: "Solaivendhan", phone: "+91 70948 77363" },
 ];
 
 export const nonTechEventOptions = [
   { id: 1, title: "Short Film" },
   { id: 2, title: "Photography" }
 ];
+// 🔒 Common registration closing date for all events
+// Closes on 1st March at 11:00 PM
+export const REGISTRATION_CLOSE_DATE = new Date(2026, 2, 1, 23, 0, 0);
+
+// 🔒 Common closed text
+export const REGISTRATION_CLOSED_TEXT = 'REGISTRATION CLOSED';

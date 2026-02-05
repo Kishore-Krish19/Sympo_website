@@ -1,3 +1,4 @@
+// ../types.ts
 export interface RegistrationForm {
   teamName: string;
   eventType: string;
