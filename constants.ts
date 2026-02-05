@@ -49,3 +49,9 @@ export const nonTechEventOptions = [
   { id: 1, title: "Short Film" },
   { id: 2, title: "Photography" }
 ];
+// 🔒 Common registration closing date for all events
+// Closes on 1st March at 11:00 PM
+export const REGISTRATION_CLOSE_DATE = new Date(2026, 2, 1, 23, 0, 0);
+
+// 🔒 Common closed text
+export const REGISTRATION_CLOSED_TEXT = 'REGISTRATION CLOSED';
