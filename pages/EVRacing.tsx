@@ -100,13 +100,12 @@ const EVRacing: React.FC = () => {
               {
                 icon: AlertTriangle,
                 title: "Rules",
-                desc: "Standard IEEE safety compliance mandatory.",
                 isRules: true,
               },
               {
                 icon: Route,
                 title: "Track",
-                desc: "400m circuit with 3 sharp turns and 1 ramp.",
+                desc: "1km circuit with Off-road and on-road",
               },
               {
                 icon: IndianRupee,

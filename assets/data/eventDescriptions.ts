@@ -3,6 +3,7 @@ export const EVENT_DESCRIPTIONS: Record<
   string,
   {
     rules: string[];
+    themes?: string[];
   }
 > = {
   pp: {
@@ -18,27 +19,27 @@ export const EVENT_DESCRIPTIONS: Record<
   cad: {
     rules: [
       "Individual participation only",
-      "Participants may use any CAD software such as Creo,SolidWorks",
+      "Bring yours laptop if possible",
+      "Participants can use  CAD software such as Creo,SolidWorks",
       "On-spot 3D modeling challenge",
       "Time-limited design task",
       "Internet access, external files or pre-made models are not allowed",
       "All designs must be created during the competition time only",
       "Judging based on accuracy and creativity",
-      "Decision of judges is final",
-      
+      "Decision of judges is final",      
     ],
   },
 
   quiz: {
   rules: [
-    "Each team must consist of 3 maximum  members",
+    "Each team consist of  maximum 3 members",
+    "Questions will be based on mechanical engineering fundamentals",
     "The quiz will be conducted in multiple rounds including MCQ, Rapid Fire, Visual, and Buzzer rounds",
     "Use of mobile phones, electronic devices, or any unfair means is strictly prohibited",
     "Participants must answer within the stipulated time limit for each round",
     "Negative marking may be applicable in certain rounds",
     "A tie-breaker round will be conducted in case of a tie",
     "The quiz master’s decision will be final and binding",
-    "Questions will be based on mechanical engineering fundamentals",
   ],
 },
 
@@ -47,42 +48,55 @@ export const EVENT_DESCRIPTIONS: Record<
   rules: [
     "Individual participation only",
     "Participants must strictly follow all safety instructions; safety gear is mandatory",
-    "Only the tools and materials provided by the organizers may be used",
+    "Only the tools and materials provided by the organizers must be used",
     "The given component must be fabricated with accurate dimensions",
-    "The task must be completed within the stipulated time limit (60–90 minutes)",
+    "The task must be completed within the stipulated time limit ",
     "Any unsafe practice will result in immediate disqualification",
     "Judges’ decision will be final and binding",
   ],
 },
 
 
-  photo: {
-    rules: [
-      "Individual participation only",
-      "Photographs must be original",
-      "Theme will be announced on the spot",
-      "Basic editing allowed; no manipulation",
-      "Plagiarism will result in disqualification",
-    ],
-  },
+ photo: {
+  rules: [
+    "Individual participation only",
+    "Participants must capture photographs only during the event time",
+    "All photographs must be original and taken by the participant",
+    "The theme will be announced on the spot and photos must strictly relate to the theme, event activities, or emotions",
+    "Mobile phones and DSLR cameras are permitted",
+    "Each participant must submit a minimum of 3 and a maximum of 5 photographs",
+    "Candid and creative shots are encouraged",
+    "Images must be clear, sharp, and properly focused",
+    "Basic color correction is allowed; heavy editing or image manipulation is strictly prohibited",
+    "Adding text, graphics, or watermarks to images is not allowed",
+    "Photographs must be submitted in high-resolution JPEG format",
+    "File names must include the participant’s name and photo number",
+    "Any copied, downloaded, or plagiarized images will result in immediate disqualification",
+    "Judges’ decision will be final and binding",
+  ],
+},
 
-  meme: {
-    rules: [
-      "Language of the short film must be Tamil only",
-      "Duration: 3 to 6 minutes (including title and credits)",
-      "Team size: Maximum 3 members",
-      "Submission format: MP4, 1080p (Full HD recommended)",
-      "Story, script, and footage must be completely original",
-      "No copyrighted music, videos, or images without permission",
-      "Political, religious, or inappropriate content is strictly prohibited",
-      "Title card and end credits are mandatory",
-      "The film must clearly convey the selected theme and message",
 
-      "Themes:",
-      "Beyond the Screen – Life and reality outside mobile phones and social media",
-      "The Last Chance – A moment of hope, change, or redemption",
-      "Breaking the Cycle – Ending harmful habits or negative mindsets",
-      "Marks Don’t Measure Me – A low-scoring student proving true potential",
-    ],
-  },
+ meme: {
+  rules: [
+    "The language of the short film must be Tamil only",
+    "Duration of the short film must be between 3 to 6 minutes, including title and end credits",
+    "Team participation is allowed with a maximum of 3 members",
+    "The short film must be submitted in MP4 format (1080p / Full HD recommended)",
+    "The story, script, and footage must be completely original",
+    "Use of copyrighted music, videos, or images without proper permission is strictly prohibited",
+    "Political, religious, or any inappropriate content is strictly prohibited",
+    "Title card and end credits are mandatory",
+    "The short film must clearly convey the selected theme and its message",
+    "Judges’ decision will be final and binding",
+  ],
+
+  themes: [
+    "Beyond the Screen – Life and reality outside mobile phones and social media",
+    "The Last Chance – A moment of hope, change, or redemption",
+    "Breaking the Cycle – Ending harmful habits or negative mindsets",
+    "Marks Don’t Measure Me – A low-scoring student proving true potential",
+  ],
+},
+
 };

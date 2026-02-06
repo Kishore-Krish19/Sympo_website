@@ -25,9 +25,19 @@ const Navbar: React.FC = () => {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse group">
           <Settings className="w-8 h-8 text-neonBlue animate-spin-slow group-hover:text-neonOrange transition-colors" />
-          <span className="self-center text-2xl font-mech font-semibold whitespace-nowrap text-white tracking-widest">
-            EFFICACY'26
-          </span>
+          <span
+  className="
+    self-center
+    text-4xl sm:text-6xl md:text-2xl
+    font-black font-mech
+    whitespace-nowrap tracking-widest
+    text-transparent bg-clip-text
+    bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700
+    drop-shadow-[0_0_12px_rgba(255,215,0,0.7)]
+  "
+>
+  EFFICACY'26
+</span>
         </Link>
 
         <button

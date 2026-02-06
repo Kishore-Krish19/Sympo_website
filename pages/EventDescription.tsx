@@ -39,18 +39,32 @@ const EventDescription: React.FC = () => {
       </h1>
 
       {/* RULES CARD */}
-      <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-lg">
-        <h2 className="text-xl font-mech text-white mb-4 uppercase">
-          Event Rules & Guidelines
-        </h2>
+<div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-lg">
+  <h2 className="text-xl font-mech text-white mb-4 uppercase">
+    Event Rules & Guidelines
+  </h2>
 
-        <ul className="list-disc list-inside text-gray-300 space-y-2">
-          {description.rules.map((rule, index) => (
-            <li key={index}>{rule}</li>
-          ))}
-        </ul>
-      </div>
+  <ul className="list-disc list-inside text-gray-300 space-y-2">
+    {description.rules.map((rule, index) => (
+      <li key={index}>{rule}</li>
+    ))}
+  </ul>
 
+  {/* THEMES */}
+  {description.themes && (
+    <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-lg mt-8">
+      <h2 className="text-xl font-mech text-white mb-4 uppercase">
+        Themes
+      </h2>
+
+      <ul className="list-disc list-inside text-gray-300 space-y-2">
+        {description.themes.map((theme, index) => (
+          <li key={index}>{theme}</li>
+        ))}
+      </ul>
+    </div>
+  )}
+</div>
       {/* ACTION BUTTONS */}
       <div className="flex gap-4 mt-10">
         {/* BACK */}
