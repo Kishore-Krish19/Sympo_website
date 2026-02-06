@@ -2,7 +2,7 @@ import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair
 import { WorkshopDetails, EventDetails, Coordinator } from './types';
 
 // Replace this with your deployed Google Apps Script Web App URL
-export const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxwY11yL47R3yYI_WLVh7_D-gn1bSUS3VtKiB2k88NNLdDP0I1I16YyylJuTW1aXd0Jgw/exec";
+export const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
 export const BANK_DETAILS = {
   accountHolder: "EFFICACY SYMPOSIUM",

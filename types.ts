@@ -17,6 +17,7 @@ export interface RegistrationForm {
   transactionId: string; // New mandatory field
   termsAccepted: boolean;
   paymentScreenshot: string; // Base64 string
+  type: string; // 'tech', 'non-tech', 'workshop', 'ev-racing'
 }
 
 export type EventType = 'tech' | 'non-tech' | 'workshop' | 'ev-racing';
