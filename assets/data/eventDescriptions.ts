@@ -10,7 +10,7 @@ export const EVENT_DESCRIPTIONS: Record<
       "Individual or team participation (maximum 3 members)",
       "Paper must be original; plagiarism is strictly prohibited",
       "PPT format only",
-      "Presentation time: 6–8 minutes followed by Q&A",
+      "Presentation time: 10-15 minutes followed by Q&A",
       "Judges’ decision will be final",
     ],
   },
@@ -18,32 +18,43 @@ export const EVENT_DESCRIPTIONS: Record<
   cad: {
     rules: [
       "Individual participation only",
+      "Participants may use any CAD software such as Creo,SolidWorks",
       "On-spot 3D modeling challenge",
       "Time-limited design task",
+      "Internet access, external files or pre-made models are not allowed",
+      "All designs must be created during the competition time only",
       "Judging based on accuracy and creativity",
       "Decision of judges is final",
+      
     ],
   },
 
   quiz: {
-    rules: [
-      "Team of 2 members",
-      "Prelims followed by Finals",
-      "No mobile phones or electronic devices allowed",
-      "Questions based on mechanical engineering fundamentals",
-      "Quiz master’s decision will be final",
-    ],
-  },
+  rules: [
+    "Each team must consist of 3 maximum  members",
+    "The quiz will be conducted in multiple rounds including MCQ, Rapid Fire, Visual, and Buzzer rounds",
+    "Use of mobile phones, electronic devices, or any unfair means is strictly prohibited",
+    "Participants must answer within the stipulated time limit for each round",
+    "Negative marking may be applicable in certain rounds",
+    "A tie-breaker round will be conducted in case of a tie",
+    "The quiz master’s decision will be final and binding",
+    "Questions will be based on mechanical engineering fundamentals",
+  ],
+},
+
 
   expo: {
-    rules: [
-      "Individual participation only",
-      "Safety gear is mandatory",
-      "Task must be completed within the given time",
-      "Unsafe practices lead to immediate disqualification",
-      "Judges’ decision will be final",
-    ],
-  },
+  rules: [
+    "Individual participation only",
+    "Participants must strictly follow all safety instructions; safety gear is mandatory",
+    "Only the tools and materials provided by the organizers may be used",
+    "The given component must be fabricated with accurate dimensions",
+    "The task must be completed within the stipulated time limit (60–90 minutes)",
+    "Any unsafe practice will result in immediate disqualification",
+    "Judges’ decision will be final and binding",
+  ],
+},
+
 
   photo: {
     rules: [
