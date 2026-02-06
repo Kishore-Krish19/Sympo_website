@@ -3,6 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        const _warn = console.warn.bind(console);
+        console.warn = function (...args) {
+          try {
+            if (args.length && typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com should not be used in production')) {
+              return;
+            }
+          } catch (e) {}
+          _warn(...args);
+        };
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>EFFICACY | Mechanical Symposium</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
