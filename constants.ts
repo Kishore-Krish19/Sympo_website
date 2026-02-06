@@ -1,6 +1,7 @@
 // ../constants.ts
-import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair, Users } from 'lucide-react';
+import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair, Users,Video, Wrench } from 'lucide-react';
 import { WorkshopDetails, EventDetails, Coordinator } from './types';
+import { video } from 'framer-motion/client';
 
 // Replace this with your deployed Google Apps Script Web App URL
 export const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
@@ -15,14 +16,14 @@ export const BANK_DETAILS = {
 
 export const TECH_EVENTS: EventDetails[] = [
   { id: 'pp', title: 'Paper Presentation', description: 'Showcase your innovative ideas and research.', icon: PenTool, path: '/register/tech', category: 'tech' },
-  { id: 'cad', title: 'CAD Design', description: 'Test your modeling skills in Fusion 360/SolidWorks.', icon: Settings, path: '/register/tech', category: 'tech' },
-  { id: 'quiz', title: 'Technical Quiz', description: 'Battle of brains on mechanical concepts.', icon: Brain, path: '/register/tech', category: 'tech' },
-  { id: 'expo', title: 'Project Expo', description: 'Display your final year or hobby projects.', icon: Zap, path: '/register/tech', category: 'tech' },
+  { id: 'cad', title: '3D Modeling (Design Challenge)', description: 'Test your modeling skills in Fusion 360/SolidWorks.', icon: Settings, path: '/register/tech', category: 'tech' },
+  { id: 'quiz', title: 'Mech Core Quiz', description: 'Battle of brains on mechanical concepts.', icon: Brain, path: '/register/tech', category: 'tech' },
+  { id: 'expo', title: 'Legend in a Lathe (Machining)', description: 'Display your final year or hobby projects.', icon: Wrench, path: '/register/tech', category: 'tech' },
 ];
 
 export const NON_TECH_EVENTS: EventDetails[] = [
   { id: 'photo', title: 'Photography', description: 'Capture the moment.', icon: Camera, path: '/register/non-tech', category: 'non-tech' },
-  { id: 'meme', title: 'Meme Contest', description: 'Make us laugh with engineering humor.', icon: Gamepad2, path: '/register/non-tech', category: 'non-tech' },
+  { id: 'meme', title: 'Short Flim', description: 'Make us laugh with engineering humor.', icon: Video, path: '/register/non-tech', category: 'non-tech' },
 ];
 
 export const WORKSHOP_INFO: WorkshopDetails = {
@@ -52,8 +53,8 @@ export const nonTechEventOptions = [
   { id: 2, title: "Photography" }
 ];
 // 🔒 Common registration closing date for all events
-// Closes on 1st March at 11:00 PM
-export const REGISTRATION_CLOSE_DATE = new Date(2026, 2, 1, 23, 0, 0);
+// Closes on 1st March at 11:59 PM
+export const REGISTRATION_CLOSE_DATE = new Date(2026, 2, 1, 23, 59, 0);
 
 // 🔒 Common closed text
 export const REGISTRATION_CLOSED_TEXT = 'REGISTRATION CLOSED';

@@ -1,3 +1,4 @@
+// ../pages/Home.tsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -91,7 +92,7 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="text-lg md:text-4xl text-neonBlue font-mech tracking-wider mb-1 md:mb-2 text-center drop-shadow-[0_0_10px_rgba(0,243,255,0.3)]"
             >
-              GOVERNMENT COLLEGE OF ENGINEERING, ERODE
+              GOVERNMENT COLLEGE OF ENGINEERING, ERODE-638 316
             </motion.h3>
             <h2 className="text-sm md:text-2xl text-gray-300 font-mech tracking-[0.2em] text-center drop-shadow-[0_0_5px_rgba(255,255,255,0.2)]">
               DEPARTMENT OF MECHANICAL ENGINEERING
@@ -121,9 +122,7 @@ const Home: React.FC = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="space-y-4 mb-12"
         >
-          <p className="text-xl md:text-3xl font-mech text-neonBlue mt-4 mb-8 drop-shadow-[0_0_10px_rgba(0,243,255,0.3)]">
-            ₹300 - Per Participant
-          </p>
+          
           <div className="h-1 w-24 bg-neonOrange mx-auto rounded-full shadow-[0_0_10px_#ffaa00]"></div>
         </motion.div>
 
@@ -133,7 +132,7 @@ const Home: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,243,255,0.5)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-transparent border-2 border-neonBlue text-neonBlue font-mech font-bold text-lg uppercase tracking-wider relative overflow-hidden group"
+                className="px-8 py-4 bg-transparent rounded-3xl border-2 border-neonBlue text-neonBlue font-mech font-bold text-lg uppercase tracking-wider relative overflow-hidden group"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Register Now <ChevronRight />
@@ -146,7 +145,7 @@ const Home: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(255,170,0,0.5)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-neonOrange text-black font-mech font-bold text-lg uppercase tracking-wider shadow-[0_0_15px_#ffaa00]"
+                className="px-8 py-4 bg-neonOrange rounded-3xl text-black font-mech font-bold text-lg uppercase tracking-wider shadow-[0_0_15px_#ffaa00]"
               >
                 View Events
               </motion.button>

@@ -93,7 +93,7 @@ const Workshop: React.FC = () => {
           />
 
           <p className="mt-2 text-sm text-gray-400">
-            Registration closes on 1 March at 11:00 PM
+            Registration closes on 1 March at 11:59 PM
           </p>
         </div>
       </motion.div>

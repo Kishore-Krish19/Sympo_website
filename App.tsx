@@ -1,8 +1,10 @@
 // ../App.tsx
 import React from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+
 import Home from './pages/Home';
 import About from './pages/About';
 import Events from './pages/Events';
@@ -11,16 +13,22 @@ import EVRacing from './pages/EVRacing';
 import Register from './pages/Register';
 import Contact from './pages/Contact';
 import EventList from './pages/EventList';
+import EventDescription from './pages/EventDescription';
+
 import { TECH_EVENTS, NON_TECH_EVENTS } from './constants';
 
+/* 🔼 Scroll to top on route change */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
   return null;
 };
 
+/* 🔲 Layout wrapper */
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="flex flex-col min-h-screen">
     <Navbar />
@@ -33,13 +41,40 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
+
       <Layout>
         <Routes>
+          {/* MAIN PAGES */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/tech-events" element={<EventList title="Technical Events" events={TECH_EVENTS} type="tech" />} />
-          <Route path="/non-tech-events" element={<EventList title="Non-Tech Events" events={NON_TECH_EVENTS} type="non-tech" />} />
+
+          {/* EVENT LISTS */}
+          <Route
+            path="/tech-events"
+            element={
+              <EventList
+                title="Technical Events"
+                events={TECH_EVENTS}
+                type="tech"
+              />
+            }
+          />
+
+          <Route
+            path="/non-tech-events"
+            element={
+              <EventList
+                title="Non-Tech Events"
+                events={NON_TECH_EVENTS}
+                type="non-tech"
+              />
+            }
+          />
+
+          {/* EVENT DESCRIPTION */}
+          <Route path="/events/:id" element={<EventDescription />} />
+          {/* OTHER PAGES */}
           <Route path="/workshop" element={<Workshop />} />
           <Route path="/ev-racing" element={<EVRacing />} />
           <Route path="/register/:type" element={<Register />} />
@@ -51,3 +86,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+ 
