@@ -1,12 +1,14 @@
 // ../pages/Home.tsx
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ChevronRight, Settings } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ChevronRight, Settings } from "lucide-react";
+import collegeLogo from "../assets/college-logo.png";
+import deptLogo from "../assets/dept-logo.png";
 
 const Countdown = () => {
   const calculateTimeLeft = () => {
-    const targetDate = new Date('2026-03-01T23:59:59');
+    const targetDate = new Date("2026-03-01T23:59:59");
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
 
@@ -36,7 +38,7 @@ const Countdown = () => {
         <div key={unit} className="flex flex-col items-center">
           <div className="bg-black/50 border border-neonBlue/30 rounded-lg p-3 md:p-4 w-16 md:w-24 backdrop-blur-sm shadow-[0_0_10px_rgba(0,243,255,0.1)]">
             <span className="text-2xl md:text-4xl font-mech text-neonOrange block">
-              {String(value).padStart(2, '0')}
+              {String(value).padStart(2, "0")}
             </span>
             <span className="text-xs md:text-sm text-gray-400 uppercase tracking-wider font-body mt-1">
               {unit}
@@ -121,20 +123,55 @@ const Home: React.FC = () => {
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-neonOrange/10 rounded-full blur-[100px]" />
 
         <Settings className="absolute top-20 left-10 w-64 h-64 text-white/5 animate-spin-slow" />
-        <Settings className="absolute bottom-20 right-10 w-96 h-96 text-white/5 animate-spin-slow" style={{ animationDirection: 'reverse' }} />
+        <Settings
+          className="absolute bottom-20 right-10 w-96 h-96 text-white/5 animate-spin-slow"
+          style={{ animationDirection: "reverse" }}
+        />
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-row flex-wrap md:flex-nowrap items-center justify-center gap-4 md:gap-12 mb-8 md:mb-12 w-full">
-          <div className="order-1 w-16 h-16 md:w-24 md:h-24 flex items-center justify-center shrink-0">
-            <img src="/college-logo.png" alt="College Logo" className="w-full h-full object-cover rounded-full" />
+          <div
+            className="
+    relative
+    w-36 h-36
+    md:w-44 md:h-44
+    rounded-full
+    flex items-center justify-center
+  "
+          >
+            <img
+              src={collegeLogo}
+              alt="College Logo"
+              className="
+      w-32 h-32
+      md:w-40 md:h-40
+      lg:w-44 lg:h-44
+      object-contain
+      invert
+      brightness-200
+      contrast-200
+      drop-shadow-[0_0_18px_rgba(0,243,255,0.8)]
+    "
+            />
           </div>
 
-          <div className="order-2 md:order-3 w-16 h-16 md:w-24 md:h-24 flex items-center justify-center shrink-0">
-            <span className="text-[10px] md:text-xs font-mech bg-white/10 rounded-full w-full h-full flex items-center justify-center">
-              DEPT LOGO
-            </span>
+          <div className="order-2 md:order-3 w-36 h-36 md:w-44 md:h-44 flex items-center justify-center shrink-0">
+            <img
+              src={deptLogo}
+              alt="Department Logo"
+              className="
+      w-32 h-32
+      md:w-40 md:h-40
+      lg:w-44 lg:h-44
+      object-contain
+      invert
+      brightness-200
+      contrast-200
+      drop-shadow-[0_0_18px_rgba(0,243,255,0.7)]
+    "
+            />
           </div>
 
           <div className="order-3 md:order-2 w-full md:w-auto flex flex-col items-center">
@@ -156,13 +193,13 @@ const Home: React.FC = () => {
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, type: 'spring' }}
+          transition={{ duration: 1, type: "spring" }}
           className="flex items-center justify-center gap-4 md:gap-8 mb-8"
         >
           {/* 🔥 PISTON CLUSTER */}
           <PistonCluster />
 
-          <h1 className="text-4xl sm:text-6xl md:text-9xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 drop-shadow-[0_0_12px_rgba(255,215,0,0.7)]">
+          <h1 className="text-4xl sm:text-8xl md:text-12xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 drop-shadow-[0_0_12px_rgba(255,215,0,0.7)]">
             EFFICACY'26
           </h1>
         </motion.div>
@@ -170,22 +207,86 @@ const Home: React.FC = () => {
         <div className="h-1 w-24 bg-neonOrange mx-auto rounded-full shadow-[0_0_10px_#ffaa00] mb-12" />
 
         <div className="flex flex-col items-center gap-12">
-          <div className="flex gap-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
             <Link to="/register/tech">
-              <motion.button className="px-8 py-4 border-2 border-neonBlue text-neonBlue font-mech rounded-3xl">
-                Register Now <ChevronRight />
+              <motion.button
+                whileHover="hover"
+                initial="rest"
+                animate="rest"
+                variants={{
+                  rest: { scale: 1 },
+                  hover: { scale: 1.08 },
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                className="
+      px-8 py-4
+      border-2 border-neonBlue
+      text-neonBlue
+      font-mech
+      rounded-3xl
+      inline-flex items-center justify-center
+      gap-2
+      whitespace-nowrap
+      shadow-[0_0_12px_rgba(0,243,255,0.25)]
+    "
+              >
+                <span className="leading-none">Register Now</span>
+
+                <motion.span
+                  variants={{
+                    rest: { x: 0 },
+                    hover: { x: 6 },
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="flex items-center leading-none"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </motion.span>
               </motion.button>
             </Link>
 
             <Link to="/events">
-              <motion.button className="px-8 py-4 bg-neonOrange text-black font-mech rounded-3xl">
-                View Events
+              <motion.button
+                whileHover="hover"
+                initial="rest"
+                animate="rest"
+                variants={{
+                  rest: { scale: 1 },
+                  hover: { scale: 1.08 },
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                className="
+      px-8 py-4
+      bg-neonOrange
+      text-black
+      font-mech
+      rounded-3xl
+      inline-flex items-center justify-center
+      gap-2
+      whitespace-nowrap
+      shadow-[0_0_14px_rgba(255,170,0,0.35)]
+    "
+              >
+                <span className="leading-none">View Events</span>
+
+                <motion.span
+                  variants={{
+                    rest: { x: 0 },
+                    hover: { x: 6 },
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="flex items-center leading-none"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </motion.span>
               </motion.button>
             </Link>
           </div>
 
           <div>
-            <h3 className="text-neonBlue font-mech text-xl mb-4">REGISTRATION ENDS IN</h3>
+            <h3 className="text-neonBlue font-mech text-xl mb-4">
+              REGISTRATION ENDS IN
+            </h3>
             <Countdown />
           </div>
         </div>

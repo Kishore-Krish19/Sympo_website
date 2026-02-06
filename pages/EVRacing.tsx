@@ -1,14 +1,25 @@
 // ../pages/EVRacing.tsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Zap, AlertTriangle, Route, IndianRupee, Trophy } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import {
+  Zap,
+  AlertTriangle,
+  Route,
+  IndianRupee,
+  Trophy,
+  Bike,
+} from "lucide-react";
 import rulesPdf from "../assets/Mess fees Jan 2026.pdf";
 
 const EVRacing: React.FC = () => {
+  // 🔑 REQUIRED for mobile reload reliability
+  const titleRef = React.useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(titleRef, { once: true, amount: 0.6 });
+
   return (
     <div className="min-h-screen pt-24 px-4 container mx-auto">
-      <div className="relative rounded-xl p-8 bg-black overflow-hidden">
+      <div className="relative rounded-xl p-8 bg-black overflow-hidden sm:overflow-hidden overflow-visible">
         {/* GREEN NEON BACKGROUND */}
         <motion.div
           animate={{ opacity: [0.6, 0.9, 0.6] }}
@@ -66,42 +77,81 @@ const EVRacing: React.FC = () => {
               <Zap className="w-16 h-16 text-green-400" />
             </motion.div>
 
-            {/* TITLE */}
-            <motion.h1
-  animate={{
-    color: ["#e5e7eb", "#ffffff", "#e5e7eb"], // gray → white → gray
-    textShadow: [
-      "0 0 12px rgba(34,197,94,0.4)",
-      "0 0 30px rgba(34,197,94,1)",
-      "0 0 12px rgba(34,197,94,0.4)",
-    ],
-  }}
-  transition={{
-    duration: 1.2,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className="
-    relative z-10
-    text-5xl md:text-7xl
-    font-mech italic
-    uppercase tracking-tighter
-  "
->
-  EV <span className="text-green-500">RACING</span>
-</motion.h1>
+            {/* TITLE + BIKES */}
+            <div
+              ref={titleRef}
+              className="relative flex items-center justify-center gap-4 sm:gap-8 overflow-visible"
+            >
+              {/* LEFT BIKE */}
+              <motion.div
+                initial={{ x: -40, opacity: 0 }}
+                animate={isInView ? { x: -6, opacity: 1 } : {}}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="z-0 pointer-events-none"
+              >
+                <Bike
+                  className="
+                    w-8 h-8
+                    sm:w-14 sm:h-14
+                    md:w-16 md:h-16
+                    text-green-400
+                    rotate-[-30deg]
+                    drop-shadow-[0_0_14px_rgba(34,197,94,0.9)]
+                  "
+                />
+              </motion.div>
 
+              {/* TITLE */}
+              <motion.h1
+                animate={{
+                  color: ["#e5e7eb", "#ffffff", "#e5e7eb"],
+                  textShadow: [
+                    "0 0 12px rgba(34,197,94,0.4)",
+                    "0 0 30px rgba(34,197,94,1)",
+                    "0 0 12px rgba(34,197,94,0.4)",
+                  ],
+                }}
+                transition={{
+                  duration: 1.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="
+                  relative z-10
+                  text-5xl md:text-7xl
+                  font-mech italic
+                  uppercase tracking-tighter
+                "
+              >
+                EV <span className="text-green-500">RACING</span>
+              </motion.h1>
 
+              {/* RIGHT BIKE */}
+              <motion.div
+                initial={{ x: 40, opacity: 0 }}
+                animate={isInView ? { x: 6, opacity: 1 } : {}}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+                className="z-0 pointer-events-none"
+              >
+                <Bike
+                  className="
+                    w-8 h-8
+                    sm:w-14 sm:h-14
+                    md:w-16 md:h-16
+                    text-green-400
+                    scale-x-[-1]
+                    rotate-[30deg]
+                    drop-shadow-[0_0_14px_rgba(34,197,94,0.9)]
+                  "
+                />
+              </motion.div>
+            </div>
           </div>
 
           {/* INFO CARDS */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
-              {
-                icon: AlertTriangle,
-                title: "Rules",
-                isRules: true,
-              },
+              { icon: AlertTriangle, title: "Rules", isRules: true },
               {
                 icon: Route,
                 title: "Track",
@@ -124,39 +174,26 @@ const EVRacing: React.FC = () => {
                 className="bg-white/5 border border-white/10 p-6 rounded hover:border-green-400 transition-colors"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <item.icon className="w-10 h-10 text-green-400 drop-shadow-[0_0_6px_rgba(34,197,94,0.7)]" />
-
+                  <item.icon className="w-10 h-10 text-green-400" />
                   {item.isRules && (
                     <a href={rulesPdf} download="EV_Racing_Rules.pdf">
-                      <button
-                        className="
-                          px-4 py-2 bg-green-500 text-black font-mech font-bold
-                          text-xs uppercase tracking-widest
-                          hover:bg-green-400
-                          shadow-[0_0_15px_rgba(34,197,94,0.6)]
-                          skew-x-[-12deg]
-                        "
-                      >
-                        <span className="block skew-x-[12deg]">
-                          Download
-                        </span>
+                      <button className="px-4 py-2 bg-green-500 text-black font-mech font-bold text-xs uppercase">
+                        Download
                       </button>
                     </a>
                   )}
                 </div>
-
                 <h3 className="text-xl font-mech text-white mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-400 font-body text-sm">
-                  {item.desc}
-                </p>
+                <p className="text-gray-400 text-sm">{item.desc}</p>
               </motion.div>
             ))}
           </div>
 
           {/* REGISTER BUTTON */}
           <div className="flex justify-center">
+            <div className="flex justify-center">
             <Link to="/register/ev">
               <button
                 className="
@@ -173,10 +210,10 @@ const EVRacing: React.FC = () => {
               </button>
             </Link>
           </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default EVRacing;

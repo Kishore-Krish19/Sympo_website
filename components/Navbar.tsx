@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Settings } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,31 +23,64 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-black/80 backdrop-blur-md">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse group">
-          <Settings className="w-8 h-8 text-neonBlue animate-spin-slow group-hover:text-neonOrange transition-colors" />
+        {/* LEFT: Gear + Title */}
+        <Link to="/" className="flex items-center gap-3">
+          <Settings className="w-7 h-7 text-neonBlue animate-spin-slow" />
           <span
-  className="
-    self-center
-    text-4xl sm:text-6xl md:text-2xl
-    font-black font-mech
-    whitespace-nowrap tracking-widest
-    text-transparent bg-clip-text
-    bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700
-    drop-shadow-[0_0_12px_rgba(255,215,0,0.7)]
-  "
->
-  EFFICACY'26
-</span>
+            className="
+              text-xl sm:text-2xl md:text-2xl
+              font-black font-mech
+              tracking-widest
+              whitespace-nowrap
+              text-transparent bg-clip-text
+              bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700
+              drop-shadow-[0_0_12px_rgba(255,215,0,0.7)]
+            "
+          >
+            EFFICACY'26
+          </span>
         </Link>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        >
-          <span className="sr-only">Open main menu</span>
-          {isOpen ? <X /> : <Menu />}
-        </button>
+        {/* RIGHT: Hamburger (MOBILE) */}
+<button
+  onClick={() => setIsOpen(!isOpen)}
+  className="md:hidden w-10 h-10 flex items-center justify-center"
+>
+  <motion.div
+    className="relative w-6 h-6"
+    animate={{ rotate: isOpen ? 90 : 0 }}
+    transition={{ type: "spring", stiffness: 260, damping: 22 }}
+  >
+    {/* TOP LINE */}
+    <motion.span
+      className="absolute left-0 top-1/2 w-full h-[2px] bg-white rounded origin-center"
+      animate={{
+        rotate: isOpen ? 45 : 0,
+        y: isOpen ? 0 : -6,
+      }}
+      transition={{ type: "spring", stiffness: 260, damping: 22 }}
+    />
+
+    {/* MIDDLE LINE */}
+    <motion.span
+      className="absolute left-0 top-1/2 w-full h-[2px] bg-white rounded origin-center"
+      animate={{
+        opacity: isOpen ? 0 : 1,
+      }}
+      transition={{ duration: 0.15 }}
+    />
+
+    {/* BOTTOM LINE */}
+    <motion.span
+      className="absolute left-0 top-1/2 w-full h-[2px] bg-white rounded origin-center"
+      animate={{
+        rotate: isOpen ? -45 : 0,
+        y: isOpen ? 0 : 6,
+      }}
+      transition={{ type: "spring", stiffness: 260, damping: 22 }}
+    />
+  </motion.div>
+</button>
 
         <div className={`${isOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-900 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">
