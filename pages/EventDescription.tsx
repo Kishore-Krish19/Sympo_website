@@ -19,10 +19,10 @@ const EventDescription: React.FC = () => {
 
   const description = EVENT_DESCRIPTIONS[id];
 
-  if (!description) {
+  if (!description || !description.rules) {
     return (
       <div className="min-h-screen pt-24 flex items-center justify-center">
-        <p className="text-white text-xl">Description not available</p>
+        <p className="text-white text-xl">Rules not available</p>
       </div>
     );
   }
@@ -38,56 +38,17 @@ const EventDescription: React.FC = () => {
         {event.title}
       </h1>
 
-      {/* DESCRIPTION CARD */}
-      <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-lg space-y-6">
+      {/* RULES CARD */}
+      <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-lg">
+        <h2 className="text-xl font-mech text-white mb-4 uppercase">
+          Event Rules & Guidelines
+        </h2>
 
-        {/* OVERVIEW */}
-        <div>
-          <h2 className="text-xl font-mech text-white mb-2 uppercase">
-            Overview
-          </h2>
-          <p className="text-gray-300 leading-relaxed">
-            {description.overview}
-          </p>
-        </div>
-
-        {/* RULES */}
-        {description.rules && (
-          <div>
-            <h2 className="text-xl font-mech text-white mb-2 uppercase">
-              Rules
-            </h2>
-            <ul className="list-disc list-inside text-gray-300 space-y-1">
-              {description.rules.map((rule, index) => (
-                <li key={index}>{rule}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* ELIGIBILITY */}
-        {description.eligibility && (
-          <div>
-            <h2 className="text-xl font-mech text-white mb-2 uppercase">
-              Eligibility
-            </h2>
-            <p className="text-gray-300">
-              {description.eligibility}
-            </p>
-          </div>
-        )}
-
-        {/* FORMAT */}
-        {description.format && (
-          <div>
-            <h2 className="text-xl font-mech text-white mb-2 uppercase">
-              Format
-            </h2>
-            <p className="text-gray-300">
-              {description.format}
-            </p>
-          </div>
-        )}
+        <ul className="list-disc list-inside text-gray-300 space-y-2">
+          {description.rules.map((rule, index) => (
+            <li key={index}>{rule}</li>
+          ))}
+        </ul>
       </div>
 
       {/* ACTION BUTTONS */}

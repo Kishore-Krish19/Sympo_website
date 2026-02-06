@@ -2,62 +2,76 @@
 export const EVENT_DESCRIPTIONS: Record<
   string,
   {
-    overview: string;
-    rules?: string[];
-    eligibility?: string;
-    format?: string;
+    rules: string[];
   }
 > = {
   pp: {
-    overview:
-      "Paper Presentation is a technical event where participants present innovative ideas, research findings, or technical solutions before a panel of judges.",
     rules: [
       "Individual or team participation (maximum 3 members)",
-      "Paper must be original; plagiarism is strictly prohibited.",
+      "Paper must be original; plagiarism is strictly prohibited",
       "PPT format only",
+      "Presentation time: 6–8 minutes followed by Q&A",
+      "Judges’ decision will be final",
     ],
-    eligibility: "Open to all engineering students",
-    format: "Offline presentation",
   },
 
   cad: {
-    overview:
-      "3D Modeling challenges participants to design mechanical components using CAD tools like Fusion 360 or SolidWorks.",
     rules: [
-      "Individual participation",
-      "Time-limited design challenge",
+      "Individual participation only",
+      "On-spot 3D modeling challenge",
+      "Time-limited design task",
       "Judging based on accuracy and creativity",
+      "Decision of judges is final",
     ],
-    format: "On-spot design task",
   },
 
   quiz: {
-    overview:
-      "Mech Core Quiz tests your knowledge in mechanical engineering fundamentals through multiple rounds.",
     rules: [
       "Team of 2 members",
-      "Prelims + Finals",
-      "No mobile phones allowed",
+      "Prelims followed by Finals",
+      "No mobile phones or electronic devices allowed",
+      "Questions based on mechanical engineering fundamentals",
+      "Quiz master’s decision will be final",
     ],
   },
 
   expo: {
-    overview:
-      "Legend in a Lathe is a machining-based event where participants showcase hands-on skills using conventional machines.",
     rules: [
-      "Individual participation",
-      "Safety gear mandatory",
-      "Time-bound machining task",
+      "Individual participation only",
+      "Safety gear is mandatory",
+      "Task must be completed within the given time",
+      "Unsafe practices lead to immediate disqualification",
+      "Judges’ decision will be final",
     ],
   },
 
   photo: {
-    overview:
-      "Photography contest challenges participants to capture creative moments based on given themes.",
+    rules: [
+      "Individual participation only",
+      "Photographs must be original",
+      "Theme will be announced on the spot",
+      "Basic editing allowed; no manipulation",
+      "Plagiarism will result in disqualification",
+    ],
   },
 
   meme: {
-    overview:
-      "Short Film event encourages storytelling through short videos with creativity and originality.",
+    rules: [
+      "Language of the short film must be Tamil only",
+      "Duration: 3 to 6 minutes (including title and credits)",
+      "Team size: Maximum 3 members",
+      "Submission format: MP4, 1080p (Full HD recommended)",
+      "Story, script, and footage must be completely original",
+      "No copyrighted music, videos, or images without permission",
+      "Political, religious, or inappropriate content is strictly prohibited",
+      "Title card and end credits are mandatory",
+      "The film must clearly convey the selected theme and message",
+
+      "Themes:",
+      "Beyond the Screen – Life and reality outside mobile phones and social media",
+      "The Last Chance – A moment of hope, change, or redemption",
+      "Breaking the Cycle – Ending harmful habits or negative mindsets",
+      "Marks Don’t Measure Me – A low-scoring student proving true potential",
+    ],
   },
 };

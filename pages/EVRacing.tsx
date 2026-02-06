@@ -33,18 +33,65 @@ const EVRacing: React.FC = () => {
         {/* CONTENT */}
         <div className="relative z-10">
           {/* HEADER */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 relative">
+            {/* ⚡ CHARGING BLINK BACKGROUND */}
+            <motion.div
+              animate={{
+                opacity: [0.25, 0.7, 0.25],
+                scale: [0.95, 1.08, 0.95],
+              }}
+              transition={{
+                duration: 1.1,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute inset-0 flex justify-center items-center pointer-events-none"
+            >
+              <div
+                className="
+                  w-[420px] h-[140px]
+                  bg-gradient-to-r from-green-400 via-green-500 to-green-400
+                  blur-[60px]
+                  opacity-90
+                "
+              />
+            </motion.div>
+
+            {/* ICON */}
             <motion.div
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="inline-block p-4 rounded-full bg-green-500/10 mb-4"
+              className="inline-block p-4 rounded-full bg-green-500/10 mb-4 relative z-10"
             >
               <Zap className="w-16 h-16 text-green-400" />
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-mech italic text-white uppercase tracking-tighter">
-              EV <span className="text-green-500">RACING</span>
-            </h1>
+            {/* TITLE */}
+            <motion.h1
+  animate={{
+    color: ["#e5e7eb", "#ffffff", "#e5e7eb"], // gray → white → gray
+    textShadow: [
+      "0 0 12px rgba(34,197,94,0.4)",
+      "0 0 30px rgba(34,197,94,1)",
+      "0 0 12px rgba(34,197,94,0.4)",
+    ],
+  }}
+  transition={{
+    duration: 1.2,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className="
+    relative z-10
+    text-5xl md:text-7xl
+    font-mech italic
+    uppercase tracking-tighter
+  "
+>
+  EV <span className="text-green-500">RACING</span>
+</motion.h1>
+
+
           </div>
 
           {/* INFO CARDS */}
@@ -77,20 +124,23 @@ const EVRacing: React.FC = () => {
                 whileHover={{ y: -5 }}
                 className="bg-white/5 border border-white/10 p-6 rounded hover:border-green-400 transition-colors"
               >
-                {/* ICON + DOWNLOAD */}
                 <div className="flex items-center justify-between mb-4">
                   <item.icon className="w-10 h-10 text-green-400 drop-shadow-[0_0_6px_rgba(34,197,94,0.7)]" />
 
                   {item.isRules && (
                     <a href={rulesPdf} download="EV_Racing_Rules.pdf">
                       <button
-                        className="px-4 py-2 bg-green-500 text-black font-mech font-bold
-                        text-xs uppercase tracking-widest
-                        hover:bg-green-400
-                        shadow-[0_0_15px_rgba(34,197,94,0.6)]
-                        skew-x-[-12deg]"
+                        className="
+                          px-4 py-2 bg-green-500 text-black font-mech font-bold
+                          text-xs uppercase tracking-widest
+                          hover:bg-green-400
+                          shadow-[0_0_15px_rgba(34,197,94,0.6)]
+                          skew-x-[-12deg]
+                        "
                       >
-                        <span className="block skew-x-[12deg]">Download</span>
+                        <span className="block skew-x-[12deg]">
+                          Download
+                        </span>
                       </button>
                     </a>
                   )}
@@ -99,7 +149,9 @@ const EVRacing: React.FC = () => {
                 <h3 className="text-xl font-mech text-white mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-400 font-body text-sm">{item.desc}</p>
+                <p className="text-gray-400 font-body text-sm">
+                  {item.desc}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -108,13 +160,17 @@ const EVRacing: React.FC = () => {
           <div className="flex justify-center">
             <Link to="/register/ev">
               <button
-                className="px-12 py-4 bg-green-500 text-black font-mech font-bold
-                text-xl uppercase tracking-widest
-                hover:bg-green-400
-                shadow-[0_0_20px_rgba(34,197,94,0.6)]
-                skew-x-[-12deg]"
+                className="
+                  px-12 py-4 bg-green-500 text-black font-mech font-bold
+                  text-xl uppercase tracking-widest
+                  hover:bg-green-400
+                  shadow-[0_0_20px_rgba(34,197,94,0.6)]
+                  skew-x-[-12deg]
+                "
               >
-                <span className="block skew-x-[12deg]">Register Team</span>
+                <span className="block skew-x-[12deg]">
+                  Register Team
+                </span>
               </button>
             </Link>
           </div>
