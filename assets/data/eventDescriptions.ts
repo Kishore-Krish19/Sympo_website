@@ -1,3 +1,4 @@
+// ../assets/data/eventDescriptions.ts
 export const EVENT_DESCRIPTIONS: Record<
   string,
   {

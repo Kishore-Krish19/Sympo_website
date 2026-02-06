@@ -110,9 +110,10 @@ const Home: React.FC = () => {
           {/* Gear Cluster (Left) */}
           <GearCluster />
 
-          <h1 className="text-4xl sm:text-6xl md:text-9xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-            EFFICACY'26
-          </h1>
+          <h1 className="text-4xl sm:text-6xl md:text-9xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 drop-shadow-[0_0_12px_rgba(255,215,0,0.7)]">
+  EFFICACY'26
+</h1>
+
 
         </motion.div>
 

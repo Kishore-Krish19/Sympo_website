@@ -1,7 +1,7 @@
-// ../pages/EventDescription.tsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { TECH_EVENTS, NON_TECH_EVENTS } from '../constants';
+import { EVENT_DESCRIPTIONS } from '../assets/data/eventDescriptions';
 
 const EventDescription: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -9,7 +9,7 @@ const EventDescription: React.FC = () => {
   const allEvents = [...TECH_EVENTS, ...NON_TECH_EVENTS];
   const event = allEvents.find((e) => e.id === id);
 
-  if (!event) {
+  if (!event || !id) {
     return (
       <div className="min-h-screen pt-24 flex items-center justify-center">
         <p className="text-white text-xl">Event not found</p>
@@ -17,22 +17,77 @@ const EventDescription: React.FC = () => {
     );
   }
 
-  // ✅ Back path based on event type
+  const description = EVENT_DESCRIPTIONS[id];
+
+  if (!description) {
+    return (
+      <div className="min-h-screen pt-24 flex items-center justify-center">
+        <p className="text-white text-xl">Description not available</p>
+      </div>
+    );
+  }
+
+  // Back path based on category
   const backPath =
     event.category === 'tech' ? '/tech-events' : '/non-tech-events';
 
   return (
     <div className="min-h-screen pt-24 px-4 container mx-auto max-w-3xl pb-20">
       {/* TITLE */}
-      <h1 className="text-4xl md:text-5xl font-mech text-white mb-6 uppercase">
+      <h1 className="text-4xl md:text-5xl font-mech text-white mb-8 uppercase">
         {event.title}
       </h1>
 
-      {/* TEMP DESCRIPTION */}
-      <div className="bg-white/5 border border-white/10 p-6 rounded-lg">
-        <p className="text-gray-300 leading-relaxed">
-          Detailed description for this event will be updated soon.
-        </p>
+      {/* DESCRIPTION CARD */}
+      <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-lg space-y-6">
+
+        {/* OVERVIEW */}
+        <div>
+          <h2 className="text-xl font-mech text-white mb-2 uppercase">
+            Overview
+          </h2>
+          <p className="text-gray-300 leading-relaxed">
+            {description.overview}
+          </p>
+        </div>
+
+        {/* RULES */}
+        {description.rules && (
+          <div>
+            <h2 className="text-xl font-mech text-white mb-2 uppercase">
+              Rules
+            </h2>
+            <ul className="list-disc list-inside text-gray-300 space-y-1">
+              {description.rules.map((rule, index) => (
+                <li key={index}>{rule}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* ELIGIBILITY */}
+        {description.eligibility && (
+          <div>
+            <h2 className="text-xl font-mech text-white mb-2 uppercase">
+              Eligibility
+            </h2>
+            <p className="text-gray-300">
+              {description.eligibility}
+            </p>
+          </div>
+        )}
+
+        {/* FORMAT */}
+        {description.format && (
+          <div>
+            <h2 className="text-xl font-mech text-white mb-2 uppercase">
+              Format
+            </h2>
+            <p className="text-gray-300">
+              {description.format}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* ACTION BUTTONS */}
