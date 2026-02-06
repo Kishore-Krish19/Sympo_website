@@ -123,7 +123,7 @@ const Home: React.FC = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="space-y-4 mb-12"
         >
-          
+
           <div className="h-1 w-24 bg-neonOrange mx-auto rounded-full shadow-[0_0_10px_#ffaa00]"></div>
         </motion.div>
 

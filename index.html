@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< Updated upstream
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,45 +44,86 @@
                 '0%, 100%': { transform: 'translateY(0)' },
                 '50%': { transform: 'translateY(-10px)' },
               }
+=======
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>EFFICACY | Mechanical Symposium</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mech: ['Orbitron', 'sans-serif'],
+            body: ['Rajdhani', 'sans-serif'],
+          },
+          colors: {
+            neonBlue: '#00f3ff',
+            neonOrange: '#ffaa00',
+            carbon: '#111111',
+            glass: 'rgba(255, 255, 255, 0.05)',
+          },
+          animation: {
+            'spin-slow': 'spin 8s linear infinite',
+            'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 3s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+>>>>>>> Stashed changes
             }
           }
         }
       }
-    </script>
-    <style>
-      body {
-        background-color: #050505;
-        color: #e5e5e5;
-        overflow-x: hidden;
-      }
-      .bg-grid {
-        background-size: 40px 40px;
-        background-image: radial-gradient(circle, #333 1px, transparent 1px);
-      }
-      .carbon-fiber {
-        background:
-          radial-gradient(black 15%, transparent 16%) 0 0,
-          radial-gradient(black 15%, transparent 16%) 8px 8px,
-          radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-          radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-        background-color: #111;
-        background-size: 16px 16px;
-      }
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #111; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #00f3ff; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #ffaa00; 
-      }
-    </style>
+    }
+  </script>
+  <style>
+    body {
+      background-color: #050505;
+      color: #e5e5e5;
+      overflow-x: hidden;
+    }
+
+    .bg-grid {
+      background-size: 40px 40px;
+      background-image: radial-gradient(circle, #333 1px, transparent 1px);
+    }
+
+    .carbon-fiber {
+      background:
+        radial-gradient(black 15%, transparent 16%) 0 0,
+        radial-gradient(black 15%, transparent 16%) 8px 8px,
+        radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 0 1px,
+        radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 8px 9px;
+      background-color: #111;
+      background-size: 16px 16px;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #111;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #00f3ff;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ffaa00;
+    }
+  </style>
   <script type="importmap">
 {
   "imports": {
@@ -96,10 +138,12 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/index.css">
 </head>
-  <body>
-    <div id="root"></div>
+
+<body>
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
