@@ -8,6 +8,16 @@ import { Input } from '../components/Input';
 import { Upload, ChevronDown, CreditCard } from 'lucide-react';
 import { TECH_EVENTS, NON_TECH_EVENTS, WORKSHOP_INFO, BANK_DETAILS, nonTechEventOptions } from '../constants';
 
+// ===============================
+// 📲 WhatsApp Group Links (by Event Type)
+// ===============================
+const whatsappLinksByType: Record<string, string> = {
+    tech: "https://chat.whatsapp.com/B6QRLt0JFJqEyg76ScTXY6?mode=gi_t",
+    "non-tech": "https://chat.whatsapp.com/HKLWX6wkgzuI8ysfjXZxqC?mode=gi_t",
+    workshop: "https://chat.whatsapp.com/JjMrbwpieT1CjqyA77yyhU?mode=gi_t",
+    ev: "https://chat.whatsapp.com/EIOBzWU7fXV0KCBeYfoVP2?mode=gi_t"
+};
+
 const Register: React.FC = () => {
     const { type } = useParams<{ type: string }>();
     const navigate = useNavigate();
@@ -33,14 +43,44 @@ const Register: React.FC = () => {
         transactionId: '',
         termsAccepted: false,
         paymentScreenshot: '',
+        type: type || 'tech', // Default to 'tech' if type is undefined
     });
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
+    const [whatsappLink, setWhatsappLink] = useState("");
+    const isWorkshop = type === "workshop";
+    const isEVRacing = type === "ev";
+
+    useEffect(() => {
+        if (isWorkshop) {
+            setFormData(prev => ({
+                ...prev,
+                teamSize: 1,
+                teamMembers: []
+            }));
+            return;
+        }
+
+        if (isEVRacing) {
+            setFormData(prev => {
+                if (prev.teamSize > 6) {
+                    return {
+                        ...prev,
+                        teamSize: 6,
+                        teamMembers: prev.teamMembers.slice(0, 5)
+                    };
+                }
+                return prev;
+            });
+        }
+    }, [isWorkshop, isEVRacing]);
+
 
     // Handle Default Event Names for single-event categories
     useEffect(() => {
         if (type === 'workshop') {
             setFormData(prev => ({ ...prev, eventName: WORKSHOP_INFO.topic }));
         } else if (type === 'ev') {
-            setFormData(prev => ({ ...prev, eventName: 'Electric Go-Kart Racing' }));
+            setFormData(prev => ({ ...prev, eventName: 'Electric Vehicle Racing' }));
         } else {
             setFormData(prev => ({ ...prev, eventName: '' }));
         }
@@ -155,9 +195,13 @@ const Register: React.FC = () => {
         });
         setLoading(false);
 
-        if (result.success) {
+        if (result.success === true) {
             setToast({ msg: 'Registration successful!', type: 'success' });
-            setTimeout(() => navigate('/'), 3000);
+            setRegistrationSuccess(true);
+            const link = whatsappLinksByType[type || 'tech'];
+            setWhatsappLink(link);
+
+            // setTimeout(() => navigate('/'), 3000);
         } else {
             setToast({ msg: 'Registration failed. Please try again.', type: 'error' });
         }
@@ -248,25 +292,45 @@ const Register: React.FC = () => {
                         <Input name="yearOfStudy" label="Year" value={formData.yearOfStudy} onChange={handleInputChange} required placeholder="e.g. III" />
 
                         {/* Total Team Members Dropdown */}
-                        <div className="mb-4 w-full relative">
-                            <label className="block text-neonBlue text-sm font-mech tracking-wide mb-2 uppercase">
-                                Total Team Members <span className="text-red-500">*</span>
-                            </label>
-                            <div className="relative">
-                                <select
-                                    name="teamSize"
-                                    value={formData.teamSize}
-                                    onChange={handleTeamSizeChange}
-                                    className="bg-black/50 border border-white/20 text-white text-sm rounded-none focus:ring-neonOrange focus:border-neonOrange block w-full p-3 transition-all duration-300 backdrop-blur-sm font-body appearance-none cursor-pointer"
-                                    required
-                                >
-                                    <option value="1" className="bg-black">1 (Leader Only)</option>
-                                    <option value="2" className="bg-black">2 (Leader + 1)</option>
-                                    <option value="3" className="bg-black">3 (Leader + 2)</option>
-                                </select>
-                                <ChevronDown className="absolute right-3 top-3 text-neonBlue pointer-events-none w-5 h-5" />
+                        {isWorkshop ? (
+                            <Input
+                                name="teamSize"
+                                label="Total Team Members"
+                                value="1 (Solo Participant)"
+                                readOnly
+                                className="bg-white/10 text-gray-400 cursor-not-allowed"
+                            />
+                        ) : (
+                            <div className="mb-4 w-full relative">
+                                <label className="block text-neonBlue text-sm font-mech tracking-wide mb-2 uppercase">
+                                    Total Team Members <span className="text-red-500">*</span>
+                                </label>
+
+                                <div className="relative">
+                                    <select
+                                        name="teamSize"
+                                        value={formData.teamSize}
+                                        onChange={handleTeamSizeChange}
+                                        className="bg-black/100 border border-white/20 text-white text-sm rounded-none focus:ring-neonOrange focus:border-neonOrange block w-full p-3 cursor-pointer appearance-none"
+                                        required
+                                    >
+                                        <option value="1">1 (Leader Only)</option>
+                                        <option value="2">2 (Leader + 1)</option>
+                                        <option value="3">3 (Leader + 2)</option>
+
+                                        {isEVRacing && (
+                                            <>
+                                                <option value="4">4 (Leader + 3)</option>
+                                                <option value="5">5 (Leader + 4)</option>
+                                                <option value="6">6 (Leader + 5)</option>
+                                            </>
+                                        )}
+                                    </select>
+
+                                    <ChevronDown className="absolute right-3 top-3 text-neonBlue w-5 h-5 pointer-events-none" />
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
@@ -276,16 +340,18 @@ const Register: React.FC = () => {
                     </div>
 
                     {/* Dynamic Members Input Fields */}
-                    {formData.teamMembers.length > 0 && (
+                    {!isWorkshop && formData.teamMembers.length > 0 && (
                         <div className="space-y-4 border-t border-white/10 pt-4">
-                            <label className="block text-neonBlue text-sm font-mech uppercase">Additional Members</label>
+                            <label className="block text-neonBlue text-sm font-mech uppercase">
+                                Additional Members
+                            </label>
+
                             {formData.teamMembers.map((member, index) => (
                                 <Input
                                     key={index}
                                     label={`Member ${index + 2} Name`}
                                     value={member}
                                     onChange={(e) => handleMemberChange(index, e.target.value)}
-                                    className="mb-0"
                                     placeholder="Full Name"
                                     required
                                 />
@@ -325,10 +391,10 @@ const Register: React.FC = () => {
                                 <span className="block text-gray-500">IFSC Code</span>
                                 <span className="text-white font-mono">{BANK_DETAILS.ifscCode}</span>
                             </div>
-                            <div className="col-span-2 border-t border-white/10 pt-2">
+                            {/* <div className="col-span-2 border-t border-white/10 pt-2">
                                 <span className="block text-gray-500">UPI ID</span>
                                 <span className="text-neonOrange font-bold">{BANK_DETAILS.upiId}</span>
-                            </div>
+                            </div> */}
                         </div>
 
                         <Input
@@ -355,24 +421,45 @@ const Register: React.FC = () => {
 
                     <button
                         type="submit"
-                        disabled={!formData.termsAccepted || !formData.paymentScreenshot || loading}
+                        disabled={!formData.termsAccepted || !formData.paymentScreenshot || registrationSuccess || loading}
                         className={`w-full py-4 font-mech font-bold text-xl uppercase tracking-widest transition-all
               ${loading ? 'bg-gray-600 cursor-not-allowed' : 'bg-neonBlue text-black hover:bg-white shadow-[0_0_20px_rgba(0,243,255,0.4)]'}
             `}
                     >
-                        {loading ? 'Submitting...' : 'Confirm Registration'}
+                        {/* {loading ? 'Submitting...' : 'Confirm Registration'} */}
+                        {registrationSuccess ? "Registered" : loading ? "Submitting..." : "Submit"}
                     </button>
                 </form>
-
-                {toast && (
+                {toast && toast.type !== "success" && (
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className={`fixed bottom-10 right-10 p-4 rounded shadow-lg ${toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white z-50`}
+                        className={`fixed bottom-10 right-10 p-4 rounded shadow-lg bg-red-600 text-white z-50`}
                     >
                         {toast.msg}
                     </motion.div>
                 )}
+
+                {registrationSuccess && (
+                    <div className="mt-6 p-5 border border-green-500 bg-green-500/10 text-center">
+                        <p className="text-green-400 font-bold mb-3 whitespace-pre-line">
+                            🎉 Registration Successful! {"\n"} Check the email for confirmation mail
+                        </p>
+
+                        {whatsappLink && (
+                            <a
+                                href={whatsappLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block px-6 py-3 bg-green-600 text-white font-bold hover:bg-green-700 transition"
+                            >
+                                👉 Join WhatsApp Group
+                            </a>
+                        )}
+
+                    </div>
+                )}
+
             </motion.div>
         </div>
     );
