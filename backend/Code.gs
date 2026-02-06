@@ -1,102 +1,316 @@
-// ../backend/Code.gs
-// THIS IS THE GOOGLE APPS SCRIPT CODE.
-// COPY PASTE THIS INTO YOUR GOOGLE SHEETS > EXTENSIONS > APPS SCRIPT
-
 function doPost(e) {
   var lock = LockService.getScriptLock();
-  lock.tryLock(10000);
+  lock.waitLock(10000); // safer than tryLock
 
   try {
     var data = JSON.parse(e.postData.contents);
+
     var sheetName = data.sheetName;
-    var eventType = data.eventType || "Unknown"; 
+    var eventType = data.eventType || "Unknown";
     var eventName = data.eventName || "General";
-    
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    //https://docs.google.com/spreadsheets/d/1Klmy77PJ2ACJy4oxs-BCSsqM-PC07W1BQf1Ysw1KPpE/edit?usp=sharing
+    // ✅ ALWAYS use openById for Web Apps
+    var SPREADSHEET_ID = "1Klmy77PJ2ACJy4oxs-BCSsqM-PC07W1BQf1Ysw1KPpE";
+    var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+
+    // ===============================
+    // 1️⃣ MAIN REGISTRATION SHEET
+    // ===============================
     var sheet = ss.getSheetByName(sheetName);
-    
-    // 1. Handle Main Registration Sheet
-    // Updated header to remove Phone and add Transaction ID
+
     if (!sheet) {
       sheet = ss.insertSheet(sheetName);
       sheet.appendRow([
-        "Timestamp", "Team Name", "Event Name", "Leader", "College", "Dept", "Year", 
-        "WhatsApp", "Email", "Total Members", "Additional Members", 
-        "Transaction ID", "Screenshot URL"
+        "Timestamp",
+        "Team Name",
+        "Event Name",
+        "Leader",
+        "College",
+        "Dept",
+        "Year",
+        "Phone Number",
+        "WhatsApp Number",
+        "Email",
+        "Total Members",
+        "Additional Members",
+        "Transaction ID",
+        "Screenshot URL"
       ]);
     }
-
-    // Handle Image Upload (Base64)
+    //https://drive.google.com/drive/folders/1DGvhTEbW_8rUBUIXc5dNbwaiheXAP3Fp?usp=sharing
+    // ===============================
+    // 2️⃣ PAYMENT SCREENSHOT UPLOAD
+    // ===============================
     var fileUrl = "";
+
     if (data.paymentScreenshot) {
-      var folderName = "Symposium_Uploads";
-      var folder;
-      var folders = DriveApp.getFoldersByName(folderName);
-      
-      if (folders.hasNext()) {
-        folder = folders.next();
-      } else {
-        folder = DriveApp.createFolder(folderName);
+
+      // ===============================
+      // 📁 DRIVE FOLDER STRUCTURE
+      // ===============================
+      var ROOT_FOLDER_ID = "1DGvhTEbW_8rUBUIXc5dNbwaiheXAP3Fp";
+      var rootFolder = DriveApp.getFolderById(ROOT_FOLDER_ID);
+
+      // 1️⃣ Decide parent folder from `type`
+      var parentFolderName;
+
+      switch (data.type) {
+        case "tech":
+          parentFolderName = "Tech";
+          break;
+        case "non-tech":
+          parentFolderName = "Non-Tech";
+          break;
+        case "workshop":
+          parentFolderName = "Workshop";
+          break;
+        case "ev":
+          parentFolderName = "EV Racing";
+          break;
+        default:
+          parentFolderName = "Others";
       }
-      
-      // Basic Base64 parsing
-      var contentType = data.paymentScreenshot.substring(5, data.paymentScreenshot.indexOf(';'));
-      var base64 = data.paymentScreenshot.substring(data.paymentScreenshot.indexOf(',') + 1);
-      var blob = Utilities.newBlob(Utilities.base64Decode(base64), contentType, data.teamName + "_" + eventName + "_payment.png");
-      var file = folder.createFile(blob);
+
+      // 2️⃣ Get or create parent folder
+      var parentFolder;
+      var parentFolders = rootFolder.getFoldersByName(parentFolderName);
+
+      if (parentFolders.hasNext()) {
+        parentFolder = parentFolders.next();
+      } else {
+        parentFolder = rootFolder.createFolder(parentFolderName);
+      }
+
+      // 3️⃣ Event subfolder (CAD Design, Quiz, etc.)
+      var eventFolder;
+      var eventFolders = parentFolder.getFoldersByName(eventName);
+
+      if (eventFolders.hasNext()) {
+        eventFolder = eventFolders.next();
+      } else {
+        eventFolder = parentFolder.createFolder(eventName);
+      }
+
+      // ===============================
+      // 3️⃣ Extract & Validate MIME Type
+      // ===============================
+      var contentType = data.paymentScreenshot.substring(
+        5,
+        data.paymentScreenshot.indexOf(";")
+      );
+
+      if (!data.phoneNumber || !data.whatsappNumber) {
+        throw new Error("Phone number and WhatsApp number are required");
+      }
+
+      var allowedTypes = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
+      if (!allowedTypes.includes(contentType)) {
+        throw new Error("Only image files (PNG, JPG, JPEG, WEBP) are allowed");
+      }
+
+      // ===============================
+      // 4️⃣ Decode Base64 & Upload
+      // ===============================
+      var base64 = data.paymentScreenshot.substring(
+        data.paymentScreenshot.indexOf(",") + 1
+      );
+
+      var safeTeamName = data.teamName.replace(/\s+/g, "_");
+      var safeEventName = eventName.replace(/\s+/g, "_");
+
+      var fileName =
+        safeTeamName + "_" + safeEventName + "_payment.png";
+
+      var blob = Utilities.newBlob(
+        Utilities.base64Decode(base64),
+        contentType,
+        fileName
+      );
+
+      var file = eventFolder.createFile(blob);
       file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
       fileUrl = file.getUrl();
     }
 
-    // Append Data to Main Sheet
+    // ===============================
+    // 3️⃣ APPEND MAIN DATA
+    // ===============================
     sheet.appendRow([
       new Date(),
       data.teamName,
-      eventName, // Event Name in same row
+      eventName,
       data.teamLeaderName,
       data.collegeName,
       data.department,
       data.yearOfStudy,
-      "'"+data.whatsappNumber, // Force string
+      data.phoneNumber,
+      data.whatsappNumber,
       data.email,
       data.teamSize,
-      data.teamMembers.join(", "),
-      data.transactionId, // New Transaction ID field
+      (data.teamMembers || []).join(", "),
+      data.transactionId,
       fileUrl
     ]);
 
-    // 2. Handle Separate Food Count Sheet
+    // ===============================
+    // 🔁 OPTIONAL NON-TECH REGISTRATION
+    // ===============================
+    if (data.nonTechEvent && data.nonTechEvent !== "") {
+
+      var nonTechSheetName = "Non-Tech-Free";
+      var nonTechSheet = ss.getSheetByName(nonTechSheetName);
+
+      if (!nonTechSheet) {
+        nonTechSheet = ss.insertSheet(nonTechSheetName);
+        nonTechSheet.appendRow([
+          "Timestamp",
+          "Team Name",
+          "Non-Tech Event Name",
+          "Leader",
+          "College",
+          "Dept",
+          "Year",
+          "Phone Number",
+          "WhatsApp Number",
+          "Email"
+        ]);
+      }
+
+      // 🚫 DUPLICATE CHECK (Team + Event)
+      var existingData = nonTechSheet.getDataRange().getValues();
+
+      for (var i = 1; i < existingData.length; i++) {
+        var existingTeam = existingData[i][1];   // Team Name
+        var existingEvent = existingData[i][2];  // Non-Tech Event Name
+
+        if (
+          existingTeam === data.teamName &&
+          existingEvent === data.nonTechEvent
+        ) {
+          throw new Error(
+            "This team has already registered for the selected non-technical event"
+          );
+        }
+      }
+      // ✅ SAFE TO INSERT
+      nonTechSheet.appendRow([
+        new Date(),
+        data.teamName,
+        data.nonTechEvent,
+        data.teamLeaderName,
+        data.collegeName,
+        data.department,
+        data.yearOfStudy,
+        data.phoneNumber,
+        data.whatsappNumber,
+        data.email
+      ]);
+    }
+
+    // ===============================
+    // 4️⃣ FOOD COUNT SHEET
+    // ===============================
     var foodSheetName = "Food Count";
     var foodSheet = ss.getSheetByName(foodSheetName);
-    
-    if(!foodSheet) {
-       foodSheet = ss.insertSheet(foodSheetName);
-       // Header as requested
-       foodSheet.appendRow(["Team Name", "Event Type", "Event Name", "Total Team Members", "Veg Count", "Non-Veg Count"]);
-    }
-    
-    if (vegCount + nonVegCount !== totalMembers) {
-        throw new Error("Food count mismatch");
+
+    if (!foodSheet) {
+      foodSheet = ss.insertSheet(foodSheetName);
+      foodSheet.appendRow([
+        "Team Name",
+        "Event Type",
+        "Event Name",
+        "Total Team Members",
+        "Veg Count",
+        "Non-Veg Count"
+      ]);
     }
 
-    // Append Food Data
-    // Validation (Veg + NonVeg == Total) is handled on Frontend, but we log whatever is sent.
+    // ✅ Backend validation (IMPORTANT)
+    var veg = Number(data.vegCount);
+    var nonVeg = Number(data.nonVegCount);
+    var total = Number(data.teamSize);
+
+    if (veg + nonVeg !== total) {
+      throw new Error("Food count mismatch");
+    }
+
     foodSheet.appendRow([
-      data.teamName, 
-      eventType, 
-      eventName, 
-      data.teamSize,
-      data.vegCount, 
-      data.nonVegCount
+      data.teamName,
+      eventType,
+      eventName,
+      total,
+      veg,
+      nonVeg
     ]);
 
+    // ===============================
+    // 📧 SEND CONFIRMATION EMAIL
+    // ===============================
+    var eventTypeLabel = "";
+
+    switch (data.type) {
+      case "tech":
+        eventTypeLabel = "Technical Event";
+        break;
+      case "non-tech":
+        eventTypeLabel = "Non-Technical Event";
+        break;
+      case "workshop":
+        eventTypeLabel = "Workshop";
+        break;
+      case "ev":
+        eventTypeLabel = "EV Racing";
+        break;
+      default:
+        eventTypeLabel = "Event";
+    }
+
+    var subject = "EFFICACY Registration Confirmation – " + eventTypeLabel;
+
+    var message =
+      "Hello " + data.teamLeaderName + ",\n\n" +
+      "Your registration for EFFICACY has been successfully completed.\n\n" +
+      "📌 Event Category: " + eventTypeLabel + "\n" +
+      "📌 Event Name: " + data.eventName + "\n";
+
+    if (data.nonTechEvent && data.nonTechEvent !== "") {
+      message += "📌 Additional Non-Technical Event: " + data.nonTechEvent + " (Free)\n";
+    }
+
+    message +=
+      "\n👥 Team Name: " + data.teamName +
+      "\n👤 Total Members: " + data.teamSize +
+      "\n Transaction ID :" + data.transactionId +
+      "\n Screenshot link :" + fileUrl +
+      "\n\n📢 Important:\n" +
+      "WhatsApp group link :\n" +
+      "Tech: https://chat.whatsapp.com/B6QRLt0JFJqEyg76ScTXY6?mode=gi_t \n" +
+      "Non-Tech : https://chat.whatsapp.com/HKLWX6wkgzuI8ysfjXZxqC?mode=gi_t \n" +
+      "Contact:\n" +
+      "Name: Venkataprasath R (Coordinator)\n" +
+      "Phone: 7010591904 \n\n" +
+      "Regards,\n" +
+      "Team EFFICACY";
+
+    MailApp.sendEmail({
+      to: data.email,
+      subject: subject,
+      body: message
+    });
+
     return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'success' }))
+      .createTextOutput(JSON.stringify({
+        result: "success",
+        type: data.type,
+        eventType: data.eventType,
+        eventName: data.eventName,
+        nonTechEvent: data.nonTechEvent || ""
+      }))
       .setMimeType(ContentService.MimeType.JSON);
 
-  } catch (e) {
+  } catch (err) {
     return ContentService
-      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': e.toString() }))
+      .createTextOutput(JSON.stringify({ result: "error", error: err.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   } finally {
     lock.releaseLock();

@@ -16,14 +16,14 @@ export const BANK_DETAILS = {
 
 export const TECH_EVENTS: EventDetails[] = [
   { id: 'pp', title: 'Paper Presentation', description: 'Showcase your innovative ideas and research.', icon: PenTool, path: '/register/tech', category: 'tech' },
-  { id: 'cad', title: '3D Modeling (Design Challenge)', description: 'Test your modeling skills in Fusion 360/SolidWorks.', icon: Settings, path: '/register/tech', category: 'tech' },
+  { id: 'cad', title: '3D CAD Modeling (Design Challenge)', description: 'Test your modeling skills in Fusion 360/SolidWorks.', icon: Settings, path: '/register/tech', category: 'tech' },
   { id: 'quiz', title: 'Mech Core Quiz', description: 'Battle of brains on mechanical concepts.', icon: Brain, path: '/register/tech', category: 'tech' },
-  { id: 'expo', title: 'Legend in a Lathe (Machining)', description: 'Display your final year or hobby projects.', icon: Wrench, path: '/register/tech', category: 'tech' },
+  { id: 'expo', title: 'Legend in Lathe (Machining)', description: 'Display your final year or hobby projects.', icon: Wrench, path: '/register/tech', category: 'tech' },
 ];
 
 export const NON_TECH_EVENTS: EventDetails[] = [
   { id: 'photo', title: 'Photography', description: 'Capture the moment.', icon: Camera, path: '/register/non-tech', category: 'non-tech' },
-  { id: 'meme', title: 'Short Flim', description: 'Make us laugh with engineering humor.', icon: Video, path: '/register/non-tech', category: 'non-tech' },
+  { id: 'meme', title: 'Short Film', description: 'Make us laugh with engineering humor.', icon: Video, path: '/register/non-tech', category: 'non-tech' },
 ];
 
 export const WORKSHOP_INFO: WorkshopDetails = {

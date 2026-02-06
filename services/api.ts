@@ -48,7 +48,7 @@ export const submitRegistration = async (
     };
 
   } catch (err) {
-    console.error(err);
-    return { success: false, message: "Network error" };
+    // console.error(err);
+    return { success: false, message: "Submissioin Failed" };
   }
 };
