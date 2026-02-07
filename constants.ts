@@ -1,5 +1,5 @@
 // ../constants.ts
-import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair, Users,Video, Wrench } from 'lucide-react';
+import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair, Users, Video, Wrench } from 'lucide-react';
 import { WorkshopDetails, EventDetails, Coordinator } from './types';
 import { video } from 'framer-motion/client';
 
@@ -15,15 +15,15 @@ export const BANK_DETAILS = {
 };
 
 export const TECH_EVENTS: EventDetails[] = [
-  { id: 'pp', title: 'Paper Presentation', description: 'Showcase your innovative ideas and research.', icon: PenTool, path: '/register/tech', category: 'tech' },
-  { id: 'cad', title: '3D CAD Modeling (Design Challenge)', description: 'Test your modeling skills in Fusion 360/SolidWorks.', icon: Settings, path: '/register/tech', category: 'tech' },
-  { id: 'quiz', title: 'Mech Core Quiz', description: 'Battle of brains on mechanical concepts.', icon: Brain, path: '/register/tech', category: 'tech' },
-  { id: 'expo', title: 'Legend in Lathe (Machining)', description: 'Display your final year or hobby projects.', icon: Wrench, path: '/register/tech', category: 'tech' },
+  { id: 'pp', title: 'Paper Presentation', description: 'Showcase your innovative ideas and research.', icon: PenTool, path: '/register/tech', category: 'tech', entryFee: '₹ 300 / person' },
+  { id: 'cad', title: '3D CAD Modeling (Design Challenge)', description: 'Test your modeling skills in Fusion 360/SolidWorks.', icon: Settings, path: '/register/tech', category: 'tech', entryFee: '₹ 300 / person' },
+  { id: 'quiz', title: 'Mech Core Quiz', description: 'Battle of brains on mechanical concepts.', icon: Brain, path: '/register/tech', category: 'tech', entryFee: '₹ 300 / person' },
+  { id: 'expo', title: 'Legend in Lathe (Machining)', description: 'Display your final year or hobby projects.', icon: Wrench, path: '/register/tech', category: 'tech', entryFee: '₹ 300 / person' },
 ];
 
 export const NON_TECH_EVENTS: EventDetails[] = [
-  { id: 'photo', title: 'Photography', description: 'Capture the moment.', icon: Camera, path: '/register/non-tech', category: 'non-tech' },
-  { id: 'meme', title: 'Short Film', description: 'Make us laugh with engineering humor.', icon: Video, path: '/register/non-tech', category: 'non-tech' },
+  { id: 'photo', title: 'Photography', description: 'Capture the moment.', icon: Camera, path: '/register/non-tech', category: 'non-tech', entryFee: '₹ 300 / person' },
+  { id: 'meme', title: 'Short Film', description: 'Make us laugh with engineering humor.', icon: Video, path: '/register/non-tech', category: 'non-tech', entryFee: '₹ 300 / person' },
 ];
 
 export const WORKSHOP_INFO: WorkshopDetails = {
@@ -38,13 +38,14 @@ export const WORKSHOP_INFO: WorkshopDetails = {
     "Industrial and Commercial Applications",
     "Safety, Regulations & Ethics",
     "Career and Future Trends in Drones"
-  ]
+  ],
+  entryFee: "₹ 300 / person"
 };
 
 export const COORDINATORS: Coordinator[] = [
-  { name: "Dony Charles",  phone: "+91 78100 85410" },
+  { name: "Dony Charles", phone: "+91 78100 85410" },
   { name: "Venkataprasath", phone: "+91 70105 91904" },
-  { name: "Vedheswar",  phone: "+91 93611 32882" },
+  { name: "Vedheswar", phone: "+91 93611 32882" },
   { name: "Solaivendhan", phone: "+91 70948 77363" },
 ];
 

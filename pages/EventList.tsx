@@ -26,11 +26,10 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
         </h1>
 
         <div
-          className={`h-2 w-24 ${
-            isTech
-              ? 'bg-neonBlue shadow-[0_0_10px_#00f3ff]'
-              : 'bg-neonOrange shadow-[0_0_10px_#ffaa00]'
-          } rounded-full`}
+          className={`h-2 w-24 ${isTech
+            ? 'bg-neonBlue shadow-[0_0_10px_#00f3ff]'
+            : 'bg-neonOrange shadow-[0_0_10px_#ffaa00]'
+            } rounded-full`}
         />
       </motion.div>
 
@@ -46,9 +45,8 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
           >
             {/* LEFT BORDER GLOW */}
             <div
-              className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent ${
-                isTech ? 'via-neonBlue' : 'via-neonOrange'
-              } to-transparent opacity-40`}
+              className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent ${isTech ? 'via-neonBlue' : 'via-neonOrange'
+                } to-transparent opacity-40`}
             />
 
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -56,9 +54,8 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
               <div className="flex items-start gap-6">
                 <div className="p-4 bg-black/50 rounded-lg border border-white/5">
                   <event.icon
-                    className={`w-8 h-8 ${
-                      isTech ? 'text-neonBlue' : 'text-neonOrange'
-                    }`}
+                    className={`w-8 h-8 ${isTech ? 'text-neonBlue' : 'text-neonOrange'
+                      }`}
                   />
                 </div>
 
@@ -66,6 +63,7 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
                   <h3 className="text-2xl font-mech text-white mt-4">
                     {event.title}
                   </h3>
+
                 </div>
               </div>
 
@@ -75,11 +73,10 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
                 <Link to={`/events/${event.id}`}>
                   <button
                     className={`px-6 py-3 text-sm font-mech uppercase tracking-wider
-                    border ${
-                      isTech
+                    border ${isTech
                         ? 'border-neonBlue text-neonBlue hover:bg-neonBlue hover:text-black'
                         : 'border-neonOrange text-neonOrange hover:bg-neonOrange hover:text-black'
-                    }
+                      }
                     transition-all duration-300`}
                   >
                     Description
@@ -90,11 +87,10 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
                 <Link to={event.path}>
                   <button
                     className={`px-6 py-3 text-sm font-mech uppercase tracking-wider font-bold
-                    ${
-                      isTech
+                    ${isTech
                         ? 'bg-neonBlue text-black hover:bg-white'
                         : 'bg-neonOrange text-black hover:bg-white'
-                    }
+                      }
                     transition-all duration-300 shadow`}
                   >
                     Register

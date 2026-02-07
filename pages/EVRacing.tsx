@@ -1,7 +1,7 @@
 // ../pages/EVRacing.tsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
+import { easeInOut, motion, useInView } from "framer-motion";
 import {
   Zap,
   AlertTriangle,
@@ -22,15 +22,15 @@ const EVRacing: React.FC = () => {
       <div className="relative rounded-xl p-8 bg-black overflow-hidden sm:overflow-hidden overflow-visible">
         {/* GREEN NEON BACKGROUND */}
         <motion.div
-          animate={{ opacity: [0.6, 0.9, 0.6] }}
-          transition={{ duration: 3, repeat: Infinity }}
-          className="absolute inset-0 bg-green-500/30 blur-[120px]"
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.5, repeat: Infinity ,ease: "easeInOut"}}
+          className="absolute inset-0 bg-green-500/10 blur-[120px]"
         />
 
         {/* INNER NEON GLOW */}
         <div
           className="absolute inset-0 rounded-xl
-          shadow-[inset_0_0_80px_rgba(34,197,94,0.8),_0_0_60px_rgba(34,197,94,0.6)]
+          shadow-[inset_0_0_40px_rgba(34,197,94,0.4),_0_0_30px_rgba(34,197,94,0.3)]
           pointer-events-none"
         />
 
@@ -48,11 +48,11 @@ const EVRacing: React.FC = () => {
             {/* ⚡ CHARGING BLINK BACKGROUND */}
             <motion.div
               animate={{
-                opacity: [0.25, 0.7, 0.25],
+                opacity: [0.2, 0.5, 0.2],
                 scale: [0.95, 1.08, 0.95],
               }}
               transition={{
-                duration: 1.1,
+                duration: 1.5,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
@@ -71,7 +71,7 @@ const EVRacing: React.FC = () => {
             {/* ICON */}
             <motion.div
               animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              transition={{ duration: 1.5, repeat: Infinity,ease: "easeInOut" }}
               className="inline-block p-4 rounded-full bg-green-500/10 mb-4 relative z-10"
             >
               <Zap className="w-16 h-16 text-green-400" />
@@ -194,22 +194,22 @@ const EVRacing: React.FC = () => {
           {/* REGISTER BUTTON */}
           <div className="flex justify-center">
             <div className="flex justify-center">
-            <Link to="/register/ev">
-              <button
-                className="
+              <Link to="/register/ev">
+                <button
+                  className="
                   px-12 py-4 bg-green-500 text-black font-mech font-bold
                   text-xl uppercase tracking-widest
                   hover:bg-green-400
                   shadow-[0_0_20px_rgba(34,197,94,0.6)]
                   skew-x-[-12deg]
                 "
-              >
-                <span className="block skew-x-[12deg]">
-                  Register Team
-                </span>
-              </button>
-            </Link>
-          </div>
+                >
+                  <span className="block skew-x-[12deg]">
+                    Register Team
+                  </span>
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

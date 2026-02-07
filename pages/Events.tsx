@@ -22,10 +22,10 @@ const Piston = ({ className }: { className?: string }) => (
 );
 
 const categories = [
-  { title: 'Tech Events', path: '/tech-events', icon: Cpu, color: 'text-blue-400', border: 'border-blue-500', shadow: 'shadow-blue-500/50' },
-  { title: 'Non-Tech Events', path: '/non-tech-events', icon: Camera, color: 'text-purple-400', border: 'border-purple-500', shadow: 'shadow-purple-500/50' },
-  { title: 'Workshop', path: '/workshop', icon: Settings, color: 'text-orange-400', border: 'border-orange-500', shadow: 'shadow-orange-500/50' },
-  { title: 'EV Racing', path: '/ev-racing', icon: Zap, color: 'text-green-400', border: 'border-green-500', shadow: 'shadow-green-500/50' },
+  { title: 'Tech Events', path: '/tech-events', icon: Cpu, color: 'text-blue-400', border: 'border-blue-500', shadow: 'shadow-blue-500/50', fee: '₹ 300 / person', note: '(One Non-Tech event free with Tech registration)' },
+  { title: 'Non-Tech Events', path: '/non-tech-events', icon: Camera, color: 'text-purple-400', border: 'border-purple-500', shadow: 'shadow-purple-500/50', fee: '₹ 300 / person' },
+  { title: 'Workshop', path: '/workshop', icon: Settings, color: 'text-orange-400', border: 'border-orange-500', shadow: 'shadow-orange-500/50', fee: '₹ 300 / person' },
+  { title: 'EV Racing', path: '/ev-racing', icon: Zap, color: 'text-green-400', border: 'border-green-500', shadow: 'shadow-green-500/50', fee: '₹ 1600 / team' },
 ];
 
 const Events: React.FC = () => {
@@ -55,6 +55,19 @@ const Events: React.FC = () => {
               <h2 className="text-2xl font-mech text-white font-bold text-center z-10 group-hover:text-neonBlue transition-colors">
                 {cat.title}
               </h2>
+
+              <p className="text-gray-400 font-mono mt-2 z-10 group-hover:text-white transition-colors">
+                {cat.fee}
+              </p>
+              {
+                // @ts-ignore
+                cat.note && (
+                  <p className="text-white text-[10px] mt-2 text-center px-2 z-10 font-mech tracking-widest leading-tight">
+                    {
+                      // @ts-ignore
+                      cat.note}
+                  </p>
+                )}
 
               <div className={`absolute bottom-0 w-full h-1 bg-gradient-to-r from-transparent via-${cat.color.split('-')[1]}-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
             </motion.div>

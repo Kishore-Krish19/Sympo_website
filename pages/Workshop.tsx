@@ -15,13 +15,13 @@ const Workshop: React.FC = () => {
   return (
     <div className="w-full px-4 pt-20 md:pt-24">
       <motion.div
-    initial={{ scale: 0.9, opacity: 0 }}
-    animate={{ scale: 1, opacity: 1 }}
-    className="w-full bg-black/60 border border-neonOrange/30 backdrop-blur-xl
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="w-full bg-black/60 border border-neonOrange/30 backdrop-blur-xl
                p-8 md:p-12 rounded-2xl
                shadow-[0_0_50px_rgba(255,170,0,0.1)]
                relative overflow-hidden"
-  >
+      >
         {/* BACKGROUND ICON */}
         <div className="absolute top-0 right-0 p-4 opacity-10">
           <SettingsIcon className="w-64 h-64 text-neonOrange animate-spin-slow" />
@@ -64,7 +64,15 @@ const Workshop: React.FC = () => {
             <div className="flex items-center gap-4 text-gray-300">
               <MapPin className="text-neonBlue" />
               <span className="font-body text-xl">
-               {WORKSHOP_INFO.location}
+                {WORKSHOP_INFO.location}
+              </span>
+            </div>
+
+            {/* FEE */}
+            <div className="flex items-center gap-4 text-gray-300">
+              <span className="text-neonBlue font-bold text-xl">₹</span>
+              <span className="font-body text-xl">
+                {WORKSHOP_INFO.entryFee}
               </span>
             </div>
           </div>
@@ -99,8 +107,8 @@ const Workshop: React.FC = () => {
             Registration closes on 1 March at 11:59 PM.
           </p> */}
         </div>
-      </motion.div>
-    </div>
+      </motion.div >
+    </div >
   );
 };
 

@@ -30,6 +30,7 @@ export interface EventDetails {
   icon: any; // Lucide icon component
   path: string;
   category: EventType;
+  entryFee?: string;
 }
 
 export interface WorkshopDetails {
@@ -39,6 +40,7 @@ export interface WorkshopDetails {
   time: string;
   location: string;
   benefits: string[];
+  entryFee?: string;
 }
 
 export interface Coordinator {
