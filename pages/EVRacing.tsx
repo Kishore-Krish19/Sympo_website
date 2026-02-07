@@ -18,7 +18,7 @@ const EVRacing: React.FC = () => {
   const isInView = useInView(titleRef, { once: true, amount: 0.6 });
 
   return (
-    <div className="min-h-screen pt-24 px-4 container mx-auto">
+    <div className="w-full px-4 pt-20 md:pt-24">
       <div className="relative rounded-xl p-8 bg-black overflow-hidden sm:overflow-hidden overflow-visible">
         {/* GREEN NEON BACKGROUND */}
         <motion.div

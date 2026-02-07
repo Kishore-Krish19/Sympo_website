@@ -21,10 +21,10 @@ const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-black/80 backdrop-blur-md">
+    <nav className="fixed w-full z-50 top-0 start-0  bg-black/50 backdrop-blur-sm shadow-md shadow-black/40">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* LEFT: Gear + Title */}
-        <Link to="/" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3 outline-none focus:outline-none active:outline-none select-none">
           <Settings className="w-7 h-7 text-neonBlue animate-spin-slow" />
           <span
             className="

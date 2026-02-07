@@ -13,12 +13,15 @@ import RegistrationButton from '../components/RegistrationButton';
 
 const Workshop: React.FC = () => {
   return (
-    <div className="min-h-screen pt-24 px-4 container mx-auto flex items-center justify-center">
+    <div className="w-full px-4 pt-20 md:pt-24">
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        className="w-full max-w-4xl bg-black/60 border border-neonOrange/30 backdrop-blur-xl p-8 md:p-12 rounded-2xl shadow-[0_0_50px_rgba(255,170,0,0.1)] relative overflow-hidden"
-      >
+    initial={{ scale: 0.9, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    className="w-full bg-black/60 border border-neonOrange/30 backdrop-blur-xl
+               p-8 md:p-12 rounded-2xl
+               shadow-[0_0_50px_rgba(255,170,0,0.1)]
+               relative overflow-hidden"
+  >
         {/* BACKGROUND ICON */}
         <div className="absolute top-0 right-0 p-4 opacity-10">
           <SettingsIcon className="w-64 h-64 text-neonOrange animate-spin-slow" />
@@ -92,9 +95,9 @@ const Workshop: React.FC = () => {
             openText="REGISTER FOR WORKSHOP"
           />
 
-          <p className="mt-2 text-sm text-gray-400">
-            Registration closes on 1 March at 11:59 PM
-          </p>
+          {/* <p className="mt-2 text-sm text-gray-400">
+            Registration closes on 1 March at 11:59 PM.
+          </p> */}
         </div>
       </motion.div>
     </div>

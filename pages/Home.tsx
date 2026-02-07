@@ -49,11 +49,9 @@ const Countdown = () => {
     </div>
   );
 };
-
 /* =======================
    PISTON ANIMATION
 ======================= */
-
 const Piston = ({
   color,
   delay,
@@ -109,15 +107,14 @@ const PistonCluster = () => (
     </div>
   </div>
 );
-
 /* =======================
    HOME PAGE
 ======================= */
-
 const Home: React.FC = () => {
   return (
-    <div className="relative w-full min-h-screen overflow-hidden bg-carbon-fiber flex flex-col items-center justify-center pt-24 md:pt-32">
-      {/* Background Decorative Elements */}
+    <div className="relative min-h-screen w-full bg-carbon-fiber
+                flex flex-col items-center justify-center
+                pt-20 md:pt-24">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-neonBlue/10 rounded-full blur-[100px]" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-neonOrange/10 rounded-full blur-[100px]" />
@@ -131,29 +128,33 @@ const Home: React.FC = () => {
 
       <div className="relative z-10 text-center px-4 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-row flex-wrap md:flex-nowrap items-center justify-center gap-4 md:gap-12 mb-8 md:mb-12 w-full">
+        <div
+          className="flex flex-row flex-wrap md:flex-nowrap items-center justify-center
+                gap-4 md:gap-12
+                mb-5 md:mb-4 lg:mb-8
+                w-full"
+        >
           <div
             className="
-    relative
-    w-36 h-36
+    relative flex items-center justify-center shrink-0
+     w-44 h-40
+    sm:w-40 sm:h-40
     md:w-44 md:h-44
-    rounded-full
-    flex items-center justify-center
+    lg:w-48 lg:h-48
+    overflow-visible
   "
           >
             <img
               src={collegeLogo}
               alt="College Logo"
               className="
-      w-32 h-32
-      md:w-40 md:h-40
-      lg:w-44 lg:h-44
-      object-contain
-      invert
-      brightness-200
-      contrast-200
-      drop-shadow-[0_0_18px_rgba(0,243,255,0.8)]
-    "
+    w-full h-full
+    object-contain
+    invert
+    brightness-200
+    contrast-200
+    drop-shadow-[0_0_22px_rgba(0,243,255,0.9)]
+  "
             />
           </div>
 
@@ -162,9 +163,7 @@ const Home: React.FC = () => {
               src={deptLogo}
               alt="Department Logo"
               className="
-      w-32 h-32
-      md:w-40 md:h-40
-      lg:w-44 lg:h-44
+      w-full h-full
       object-contain
       invert
       brightness-200
@@ -179,10 +178,22 @@ const Home: React.FC = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-lg md:text-4xl text-neonBlue font-mech"
+              className="text-lg sm:text-2xl md:text-3xl lg:text-4xl
+             text-neonBlue font-mech text-center leading-tight"
             >
-              GOVERNMENT COLLEGE OF ENGINEERING, ERODE-638 316
+              {/* Mobile + Desktop → single line */}
+              <span className="block md:hidden lg:block">
+                GOVERNMENT COLLEGE OF ENGINEERING, ERODE-638 316
+              </span>
+
+              {/* Tablet only → two lines */}
+              <span className="hidden md:block lg:hidden">
+                GOVERNMENT COLLEGE OF ENGINEERING,
+                <br />
+                ERODE-638 316
+              </span>
             </motion.h3>
+
             <h2 className="text-sm md:text-2xl text-gray-300 font-mech tracking-[0.2em]">
               DEPARTMENT OF MECHANICAL ENGINEERING
             </h2>
@@ -196,10 +207,10 @@ const Home: React.FC = () => {
           transition={{ duration: 1, type: "spring" }}
           className="flex items-center justify-center gap-4 md:gap-8 mb-8"
         >
-          {/* 🔥 PISTON CLUSTER */}
-          <PistonCluster />
+          {/* 🔥 PISTON CLUSTER
+          <PistonCluster /> */}
 
-          <h1 className="text-4xl sm:text-8xl md:text-12xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 drop-shadow-[0_0_12px_rgba(255,215,0,0.7)]">
+          <h1 className="text-5xl sm:text-8xl md:text-12xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 drop-shadow-[0_0_12px_rgba(255,215,0,0.7)]">
             EFFICACY'26
           </h1>
         </motion.div>
