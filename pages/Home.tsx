@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronRight, Settings } from "lucide-react";
 import collegeLogo from "../assets/college-logo.png";
-import deptLogo from "../assets/dept-logo.png";
+import deptLogo from "../assets/Dept-logo.png";
 
 const Countdown = () => {
   const calculateTimeLeft = () => {
