@@ -19,11 +19,11 @@ const EVRacing: React.FC = () => {
 
   return (
     <div className="w-full px-4 pt-20 md:pt-24">
-      <div className="relative rounded-xl p-8 bg-black overflow-hidden sm:overflow-hidden overflow-visible">
+      <div className="relative rounded-xl p-4 md:p-8 bg-black overflow-hidden sm:overflow-hidden overflow-visible">
         {/* GREEN NEON BACKGROUND */}
         <motion.div
           animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 1.5, repeat: Infinity ,ease: "easeInOut"}}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           className="absolute inset-0 bg-green-500/10 blur-[120px]"
         />
 
@@ -71,7 +71,7 @@ const EVRacing: React.FC = () => {
             {/* ICON */}
             <motion.div
               animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1.5, repeat: Infinity,ease: "easeInOut" }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               className="inline-block p-4 rounded-full bg-green-500/10 mb-4 relative z-10"
             >
               <Zap className="w-16 h-16 text-green-400" />
@@ -118,7 +118,7 @@ const EVRacing: React.FC = () => {
                 }}
                 className="
                   relative z-10
-                  text-5xl md:text-7xl
+                  text-3xl md:text-7xl
                   font-mech italic
                   uppercase tracking-tighter
                 "
@@ -151,7 +151,10 @@ const EVRacing: React.FC = () => {
           {/* INFO CARDS */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
-              { icon: AlertTriangle, title: "Rules", isRules: true },
+              {
+                icon: AlertTriangle, title: "Rules", isRules: true,
+                desc: "Follow the rules and regulations"
+              },
               {
                 icon: Route,
                 title: "Track",

@@ -10,9 +10,10 @@ const Navbar: React.FC = () => {
 
   const links = [
     { name: 'Home', path: '/' },
-    
+
     { name: 'Events', path: '/events' },
     { name: 'Workshop', path: '/workshop' },
+    { name: 'Skill Show', path: '/skill-show' },
     { name: 'EV Racing', path: '/ev-racing' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
@@ -42,45 +43,45 @@ const Navbar: React.FC = () => {
         </Link>
 
         {/* RIGHT: Hamburger (MOBILE) */}
-<button
-  onClick={() => setIsOpen(!isOpen)}
-  className="md:hidden w-10 h-10 flex items-center justify-center"
->
-  <motion.div
-    className="relative w-6 h-6"
-    animate={{ rotate: isOpen ? 90 : 0 }}
-    transition={{ type: "spring", stiffness: 260, damping: 22 }}
-  >
-    {/* TOP LINE */}
-    <motion.span
-      className="absolute left-0 top-1/2 w-full h-[2px] bg-white rounded origin-center"
-      animate={{
-        rotate: isOpen ? 45 : 0,
-        y: isOpen ? 0 : -6,
-      }}
-      transition={{ type: "spring", stiffness: 260, damping: 22 }}
-    />
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden w-10 h-10 flex items-center justify-center"
+        >
+          <motion.div
+            className="relative w-6 h-6"
+            animate={{ rotate: isOpen ? 90 : 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 22 }}
+          >
+            {/* TOP LINE */}
+            <motion.span
+              className="absolute left-0 top-1/2 w-full h-[2px] bg-white rounded origin-center"
+              animate={{
+                rotate: isOpen ? 45 : 0,
+                y: isOpen ? 0 : -6,
+              }}
+              transition={{ type: "spring", stiffness: 260, damping: 22 }}
+            />
 
-    {/* MIDDLE LINE */}
-    <motion.span
-      className="absolute left-0 top-1/2 w-full h-[2px] bg-white rounded origin-center"
-      animate={{
-        opacity: isOpen ? 0 : 1,
-      }}
-      transition={{ duration: 0.15 }}
-    />
+            {/* MIDDLE LINE */}
+            <motion.span
+              className="absolute left-0 top-1/2 w-full h-[2px] bg-white rounded origin-center"
+              animate={{
+                opacity: isOpen ? 0 : 1,
+              }}
+              transition={{ duration: 0.15 }}
+            />
 
-    {/* BOTTOM LINE */}
-    <motion.span
-      className="absolute left-0 top-1/2 w-full h-[2px] bg-white rounded origin-center"
-      animate={{
-        rotate: isOpen ? -45 : 0,
-        y: isOpen ? 0 : 6,
-      }}
-      transition={{ type: "spring", stiffness: 260, damping: 22 }}
-    />
-  </motion.div>
-</button>
+            {/* BOTTOM LINE */}
+            <motion.span
+              className="absolute left-0 top-1/2 w-full h-[2px] bg-white rounded origin-center"
+              animate={{
+                rotate: isOpen ? -45 : 0,
+                y: isOpen ? 0 : 6,
+              }}
+              transition={{ type: "spring", stiffness: 260, damping: 22 }}
+            />
+          </motion.div>
+        </button>
 
         <div className={`${isOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-900 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">

@@ -21,7 +21,7 @@ export interface RegistrationForm {
   type: string; // 'tech', 'non-tech', 'workshop', 'ev-racing'
 }
 
-export type EventType = 'tech' | 'non-tech' | 'workshop' | 'ev-racing';
+export type EventType = 'tech' | 'non-tech' | 'workshop' | 'ev-racing' | 'skill-show';
 
 export interface EventDetails {
   id: string;
@@ -37,10 +37,11 @@ export interface WorkshopDetails {
   topic: string;
   trainer: string;
   date: string;
-  time: string;
-  location: string;
+  time?: string;
+  location?: string;
   benefits: string[];
   entryFee?: string;
+  description?: string;
 }
 
 export interface Coordinator {
