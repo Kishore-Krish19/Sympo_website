@@ -7,6 +7,7 @@ import { submitRegistration } from "../services/api";
 import { Input } from "../components/Input";
 import { Upload, ChevronDown, CreditCard } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
+import QRCode from "react-qr-code";
 
 import {
   TECH_EVENTS,
@@ -56,7 +57,7 @@ const Register: React.FC = () => {
     termsAccepted: false,
     paymentScreenshot: "",
     type: type || "tech", // Default to 'tech' if type is undefined
-    amount: 300,
+    amount: 0,
   });
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [whatsappLink, setWhatsappLink] = useState("");
@@ -96,10 +97,29 @@ const Register: React.FC = () => {
   // 💰 Registration Amount Calculation
   // ===============================
   useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      amount: type === "ev" ? 4000 : prev.teamSize * 300,
-    }));
+    let calculatedAmount = 0;
+    const size = Number(formData.teamSize) || 1;
+
+    if (type === "ev") {
+      // EV Racing: Base 4000 for up to 5 members.
+      // Extra members (>5) cost 300 each.
+      if (size <= 5) {
+        calculatedAmount = 4000;
+      } else {
+        calculatedAmount = 4000 + (size - 5) * 300;
+      }
+    } else if (type === "workshop") {
+      // Workshop: Fixed 300
+      calculatedAmount = 300;
+    } else {
+      // Technical & Non-Technical: 300 per person
+      calculatedAmount = size * 300;
+    }
+
+    setFormData((prev) => {
+      if (prev.amount === calculatedAmount) return prev;
+      return { ...prev, amount: calculatedAmount };
+    });
   }, [type, formData.teamSize]);
 
   // Handle Default Event Names for single-event categories
@@ -156,8 +176,8 @@ const Register: React.FC = () => {
   };
 
   // Handle Team Size Change
-  const handleTeamSizeChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const newSize = parseInt(e.target.value);
+  const handleTeamSizeChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const newSize = parseInt(e.target.value) || 0;
     const membersNeeded = newSize - 1; // Leader is always included
 
     // Adjust teamMembers array size
@@ -252,6 +272,12 @@ const Register: React.FC = () => {
         type: "error",
       });
     }
+  };
+
+  const generateUPIUrl = (amount: number) => {
+    const upiId = BANK_DETAILS.upiId;
+    const name = BANK_DETAILS.accountHolder;
+    return `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
   };
 
   return (
@@ -417,7 +443,7 @@ const Register: React.FC = () => {
               placeholder="e.g. III"
             />
 
-            {/* Total Team Members Dropdown */}
+            {/* Total Team Members Input / Dropdown */}
             {isWorkshop ? (
               <Input
                 name="teamSize"
@@ -425,6 +451,16 @@ const Register: React.FC = () => {
                 value="1 (Solo Participant)"
                 readOnly
                 className="bg-white/10 text-gray-400 cursor-not-allowed"
+              />
+            ) : isEVRacing ? (
+              <Input
+                type="number"
+                name="teamSize"
+                label="Total Team Members"
+                value={formData.teamSize}
+                onChange={handleTeamSizeChange}
+                min="1"
+                required
               />
             ) : (
               <div className="mb-4 w-full relative">
@@ -443,14 +479,6 @@ const Register: React.FC = () => {
                     <option value="1">1 (Leader Only)</option>
                     <option value="2">2 (Leader + 1)</option>
                     <option value="3">3 (Leader + 2)</option>
-
-                    {isEVRacing && (
-                      <>
-                        <option value="4">4 (Leader + 3)</option>
-                        <option value="5">5 (Leader + 4)</option>
-                        <option value="6">6 (Leader + 5)</option>
-                      </>
-                    )}
                   </select>
 
                   <ChevronDown className="absolute right-3 top-3 text-neonBlue w-5 h-5 pointer-events-none" />
@@ -581,10 +609,25 @@ const Register: React.FC = () => {
                   {BANK_DETAILS.ifscCode}
                 </span>
               </div>
-              {/* <div className="col-span-2 border-t border-white/10 pt-2">
-                                <span className="block text-gray-500">UPI ID</span>
-                                <span className="text-neonOrange font-bold">{BANK_DETAILS.upiId}</span>
-                            </div> */}
+              <div className="col-span-2 border-t border-white/10 pt-2">
+                <span className="block text-gray-500">UPI ID</span>
+                <span className="text-neonOrange font-bold">{BANK_DETAILS.upiId}</span>
+              </div>
+
+              {/* Dynamic QR Code */}
+              <div className="col-span-2 flex flex-col items-center justify-center p-4 bg-white/5 rounded-lg border border-white/10 mt-4">
+                <div className="bg-white p-2 rounded-lg">
+                  <QRCode
+                    value={generateUPIUrl(formData.amount)}
+                    size={180}
+                    level="H"
+                  />
+                </div>
+                <p className="text-neonBlue text-sm font-bold mt-4 font-mech tracking-wide">
+                  Scan to Pay <span className="text-white text-lg">₹{formData.amount}</span>
+                </p>
+                <p className="text-xs text-gray-400 mt-1">Exact amount pre-filled</p>
+              </div>
             </div>
 
             <Input
