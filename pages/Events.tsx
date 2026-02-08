@@ -25,7 +25,7 @@ const categories = [
   { title: 'Tech Events', path: '/tech-events', icon: Cpu, color: 'text-blue-400', border: 'border-blue-500', shadow: 'shadow-blue-500/50', fee: '₹ 300 / person', note: 'One Non-Tech event free with Tech registration' },
   { title: 'Non-Tech Events', path: '/non-tech-events', icon: Camera, color: 'text-purple-400', border: 'border-purple-500', shadow: 'shadow-purple-500/50', fee: '₹ 300 / person' },
   { title: 'Workshop', path: '/workshop', icon: Settings, color: 'text-orange-400', border: 'border-orange-500', shadow: 'shadow-orange-500/50', fee: '₹ 300 / person' },
-  { title: 'EV Racing', path: '/ev-racing', icon: Zap, color: 'text-green-400', border: 'border-green-500', shadow: 'shadow-green-500/50', fee: '₹ 1600 / team' },
+  { title: 'EV Racing', path: '/ev-racing', icon: Zap, color: 'text-green-400', border: 'border-green-500', shadow: 'shadow-green-500/50', fee: '₹ 4000 for 5 members ' },
 ];
 
 const Events: React.FC = () => {

@@ -10,7 +10,7 @@ import {
   Trophy,
   Bike,
 } from "lucide-react";
-import rulesPdf from "../assets/Mess fees Jan 2026.pdf";
+import rulesPdf from "../assets/CHRONX2026-RULEBOOK.pdf";
 
 const EVRacing: React.FC = () => {
   // 🔑 REQUIRED for mobile reload reliability
@@ -160,12 +160,12 @@ const EVRacing: React.FC = () => {
               {
                 icon: IndianRupee,
                 title: "Entry Fees",
-                desc: "₹1600 per team.",
+                desc: "₹4000 for 5 members (₹300 per additional member)",
               },
               {
                 icon: Trophy,
                 title: "Cash Prize",
-                desc: "Cash prize awarded to the winning team.",
+                desc: "Total ₹30,000 prize",
               },
             ].map((item, i) => (
               <motion.div

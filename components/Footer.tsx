@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         <p className="font-mech text-lg text-neonBlue mb-2">EFFICACY'26</p>
         <p className="font-mech text-gray-400 text-sm mb-4">Department of Mechanical Engineering</p>
 
-        <div className="flex items-center justify-center gap-2 text-gray-500 text-xs mt-4 border-t border-white/10 pt-4">
+        {/* <div className="flex items-center justify-center gap-2 text-gray-500 text-xs mt-4 border-t border-white/10 pt-4">
           <span>© {new Date().getFullYear()}</span>
 
           <span className=" text-lg">{'</>'}</span>
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
               Saran.S
             </a>
           </span>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

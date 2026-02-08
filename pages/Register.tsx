@@ -98,7 +98,7 @@ const Register: React.FC = () => {
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      amount: type === "ev" ? 1600 : prev.teamSize * 300,
+      amount: type === "ev" ? 4000 : prev.teamSize * 300,
     }));
   }, [type, formData.teamSize]);
 
@@ -546,7 +546,7 @@ const Register: React.FC = () => {
             />
             <p className="text-xs text-gray-400 mt-1">
               {type === "ev"
-                ? "EV Racing: ₹1600 per team"
+                ? "EV Racing: ₹4000 for 5 members"
                 : "₹300 per participant"}
             </p>
           </div>
