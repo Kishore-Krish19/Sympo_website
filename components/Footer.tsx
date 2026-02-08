@@ -10,9 +10,36 @@ const Footer: React.FC = () => {
         <p className="font-mech text-gray-400 text-sm mb-4">Department of Mechanical Engineering</p>
 
         <div className="flex items-center justify-center gap-2 text-gray-500 text-xs mt-4 border-t border-white/10 pt-4">
-          <span className="text-neonBlue font-bold text-lg">{'</>'}</span>
+          <span>© {new Date().getFullYear()}</span>
+
+          <span className=" text-lg">{'</>'}</span>
           <span className="font-mech tracking-wide text-sm">
-            Developed by <span className="text-white">Kishore.E</span>, <span className="text-white">Kanishkar.M</span>, <span className="text-white">Saran.S</span>
+            Developed by
+            {'\u00A0'}
+            <a
+              href="https://www.linkedin.com/in/kishore-e-241369279"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              Kishore.E
+            </a>,{'\u00A0'}
+            <a
+              href="https://www.linkedin.com/in/kanishkar-m-81026a310"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              Kanishkar.M
+            </a>,{'\u00A0'}
+            <a
+              href="https://www.linkedin.com/in/saran-s-116416303"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              Saran.S
+            </a>
           </span>
         </div>
       </div>

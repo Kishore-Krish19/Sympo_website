@@ -28,7 +28,7 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
         <div
           className={`h-2 w-24 ${isTech
             ? 'bg-neonBlue shadow-[0_0_10px_#00f3ff]'
-            : 'bg-neonOrange shadow-[0_0_10px_#ffaa00]'
+            : 'bg-purple-400 shadow-[0_0_10px_#b366ff]'
             } rounded-full`}
         />
       </motion.div>
@@ -45,7 +45,7 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
           >
             {/* LEFT BORDER GLOW */}
             <div
-              className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent ${isTech ? 'via-neonBlue' : 'via-neonOrange'
+              className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent ${isTech ? 'via-neonBlue' : 'via-purple-400'
                 } to-transparent opacity-40`}
             />
 
@@ -54,7 +54,7 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
               <div className="flex items-start gap-6">
                 <div className="p-4 bg-black/50 rounded-lg border border-white/5">
                   <event.icon
-                    className={`w-8 h-8 ${isTech ? 'text-neonBlue' : 'text-neonOrange'
+                    className={`w-8 h-8 ${isTech ? 'text-neonBlue' : 'text-purple-400'
                       }`}
                   />
                 </div>
@@ -75,7 +75,7 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
                     className={`px-6 py-3 text-sm font-mech uppercase tracking-wider
                     border ${isTech
                         ? 'border-neonBlue text-neonBlue hover:bg-neonBlue hover:text-black'
-                        : 'border-neonOrange text-neonOrange hover:bg-neonOrange hover:text-black'
+                        : 'border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black'
                       }
                     transition-all duration-300`}
                   >
@@ -89,7 +89,7 @@ const EventList: React.FC<EventListProps> = ({ title, events, type }) => {
                     className={`px-6 py-3 text-sm font-mech uppercase tracking-wider font-bold
                     ${isTech
                         ? 'bg-neonBlue text-black hover:bg-white'
-                        : 'bg-neonOrange text-black hover:bg-white'
+                        : 'bg-purple-400 text-black hover:bg-white'
                       }
                     transition-all duration-300 shadow`}
                   >
