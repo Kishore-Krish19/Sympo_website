@@ -14,6 +14,7 @@ import Register from './pages/Register';
 import Contact from './pages/Contact';
 import EventList from './pages/EventList';
 import EventDescription from './pages/EventDescription';
+import SkillShow from './pages/SkillShow';
 
 import { TECH_EVENTS, NON_TECH_EVENTS } from './constants';
 
@@ -76,6 +77,7 @@ const App: React.FC = () => {
           <Route path="/events/:id" element={<EventDescription />} />
           {/* OTHER PAGES */}
           <Route path="/workshop" element={<Workshop />} />
+          <Route path="/skill-show" element={<SkillShow />} />
           <Route path="/ev-racing" element={<EVRacing />} />
           <Route path="/register/:type" element={<Register />} />
           <Route path="/contact" element={<Contact />} />
@@ -86,4 +88,3 @@ const App: React.FC = () => {
 };
 
 export default App;
- 

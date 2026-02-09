@@ -9,11 +9,13 @@ import {
 interface RegistrationButtonProps {
   registerPath: string;
   openText: string;
+  className?: string;
 }
 
 const RegistrationButton: React.FC<RegistrationButtonProps> = ({
   registerPath,
   openText,
+  className = "bg-neonOrange text-black hover:bg-white shadow-[0_0_20px_#ffaa00]"
 }) => {
   const now = new Date();
   const isOpen = now <= REGISTRATION_CLOSE_DATE;
@@ -36,12 +38,10 @@ const RegistrationButton: React.FC<RegistrationButtonProps> = ({
   return (
     <Link to={registerPath}>
       <button
-        className="w-full md:w-auto px-12 py-4
-        bg-neonOrange text-black
+        className={`w-full md:w-auto px-12 py-4
         font-mech font-bold text-xl
-        rounded hover:bg-white
-        transition-colors
-        shadow-[0_0_20px_#ffaa00]"
+        rounded transition-colors
+        ${className}`}
       >
         {openText}
       </button>

@@ -42,6 +42,26 @@ export const WORKSHOP_INFO: WorkshopDetails = {
   entryFee: "₹ 300 / person"
 };
 
+export const SKILL_SHOW_INFO: WorkshopDetails = {
+  topic: "Talent Show",
+  trainer: "Showcase Your Skills",
+  date: "March 4, 2026",
+
+  benefits: [
+    "Exhibit your innovative projects",
+    "Networking with industry experts",
+    "Win exciting prizes",
+    "Certificate of Participation",
+    "Feedback from mentors"
+  ],
+  entryFee: "300 / person",
+  description: `Skill Show is a non-technical showcase event organized to provide students with a platform to demonstrate their talents, practical skills, innovations, and entrepreneurial ideas in front of peers, faculty members, and guests.
+
+The event brings together creative performances, skill-based demonstrations, and student startup showcases under one stage. Students can express their abilities through performing arts, game development, ECU tuning demonstrations, and student-led startup stalls, highlighting their skills beyond academics.
+
+Skill Show encourages confidence, creativity, innovation, and entrepreneurship, allowing students to explore real-world applications of their talents while interacting with a wider audience. This event promotes all-round development and nurtures a culture of learning, leadership, and self-expression within the campus.`
+};
+
 export const COORDINATORS: Coordinator[] = [
   { name: "Dony Charles", phone: "+91 78100 85410" },
   { name: "Venkataprasath", phone: "+91 70105 91904" },
