@@ -77,8 +77,8 @@ export const WORKSHOP_INFO: WorkshopDetails = {
   entryFee: "300 / person"
 };
 
-export const SKILL_SHOW_INFO: WorkshopDetails = {
-  topic: "Talent Show",
+export const SHARK_TANK_INFO: WorkshopDetails = {
+  topic: "Shark Tank",
   trainer: "Showcase Your Skills",
   date: "March 4, 2026",
 
@@ -90,11 +90,11 @@ export const SKILL_SHOW_INFO: WorkshopDetails = {
     "Feedback from mentors"
   ],
   entryFee: "300 / person",
-  description: `Skill Show is a non-technical showcase event organized to provide students with a platform to demonstrate their talents, practical skills, innovations, and entrepreneurial ideas in front of peers, faculty members, and guests.
+  description: `Shark Tank is a non-technical showcase event organized to provide students with a platform to demonstrate their talents, practical skills, innovations, and entrepreneurial ideas in front of peers, faculty members, and guests.
 
 The event brings together creative performances, skill-based demonstrations, and student startup showcases under one stage. Students can express their abilities through performing arts, game development, ECU tuning demonstrations, and student-led startup stalls, highlighting their skills beyond academics.
 
-Skill Show encourages confidence, creativity, innovation, and entrepreneurship, allowing students to explore real-world applications of their talents while interacting with a wider audience. This event promotes all-round development and nurtures a culture of learning, leadership, and self-expression within the campus.`
+Shark Tank encourages confidence, creativity, innovation, and entrepreneurship, allowing students to explore real-world applications of their talents while interacting with a wider audience. This event promotes all-round development and nurtures a culture of learning, leadership, and self-expression within the campus.`
 };
 
 export const COORDINATORS: Coordinator[] = [
@@ -106,7 +106,9 @@ export const COORDINATORS: Coordinator[] = [
 
 export const nonTechEventOptions = [
   { id: 1, title: "Short Film" },
-  { id: 2, title: "Photography" }
+  { id: 2, title: "Photography" },
+  { id: 3, title: "Water Rocketry" },
+  { id: 4, title: "Trebuchet" },
 ];
 // 🔒 Common registration closing date for all events
 // Closes on 1st March at 11:59 PM
@@ -118,6 +120,7 @@ export const REGISTRATION_CLOSED_TEXT = 'REGISTRATION CLOSED';
 export const WORKSHOP_CONFIG = {
   "1": {
     topic: "DRONE & UAV ( UNMANNED AERIAL VEHICLE )",
+    price:"300",
     headingColor: "text-orange-400",
     iconColor: "text-orange-400",
     border: "border-orange-500",
@@ -126,6 +129,7 @@ export const WORKSHOP_CONFIG = {
   },
   "2": {
     topic: "GAME DEVELOPMENT (ENGINE)",
+    price:"200",
     headingColor: "text-blue-400",
     iconColor: "text-blue-400",
     border: "border-blue-500",
@@ -134,6 +138,7 @@ export const WORKSHOP_CONFIG = {
   },
   "3": {
     topic: "ECU (ENGINE CONTROL UNIT)",
+    price:"200",
     headingColor: "text-purple-400",
     iconColor: "text-purple-400",
     border: "border-purple-500",

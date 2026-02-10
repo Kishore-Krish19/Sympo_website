@@ -26,7 +26,7 @@ const whatsappLinksByType: Record<string, string> = {
   "non-tech": "https://chat.whatsapp.com/HKLWX6wkgzuI8ysfjXZxqC?mode=gi_t",
   workshop: "https://chat.whatsapp.com/JjMrbwpieT1CjqyA77yyhU?mode=gi_t",
   ev: "https://chat.whatsapp.com/EIOBzWU7fXV0KCBeYfoVP2?mode=gi_t",
-  'skill-show': "https://chat.whatsapp.com/B6QRLt0JFJqEyg76ScTXY6?mode=gi_t", // Placeholder link, using tech for now
+  'shark-tank': "https://chat.whatsapp.com/B6QRLt0JFJqEyg76ScTXY6?mode=gi_t", // Placeholder link, using tech for now
 };
 
 const Register: React.FC = () => {
@@ -62,8 +62,8 @@ const Register: React.FC = () => {
   });
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [whatsappLink, setWhatsappLink] = useState("");
-  const isWorkshop = type === "workshop";
-  const isSkillShow = type === "skill-show";
+  const isWorkshop = type?.startsWith("workshop");
+  const isSharkTank = type === "shark-tank";
   const isEVRacing = type === "ev";
   useEffect(() => {
     if (toast) {
@@ -73,7 +73,7 @@ const Register: React.FC = () => {
   }, [toast]);
 
   useEffect(() => {
-    if (isWorkshop || isSkillShow) {
+    if (isWorkshop || isSharkTank) {
       setFormData((prev) => ({
         ...prev,
         teamSize: 1,
@@ -94,7 +94,7 @@ const Register: React.FC = () => {
         return prev;
       });
     }
-  }, [isWorkshop, isSkillShow, isEVRacing]);
+  }, [isWorkshop, isSharkTank, isEVRacing]);
   // ===============================
   // 💰 Registration Amount Calculation
   // ===============================
@@ -110,10 +110,17 @@ const Register: React.FC = () => {
       } else {
         calculatedAmount = 4000 + (size - 5) * 300;
       }
-    } else if (type === "workshop") {
-      // Workshop: Fixed 300
-      calculatedAmount = 300;
-    } else {
+    } else if (type?.startsWith("workshop")) {
+  const workshopId = type.replace("workshop", ""); // "1" | "2" | "3"
+
+  const workshopPrices: Record<string, number> = {
+    "1": 300,
+    "2": 200,
+    "3": 200,
+  };
+
+  calculatedAmount = workshopPrices[workshopId] ?? 300;
+} else {
       // Technical & Non-Technical: 300 per person
       calculatedAmount = size * 300;
     }
@@ -128,8 +135,8 @@ const Register: React.FC = () => {
   useEffect(() => {
     if (type === "workshop") {
       setFormData((prev) => ({ ...prev, eventName: WORKSHOP_INFO.topic }));
-    } else if (type === "skill-show") {
-      setFormData((prev) => ({ ...prev, eventName: "Skill Show" }));
+    } else if (type === "shark-tank") {
+      setFormData((prev) => ({ ...prev, eventName: "Shark Tank  " }));
     } else if (type === "ev") {
       setFormData((prev) => ({
         ...prev,
@@ -149,8 +156,8 @@ const Register: React.FC = () => {
         return "Non-Tech Registration";
       case "workshop":
         return "Workshop Registration";
-      case "skill-show":
-        return "Skill Show Registration";
+      case "shark-tank":
+        return "Shark Tank Registration";
       case "ev":
         return "EV Racing Registration";
       default:
@@ -227,7 +234,7 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const eventType =
-      type === "tech" || type === "workshop" || type === "ev" || type === "skill-show"
+      type === "tech" || type === "workshop" || type === "ev" || type === "shark-tank"
         ? "Technical"
         : "Non-Technical";
 
@@ -450,7 +457,7 @@ const Register: React.FC = () => {
             />
 
             {/* Total Team Members Dropdown */}
-            {isWorkshop || isSkillShow ? (
+            {isWorkshop || isSharkTank ? (
               <Input
                 name="teamSize"
                 label="Total Team Members"
@@ -523,7 +530,7 @@ const Register: React.FC = () => {
           </div>
 
           {/* Dynamic Members Input Fields */}
-          {!isWorkshop && !isSkillShow && formData.teamMembers.length > 0 && (
+          {!isWorkshop && !isSharkTank && formData.teamMembers.length > 0 && (
             <div className="space-y-4 border-t border-white/10 pt-4">
               <label className="block text-neonBlue text-sm font-mech uppercase">
                 Additional Members

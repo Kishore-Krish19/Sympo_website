@@ -172,15 +172,12 @@ const WorkshopCategories: React.FC = () => {
                 {ws.title}
               </h2>
               <p className="mt-1 text-lg md:text-base text-gray-300 font-body">
-  Resource Person:{" "}
-  <span className={`${ws.color}`}>
-    {ws.resource}
-  </span>
-</p>
-
+                Resource Person:{" "}
+                <span className={`${ws.color}`}>{ws.resource}</span>
+              </p>
 
               {/* FEE */}
-              <p className="text-gray-400 font-mono mt-2 text-lg md:text-sm z-10">
+              <p className="text-gray-400 font-mono mt-2 text-lg md:text-lg z-10">
                 {ws.fee}
               </p>
 

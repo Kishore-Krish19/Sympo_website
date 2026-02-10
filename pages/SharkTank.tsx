@@ -1,7 +1,7 @@
-// ../pages/SkillShow.tsx
+// ../pages/SharkTank.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SKILL_SHOW_INFO } from '../constants';
+import { SHARK_TANK_INFO } from '../constants';
 import {
     CheckCircle,
     Calendar,
@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import RegistrationButton from '../components/RegistrationButton';
 
-const SkillShow: React.FC = () => {
+const SharkTank: React.FC = () => {
     return (
         <div className="w-full px-4 pt-20 md:pt-24">
             <motion.div
@@ -33,13 +33,13 @@ const SkillShow: React.FC = () => {
                     Shark Tank
                 </h1>
                 <h2 className="text-2xl md:text-3xl font-mech text-neonOrange mb-8">
-                    {SKILL_SHOW_INFO.topic}
+                    {SHARK_TANK_INFO.topic}
                 </h2>
 
                 {/* DESCRIPTION */}
-                {SKILL_SHOW_INFO.description && (
+                {SHARK_TANK_INFO.description && (
                     <div className="mb-10 text-gray-300 font-body text-lg leading-relaxed whitespace-pre-line">
-                        {SKILL_SHOW_INFO.description}
+                        {SHARK_TANK_INFO.description}
                     </div>
                 )}
 
@@ -50,14 +50,14 @@ const SkillShow: React.FC = () => {
                         <div className="flex items-center gap-4 text-gray-300">
                             <User className="text-neonBlue" />
                             <span className="font-body text-xl">
-                                {SKILL_SHOW_INFO.trainer}
+                                {SHARK_TANK_INFO.trainer}
                             </span>
                         </div>
 
                         <div className="flex items-center gap-4 text-gray-300">
                             <Calendar className="text-neonBlue" />
                             <span className="font-body text-xl">
-                                {SKILL_SHOW_INFO.date}
+                                {SHARK_TANK_INFO.date}
                             </span>
                         </div>
 
@@ -70,7 +70,7 @@ const SkillShow: React.FC = () => {
                         <div className="flex items-center gap-4 text-gray-300">
                             <span className="text-neonBlue font-bold text-xl">₹</span>
                             <span className="font-body text-xl">
-                                {SKILL_SHOW_INFO.entryFee}
+                                {SHARK_TANK_INFO.entryFee}
                             </span>
                         </div>
                     </div>
@@ -79,8 +79,8 @@ const SkillShow: React.FC = () => {
                 {/* REGISTRATION BUTTON (REUSABLE) */}
                 <div className="text-center">
                     <RegistrationButton
-                        registerPath="/register/skill-show"
-                        openText="REGISTER FOR SKILL SHOW"
+                        registerPath="/register/shark-tank"
+                        openText="REGISTER FOR SHARK TANK"
                     />
                 </div>
             </motion.div >
@@ -88,4 +88,6 @@ const SkillShow: React.FC = () => {
     );
 };
 
-export default SkillShow;
+export default SharkTank;
+
+
