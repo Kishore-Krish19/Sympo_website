@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* LEFT: Gear + Title */}
         <Link to="/" className="flex items-center gap-3 outline-none focus:outline-none active:outline-none select-none">
-          <Settings className="w-7 h-7 text-[var(--accent-blue)] animate-spin-slow" />
+          {/* <Settings className="w-7 h-7 text-[var(--accent-blue)] animate-spin-slow" /> */}
           <img src={deptLogo} alt="Logo" className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,243,255,0.7)]" />
           <span
             className="
