@@ -394,9 +394,9 @@ const Register: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-3xl mx-auto bg-black/60 border border-white/10 backdrop-blur-lg p-8 rounded-xl shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+        className="max-w-3xl mx-auto bg-[var(--bg-card)] border border-[var(--border-color)] backdrop-blur-lg p-8 rounded-xl shadow-2xl"
       >
-        <h1 className="text-3xl md:text-4xl font-mech text-neonBlue mb-8 text-center uppercase border-b border-white/10 pb-4">
+        <h1 className="text-3xl md:text-4xl font-mech text-[var(--accent-blue)] mb-8 text-center uppercase border-b border-[var(--border-color)] pb-4">
           {getTitle()}
         </h1>
 
@@ -404,7 +404,7 @@ const Register: React.FC = () => {
           {/* Event Selection Dropdown */}
           {showDropdown && (
             <div className="mb-4 w-full relative">
-              <label className="block text-neonBlue text-sm font-mech tracking-wide mb-2 uppercase">
+              <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
                 {type === "tech"
                   ? "Technical Event Name"
                   : "Non-Technical Event Name"}{" "}
@@ -415,19 +415,19 @@ const Register: React.FC = () => {
                   name="eventName"
                   value={formData.eventName}
                   onChange={handleInputChange}
-                  className="bg-black/50 border border-white/20 text-white text-sm rounded-none focus:ring-neonOrange focus:border-neonOrange block w-full p-3 transition-all duration-300 backdrop-blur-sm font-body appearance-none cursor-pointer"
+                  className="bg-[var(--bg-input)] border border-[var(--border-input)] text-[var(--text-primary)] text-sm rounded-none focus:ring-[var(--accent-orange)] focus:border-[var(--accent-orange)] block w-full p-3 transition-all duration-300 backdrop-blur-sm font-body appearance-none cursor-pointer"
                   required
                 >
-                  <option value="" className="bg-black text-gray-500">
+                  <option value="" className="bg-[var(--bg-secondary)] text-[var(--text-muted)]">
                     Select an Event
                   </option>
                   {eventOptions.map((e) => (
-                    <option key={e.id} value={e.title} className="bg-black">
+                    <option key={e.id} value={e.title} className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
                       {e.title}
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-3 text-neonBlue pointer-events-none w-5 h-5" />
+                <ChevronDown className="absolute right-3 top-3 text-[var(--accent-blue)] pointer-events-none w-5 h-5" />
               </div>
             </div>
           )}
@@ -439,15 +439,15 @@ const Register: React.FC = () => {
               label="Event Name"
               value={formData.eventName}
               readOnly
-              className="bg-white/10 text-gray-400 border-none"
+              className="bg-[var(--bg-surface)] text-[var(--text-muted)] border-none"
             />
           )}
           {/* Optional Non-Technical Event (ONLY for Tech Registration) */}
           {type === "tech" && showDropdown && (
             <div className="mb-4 w-full relative">
-              <label className="block text-neonBlue text-sm font-mech tracking-wide mb-2 uppercase">
+              <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
                 Non-Technical Event Name{" "}
-                <span className="text-gray-400">(Optional)</span>
+                <span className="text-[var(--text-muted)]">(Optional)</span>
               </label>
 
               <div className="relative">
@@ -475,7 +475,7 @@ const Register: React.FC = () => {
                     ))}
                 </select>
 
-                <ChevronDown className="absolute right-3 top-3 text-neonBlue pointer-events-none w-5 h-5" />
+                <ChevronDown className="absolute right-3 top-3 text-[var(--accent-blue)] pointer-events-none w-5 h-5" />
               </div>
             </div>
           )}
@@ -580,6 +580,14 @@ const Register: React.FC = () => {
                 label="Total Team Members"
                 value="1 (Solo Participant)"
                 readOnly
+                className="bg-[var(--bg-surface)] text-[var(--text-muted)] cursor-not-allowed"
+              />
+            ) : isSoloTechEvent ? (
+              <Input
+                name="teamSize"
+                label="Total Team Members"
+                value="1 (Solo Event)"
+                readOnly
                 className="bg-white/10 text-gray-400 cursor-not-allowed"
               />
             ) : isSoloTechEvent ? (
@@ -602,7 +610,7 @@ const Register: React.FC = () => {
               />
             ) : (
               <div className="mb-4 w-full relative">
-                <label className="block text-neonBlue text-sm font-mech tracking-wide mb-2 uppercase">
+                <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
                   Total Team Members <span className="text-red-500">*</span>
                 </label>
 
@@ -611,15 +619,15 @@ const Register: React.FC = () => {
                     name="teamSize"
                     value={formData.teamSize}
                     onChange={handleTeamSizeChange}
-                    className="bg-black/100 border border-white/20 text-white text-sm rounded-none focus:ring-neonOrange focus:border-neonOrange block w-full p-3 cursor-pointer appearance-none"
+                    className="bg-[var(--bg-input)] border border-[var(--border-input)] text-[var(--text-primary)] text-sm rounded-none focus:ring-[var(--accent-orange)] focus:border-[var(--accent-orange)] block w-full p-3 cursor-pointer appearance-none"
                     required
                   >
-                    <option value="1">1 (Leader Only)</option>
-                    <option value="2">2 (Leader + 1)</option>
-                    <option value="3">3 (Leader + 2)</option>
+                    <option value="1" className="bg-[var(--bg-secondary)]">1 (Leader Only)</option>
+                    <option value="2" className="bg-[var(--bg-secondary)]">2 (Leader + 1)</option>
+                    <option value="3" className="bg-[var(--bg-secondary)]">3 (Leader + 2)</option>
                   </select>
 
-                  <ChevronDown className="absolute right-3 top-3 text-neonBlue w-5 h-5 pointer-events-none" />
+                  <ChevronDown className="absolute right-3 top-3 text-[var(--accent-blue)] w-5 h-5 pointer-events-none" />
                 </div>
               </div>
             )}
@@ -656,8 +664,8 @@ const Register: React.FC = () => {
 
           {/* Dynamic Members Input Fields */}
           {!isWorkshop && !isSharkTank && formData.teamMembers.length > 0 && (
-            <div className="space-y-4 border-t border-white/10 pt-4">
-              <label className="block text-neonBlue text-sm font-mech uppercase">
+            <div className="space-y-4 border-t border-[var(--border-color)] pt-4">
+              <label className="block text-[var(--accent-blue)] text-sm font-mech uppercase">
                 Additional Members
               </label>
 
@@ -675,11 +683,11 @@ const Register: React.FC = () => {
           )}
 
           {/* Food Count Section */}
-          <div className="grid md:grid-cols-2 gap-6 border-t border-white/10 pt-4">
-            <div className="col-span-2 text-neonOrange font-mech text-sm uppercase">
+          <div className="grid md:grid-cols-2 gap-6 border-t border-[var(--border-color)] pt-4">
+            <div className="col-span-2 text-[var(--accent-orange)] font-mech text-sm uppercase">
               Food Preferences
             </div>
-            <p className="col-span-2 text-xs text-gray-500 -mt-2 mb-2">
+            <p className="col-span-2 text-xs text-[var(--text-muted)] -mt-2 mb-2">
               * Total must equal {formData.teamSize}
             </p>
             <Input
@@ -702,15 +710,15 @@ const Register: React.FC = () => {
             />
           </div>
           {/* 💰 Registration Amount */}
-          <div className="border-t border-white/10 pt-4">
+          <div className="border-t border-[var(--border-color)] pt-4">
             <Input
               name="amount"
               label="Registration Amount (₹)"
               value={`₹ ${formData.amount}`}
               readOnly
-              className="bg-white/10 text-neonOrange font-bold cursor-not-allowed"
+              className="bg-[var(--bg-surface)] text-[var(--accent-orange)] font-bold cursor-not-allowed"
             />
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-[var(--text-muted)] mt-1">
               {type === "ev"
                 ? "EV Racing: ₹4000 for 5 members"
                 : "₹300 per participant"}
@@ -718,32 +726,32 @@ const Register: React.FC = () => {
           </div>
 
           {/* Payment Details Section */}
-          <div className="border border-white/20 rounded-xl p-6 bg-white/5 space-y-6">
-            <div className="flex items-center gap-2 border-b border-white/10 pb-2">
-              <CreditCard className="text-neonBlue" />
-              <h3 className="text-xl font-mech text-white">Payment Details</h3>
+          <div className="border border-[var(--border-color)] rounded-xl p-6 bg-[var(--bg-surface)] space-y-6">
+            <div className="flex items-center gap-2 border-b border-[var(--border-color)] pb-2">
+              <CreditCard className="text-[var(--accent-blue)]" />
+              <h3 className="text-xl font-mech text-[var(--text-primary)]">Payment Details</h3>
             </div>
 
             <div className="grid grid-cols-2 gap-4 text-sm font-body">
               <div>
-                <span className="block text-gray-500">Account Holder</span>
-                <span className="text-neonBlue">
+                <span className="block text-[var(--text-muted)]">Account Holder</span>
+                <span className="text-[var(--accent-blue)]">
                   {BANK_DETAILS.accountHolder}
                 </span>
               </div>
               <div>
-                <span className="block text-gray-500">Bank Name</span>
-                <span className="text-white">{BANK_DETAILS.bankName}</span>
+                <span className="block text-[var(--text-muted)]">Bank Name</span>
+                <span className="text-[var(--text-primary)]">{BANK_DETAILS.bankName}</span>
               </div>
               <div>
-                <span className="block text-gray-500">Account Number</span>
-                <span className="text-white font-mono tracking-wider">
+                <span className="block text-[var(--text-muted)]">Account Number</span>
+                <span className="text-[var(--text-primary)] font-mono tracking-wider">
                   {BANK_DETAILS.accountNumber}
                 </span>
               </div>
               <div>
-                <span className="block text-gray-500">IFSC Code</span>
-                <span className="text-white font-mono">
+                <span className="block text-[var(--text-muted)]">IFSC Code</span>
+                <span className="text-[var(--text-primary)] font-mono">
                   {BANK_DETAILS.ifscCode}
                 </span>
               </div>
@@ -755,7 +763,7 @@ const Register: React.FC = () => {
               </div>
 
               {/* Dynamic QR Code */}
-              <div className="col-span-2 flex flex-col items-center justify-center p-4 bg-white/5 rounded-lg border border-white/10 mt-4">
+              <div className="col-span-2 flex flex-col items-center justify-center p-4 bg-white rounded-lg border border-[var(--border-color)] mt-4">
                 <div className="bg-white p-2 rounded-lg">
                   <QRCode
                     value={generateUPIUrl(formData.amount)}
@@ -783,16 +791,16 @@ const Register: React.FC = () => {
             />
 
             {/* File Upload */}
-            <div className="border border-dashed border-white/30 rounded p-6 text-center hover:border-neonBlue transition-colors bg-black/20">
-              <Upload className="mx-auto w-8 h-8 text-gray-400 mb-2" />
-              <label className="block text-sm text-gray-300 mb-2">
+            <div className="border border-dashed border-[var(--border-color)] rounded p-6 text-center hover:border-[var(--accent-blue)] transition-colors bg-[var(--bg-input)]">
+              <Upload className="mx-auto w-8 h-8 text-[var(--text-muted)] mb-2" />
+              <label className="block text-sm text-[var(--text-secondary)] mb-2">
                 Upload Payment Screenshot *
               </label>
               <input
                 type="file"
                 accept="image/png,image/jpeg,image/jpg,image/webp"
                 onChange={handleFileChange}
-                className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-neonBlue file:text-black hover:file:bg-white"
+                className="text-sm text-[var(--text-muted)] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[var(--accent-blue)] file:text-[var(--text-inverse)] hover:file:bg-[var(--bg-secondary)]"
                 required
               />
             </div>
@@ -804,10 +812,10 @@ const Register: React.FC = () => {
               name="termsAccepted"
               checked={formData.termsAccepted}
               onChange={handleInputChange}
-              className="w-4 h-4 accent-neonBlue"
+              className="w-4 h-4 accent-[var(--accent-blue)]"
               required
             />
-            <span className="text-sm text-gray-400">
+            <span className="text-sm text-[var(--text-muted)]">
               I agree to the terms and event rules.
             </span>
           </div>
@@ -821,7 +829,7 @@ const Register: React.FC = () => {
               loading
             }
             className={`w-full py-4 font-mech font-bold text-xl uppercase tracking-widest transition-all
-              ${loading ? "bg-gray-600 cursor-not-allowed" : "bg-neonBlue text-black hover:bg-white shadow-[0_0_20px_rgba(0,243,255,0.4)]"}
+              ${loading ? "bg-gray-600 cursor-not-allowed" : "bg-[var(--accent-blue)] text-[var(--text-inverse)] hover:bg-[var(--bg-secondary)] hover:text-[var(--accent-blue)] shadow-[0_0_20px_var(--shadow-color)]"}
             `}
           >
             {/* {loading ? 'Submitting...' : 'Confirm Registration'} */}
@@ -844,7 +852,7 @@ const Register: React.FC = () => {
 
         {registrationSuccess && (
           <div className="mt-6 p-5 border border-green-500 bg-green-500/10 text-center">
-            <p className="text-green-400 font-bold mb-3 whitespace-pre-line">
+            <p className="text-green-500 font-bold mb-3 whitespace-pre-line">
               🎉 Registration Successful! {"\n"} Check the email for
               confirmation mail
             </p>

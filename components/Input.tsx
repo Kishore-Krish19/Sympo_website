@@ -9,14 +9,14 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const Input: React.FC<InputProps> = ({ label, error, className = '', ...props }) => {
   return (
     <div className="mb-4 w-full">
-      <label className="block text-neonBlue text-sm font-mech tracking-wide mb-2 uppercase">
+      <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
         {label} {props.required && <span className="text-red-500">*</span>}
       </label>
       <input
-        className={`bg-black/50 border ${error ? 'border-red-500' : 'border-white/20'} 
-          text-white text-sm rounded-none focus:ring-neonOrange focus:border-neonOrange 
+        className={`bg-[var(--bg-input)] border ${error ? 'border-red-500' : 'border-[var(--border-input)]'} 
+          text-[var(--text-primary)] text-sm rounded-none focus:ring-[var(--accent-orange)] focus:border-[var(--accent-orange)] 
           block w-full p-3 transition-all duration-300 backdrop-blur-sm 
-          placeholder-gray-600 focus:shadow-[0_0_10px_rgba(255,170,0,0.3)]
+          placeholder-[var(--text-muted)] focus:shadow-[0_0_10px_var(--accent-orange)]
           font-body ${className}`}
         {...props}
       />
