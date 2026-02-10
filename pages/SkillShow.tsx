@@ -30,7 +30,7 @@ const SkillShow: React.FC = () => {
 
                 {/* HEADERS */}
                 <h1 className="text-4xl md:text-5xl font-mech text-white mb-2">
-                    SKILL SHOW
+                    Shark Tank
                 </h1>
                 <h2 className="text-2xl md:text-3xl font-mech text-neonOrange mb-8">
                     {SKILL_SHOW_INFO.topic}

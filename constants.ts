@@ -1,5 +1,5 @@
 // ../constants.ts
-import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair, Users, Video, Wrench } from 'lucide-react';
+import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair, Users, Video, Wrench ,Target,Rocket} from 'lucide-react';
 import { WorkshopDetails, EventDetails, Coordinator } from './types';
 import { video } from 'framer-motion/client';
 
@@ -22,9 +22,44 @@ export const TECH_EVENTS: EventDetails[] = [
 ];
 
 export const NON_TECH_EVENTS: EventDetails[] = [
-  { id: 'photo', title: 'Photography', description: 'Capture the moment.', icon: Camera, path: '/register/non-tech', category: 'non-tech', entryFee: '₹ 300 / person' },
-  { id: 'meme', title: 'Short Film', description: 'Make us laugh with engineering humor.', icon: Video, path: '/register/non-tech', category: 'non-tech', entryFee: '₹ 300 / person' },
+  {
+    id: 'photo',
+    title: 'Photography',
+    description: 'Capture the moment.',
+    icon: Camera,
+    path: '/register/non-tech',
+    category: 'non-tech',
+    entryFee: '₹ 300 / person',
+  },
+  {
+    id: 'meme',
+    title: 'Short Film',
+    description: 'Show your storytelling and creativity.',
+    icon: Video,
+    path: '/register/non-tech',
+    category: 'non-tech',
+    entryFee: '₹ 300 / person',
+  },
+  {
+    id: 'water_rocketry',
+    title: 'Water Rocketry',
+    description: 'Design and launch a water-powered rocket for maximum height and stability.',
+    icon: Rocket,
+    path: '/register/water-rocketry',
+    category: 'non-tech',
+    entryFee: '₹ 300 / team',
+  },
+  {
+    id: 'trebuchet',
+    title: 'Trebuchet',
+    description: 'Build a gravity-powered trebuchet to test accuracy and range.',
+    icon: Target,
+    path: '/register/trebuchet',
+    category: 'non-tech',
+    entryFee: '₹ 300 / team',
+  },
 ];
+
 
 export const WORKSHOP_INFO: WorkshopDetails = {
   topic: "Drone / UAV ( Unmanned Aerial Vehicle ) ",
