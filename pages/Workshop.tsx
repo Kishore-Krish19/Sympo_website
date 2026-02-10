@@ -24,8 +24,8 @@ const Workshop: React.FC = () => {
     id === "2"
       ? "Mr. Rohith"
       : id === "3"
-      ? "Mr. Lalith Kishore"
-      : null;
+        ? "Mr. Lalith Kishore"
+        : null;
 
   const entryFee = id === "1" ? "₹ 300 / person" : "₹ 200 / person";
   const isIndustryWorkshop = id === "1";
@@ -37,19 +37,21 @@ const Workshop: React.FC = () => {
         animate={{ scale: 1, opacity: 1 }}
         className={`relative w-full max-w-6xl mx-auto
         p-8 md:p-12 rounded-2xl
-        bg-black/60 backdrop-blur-xl ${config.shadow}`}
+        bg-[var(--bg-card)] backdrop-blur-xl ${config.shadow} border border-[var(--border-color)]`}
       >
         {/* 🌈 SOFT GLOW */}
-        <div
-          className={`absolute -inset-2 rounded-3xl blur-xl
-          ${config.glow} opacity-70 pointer-events-none`}
-        />
+        {config.glow && (
+          <div
+            className={`absolute -inset-2 rounded-3xl blur-xl
+            ${config.glow} opacity-20 pointer-events-none`}
+          />
+        )}
 
-        {/* ✨ INNER GLASS */}
+        {/* ✨ INNER GLASS - Optional in light mode, simpler border in dark */}
         <div
           className="absolute inset-[1.5px] rounded-2xl
-          bg-gradient-to-b from-white/8 to-transparent
-          pointer-events-none"
+          bg-gradient-to-b from-white/20 to-transparent
+          pointer-events-none opacity-50"
         />
 
         {/* ⚙️ GEAR */}
@@ -62,7 +64,7 @@ const Workshop: React.FC = () => {
         {/* CONTENT */}
         <div className="relative z-10">
           {/* HEADERS */}
-          <h1 className="text-4xl md:text-5xl font-mech text-white mb-2">
+          <h1 className="text-4xl md:text-5xl font-mech text-[var(--text-primary)] mb-2">
             WORKSHOP
           </h1>
 
@@ -76,23 +78,23 @@ const Workshop: React.FC = () => {
             {/* LEFT INFO */}
             <div className="space-y-6 text-center md:text-left">
               {trainer && (
-                <div className="flex items-center gap-4 text-gray-300">
+                <div className="flex items-center gap-4 text-[var(--text-secondary)]">
                   <User className={config.iconColor} />
                   <span className="text-lg">{trainer}</span>
                 </div>
               )}
 
-              <div className="flex items-center gap-4 text-gray-300">
+              <div className="flex items-center gap-4 text-[var(--text-secondary)]">
                 <Calendar className={config.iconColor} />
                 <span className="text-lg">{WORKSHOP_INFO.date}</span>
               </div>
 
-              <div className="flex items-center gap-4 text-gray-300">
+              <div className="flex items-center gap-4 text-[var(--text-secondary)]">
                 <MapPin className={config.iconColor} />
                 <span className="text-lg">{WORKSHOP_INFO.location}</span>
               </div>
 
-              <div className="flex items-center gap-4 text-gray-300">
+              <div className="flex items-center gap-4 text-[var(--text-secondary)]">
                 <IndianRupee className={config.iconColor} />
                 <span className="text-lg">{entryFee}</span>
               </div>
@@ -106,7 +108,7 @@ const Workshop: React.FC = () => {
                         px-4 py-2 text-xs font-mech uppercase tracking-widest
                         border ${config.headingColor}
                         ${config.headingColor}
-                        hover:bg-white hover:text-black
+                        hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)]
                         transition-all duration-300
                         rounded-md
                       `}
@@ -120,13 +122,13 @@ const Workshop: React.FC = () => {
 
             {/* RIGHT SIDE – KEY BENEFITS ONLY FOR WORKSHOP 1 */}
             {isIndustryWorkshop && (
-              <div className="bg-white/5 rounded-xl p-6 backdrop-blur-md">
-                <h3 className="text-white font-mech mb-4 uppercase tracking-widest">
+              <div className="bg-[var(--bg-surface)] rounded-xl p-6 backdrop-blur-md border border-[var(--border-color)]">
+                <h3 className="text-[var(--text-primary)] font-mech mb-4 uppercase tracking-widest">
                   Key Benefits
                 </h3>
                 <ul className="space-y-3">
                   {WORKSHOP_INFO.benefits.map((benefit, i) => (
-                    <li key={i} className="flex gap-3 text-gray-400">
+                    <li key={i} className="flex gap-3 text-[var(--text-secondary)]">
                       <CheckCircle
                         className={`w-5 h-5 ${config.iconColor}`}
                       />

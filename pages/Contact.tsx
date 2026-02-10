@@ -79,10 +79,10 @@ const Contact: React.FC = () => {
                 src="https://www.google.com/maps?q=Government+College+of+Engineering+Erode&output=embed"
                 width="100%"
                 height="100%"
-                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
+                style={{ border: 0 }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity"
+                className="pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity dark:invert dark:hue-rotate-180"
               />
 
               {/* OVERLAY HINT */}

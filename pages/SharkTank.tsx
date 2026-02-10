@@ -38,7 +38,7 @@ const SharkTank: React.FC = () => {
 
                 {/* DESCRIPTION */}
                 {SHARK_TANK_INFO.description && (
-                    <div className="mb-10 text-[var(--text-secondary)] font-body text-lg leading-relaxed whitespace-pre-line">
+                    <div className="mb-10 text-[var(--text-secondary)] font-medium text-lg leading-relaxed whitespace-pre-line">
                         {SHARK_TANK_INFO.description}
                     </div>
                 )}
@@ -69,7 +69,7 @@ const SharkTank: React.FC = () => {
                         {/* FEE */}
                         <div className="flex items-center gap-4 text-[var(--text-secondary)]">
                             <span className="text-[var(--accent-blue)] font-bold text-xl">₹</span>
-                            <span className="font-body text-xl">
+                            <span className="font-medium text-xl">
                                 {SHARK_TANK_INFO.entryFee}
                             </span>
                         </div>

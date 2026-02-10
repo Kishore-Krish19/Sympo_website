@@ -130,7 +130,7 @@ const Home: React.FC = () => {
   // Since the Navbar handles the toggle, this component just reflects the current theme via CSS variables.
 
   return (
-    <div className="relative min-h-screen w-full bg-carbon-fiber flex flex-col items-center justify-center pt-20 md:pt-24">
+    <div className="relative min-h-screen w-full bg-[var(--bg-primary)] flex flex-col items-center justify-center pt-20 md:pt-24 transition-colors duration-300">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[100px]"
           style={{ backgroundColor: 'var(--accent-blue)', opacity: 'var(--blob-opacity)' }} />
@@ -168,9 +168,7 @@ const Home: React.FC = () => {
               className="
     w-full h-full
     object-contain
-    invert
-    brightness-200
-    contrast-200
+    brightness-100 contrast-100 dark:brightness-100 dark:contrast-100
   "
             />
           </div>
@@ -191,18 +189,18 @@ const Home: React.FC = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-neonBlue font-mech text-center leading-tight mb-4 md:mb-6"
+              className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-[var(--accent-blue)] font-mech text-center leading-tight mb-4 md:mb-6"
             >
               GOVERNMENT COLLEGE OF
               <br />
               ENGINEERING, ERODE
             </motion.h3>
 
-            <h2 className="text-sm md:text-2xl text-gray-300 font-mech tracking-[0.2em] mb-4 md:mb-6">
+            <h2 className="text-sm md:text-2xl text-[var(--text-secondary)] font-mech tracking-[0.2em] mb-4 md:mb-6">
               DEPARTMENT OF MECHANICAL ENGINEERING
             </h2>
 
-            <p className="text-xs md:text-lg text-neonOrange font-mech tracking-[0.4em] uppercase">
+            <p className="text-xs md:text-lg text-[var(--accent-orange)] font-mech tracking-[0.4em] uppercase">
               PROUDLY PRESENTS
             </p>
           </div>
@@ -219,11 +217,11 @@ const Home: React.FC = () => {
           <PistonCluster /> */}
 
 
-          <h1 className="text-4xl sm:text-8xl md:text-12xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 drop-shadow-[0_0_12px_rgba(255,215,0,0.7)] mb-2">
+          <h1 className="text-4xl sm:text-8xl md:text-12xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-500 via-yellow-600 to-yellow-800 drop-shadow-lg mb-2">
             EFFICACY'26
           </h1>
 
-          <h3 className="text-xs sm:text-base md:text-3xl text-white font-mech tracking-widest text-shadow-sm uppercase">
+          <h3 className="text-xs sm:text-base md:text-3xl text-[var(--text-primary)] font-mech tracking-widest text-shadow-sm uppercase">
             NATIONAL LEVEL TECHNICAL SYMPOSIUM
           </h3>
         </motion.div>
@@ -252,6 +250,7 @@ const Home: React.FC = () => {
       gap-2
       whitespace-nowrap
       shadow-[0_0_12px_var(--shadow-color)]
+      hover:bg-[var(--accent-blue)] hover:text-white transition-colors
     "
               >
                 <span className="leading-none">Register Now</span>
@@ -282,7 +281,7 @@ const Home: React.FC = () => {
                 className="
       px-8 py-4
       bg-[var(--accent-orange)]
-      text-[var(--text-inverse)]
+      text-white
       font-mech
       rounded-3xl
       inline-flex items-center justify-center
@@ -312,36 +311,36 @@ const Home: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
 
               {/* LEFT: Event Date */}
-              <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-black/40 border border-neonBlue/30 rounded-2xl backdrop-blur-sm shadow-[0_0_15px_rgba(0,243,255,0.1)]">
-                <Calendar className="w-10 h-10 md:w-12 md:h-12 text-neonBlue mb-3 md:mb-4 drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]" />
-                <h3 className="text-gray-400 font-mech tracking-widest text-sm md:text-lg mb-2">EVENT DATE</h3>
-                <p className="text-3xl md:text-4xl text-white font-mech drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">
+              <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-[var(--bg-card)] border border-[var(--accent-blue)]/30 rounded-2xl backdrop-blur-sm shadow-[0_0_15px_var(--shadow-color)]">
+                <Calendar className="w-10 h-10 md:w-12 md:h-12 text-[var(--accent-blue)] mb-3 md:mb-4 drop-shadow-md" />
+                <h3 className="text-[var(--text-muted)] font-mech tracking-widest text-sm md:text-lg mb-2">EVENT DATE</h3>
+                <p className="text-3xl md:text-4xl text-[var(--text-primary)] font-mech drop-shadow-sm">
                   04 / 03 / 26
                 </p>
               </div>
 
               {/* RIGHT: Registration Info */}
-              <div className="flex flex-col items-center justify-center p-6 bg-black/40 border border-neonOrange/30 rounded-2xl backdrop-blur-sm shadow-[0_0_15px_rgba(255,170,0,0.1)] gap-4">
+              <div className="flex flex-col items-center justify-center p-6 bg-[var(--bg-card)] border border-[var(--accent-orange)]/30 rounded-2xl backdrop-blur-sm shadow-[0_0_15px_var(--shadow-color)] gap-4">
 
                 {/* Online Reg */}
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-1">
-                    <Calendar className="w-5 h-5 text-neonOrange" />
-                    <span className="text-gray-300 font-mech tracking-wide">ONLINE REGISTRATION ENDS</span>
+                    <Calendar className="w-5 h-5 text-[var(--accent-orange)]" />
+                    <span className="text-[var(--text-secondary)] font-mech tracking-wide">ONLINE REGISTRATION ENDS</span>
                   </div>
-                  <p className="text-2xl text-white font-mech">01 / 03 / 26</p>
+                  <p className="text-2xl text-[var(--text-primary)] font-mech">01 / 03 / 26</p>
                 </div>
 
-                <div className="w-1/2 h-px bg-white/10" />
+                <div className="w-1/2 h-px bg-[var(--border-color)]" />
 
                 {/* On-spot Reg */}
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-1">
-                    <Clock className="w-5 h-5 text-neonOrange" />
-                    <span className="text-gray-300 font-mech tracking-wide">ON-SPOT REGISTRATION</span>
+                    <Clock className="w-5 h-5 text-[var(--accent-orange)]" />
+                    <span className="text-[var(--text-secondary)] font-mech tracking-wide">ON-SPOT REGISTRATION</span>
                   </div>
-                  <p className="text-xl text-white font-mech mb-1">04 / 03 / 26</p>
-                  <p className="text-sm text-neonBlue font-mono">(9:00 AM - 10:00 AM)</p>
+                  <p className="text-xl text-[var(--text-primary)] font-mech mb-1">04 / 03 / 26</p>
+                  <p className="text-sm text-[var(--accent-blue)] font-mono">(9:00 AM - 10:00 AM)</p>
                 </div>
 
               </div>
@@ -349,7 +348,7 @@ const Home: React.FC = () => {
 
             {/* Countdown */}
             <div className="flex flex-col items-center mb-12">
-              <h4 className="text-xl md:text-3xl font-black font-mech mb-4 tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-neonBlue via-white to-neonBlue drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] animate-pulse">
+              <h4 className="text-xl md:text-3xl font-black font-mech mb-4 tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-blue)] via-[var(--text-primary)] to-[var(--accent-blue)] drop-shadow-md animate-pulse">
                 COUNTDOWN BEGINS
               </h4>
               <Countdown />

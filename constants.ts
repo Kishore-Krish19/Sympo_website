@@ -1,5 +1,5 @@
 // ../constants.ts
-import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair, Users, Video, Wrench ,Target,Rocket} from 'lucide-react';
+import { Cpu, Camera, Settings, Zap, Brain, PenTool, Gamepad2, Trophy, Crosshair, Users, Video, Wrench, Target, Rocket } from 'lucide-react';
 import { WorkshopDetails, EventDetails, Coordinator } from './types';
 import { video } from 'framer-motion/client';
 
@@ -120,29 +120,32 @@ export const REGISTRATION_CLOSED_TEXT = 'REGISTRATION CLOSED';
 export const WORKSHOP_CONFIG = {
   "1": {
     topic: "DRONE & UAV ( UNMANNED AERIAL VEHICLE )",
-    price:"300",
+    price: "300",
     headingColor: "text-orange-400",
     iconColor: "text-orange-400",
     border: "border-orange-500",
     shadow: "shadow-[0_0_50px_rgba(251,146,60,0.18)]",
+    glow: "bg-orange-500",
     registerPath: "/register/workshop1",
   },
   "2": {
     topic: "GAME DEVELOPMENT (ENGINE)",
-    price:"200",
+    price: "200",
     headingColor: "text-blue-400",
     iconColor: "text-blue-400",
     border: "border-blue-500",
     shadow: "shadow-[0_0_50px_rgba(96,165,250,0.18)]",
+    glow: "bg-blue-500",
     registerPath: "/register/workshop2",
   },
   "3": {
     topic: "ECU (ENGINE CONTROL UNIT)",
-    price:"200",
+    price: "200",
     headingColor: "text-purple-400",
     iconColor: "text-purple-400",
     border: "border-purple-500",
     shadow: "shadow-[0_0_50px_rgba(192,132,252,0.18)]",
+    glow: "bg-purple-500",
     registerPath: "/register/workshop3",
   },
 } as const;
