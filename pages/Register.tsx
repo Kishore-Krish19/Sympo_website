@@ -28,6 +28,15 @@ const whatsappLinksByType: Record<string, string> = {
   ev: "https://chat.whatsapp.com/EIOBzWU7fXV0KCBeYfoVP2?mode=gi_t",
   "shark-tank": "https://chat.whatsapp.com/B6QRLt0JFJqEyg76ScTXY6?mode=gi_t", // Placeholder link, using tech for now
 };
+const TECH_EVENT_TEAM_RULES: Record<
+  string,
+  { min: number; max: number; solo?: boolean }
+> = {
+  "3D CAD Modeling (Design Challenge)": { min: 1, max: 1, solo: true },
+  "Legend in Lathe (Machining)": { min: 1, max: 1, solo: true },
+  "Mech Core Quiz": { min: 1, max: 3 },
+  "Paper Presentation": { min: 1, max: 3 },
+};
 
 const Register: React.FC = () => {
   const { type } = useParams<{ type: string }>();
@@ -39,28 +48,28 @@ const Register: React.FC = () => {
   } | null>(null);
 
   const [formData, setFormData] = useState<RegistrationForm>({
-  teamName: "",
-  eventType: "",
-  eventName: "",
-  nonTechEvent: "",
-  optionalWorkshop: "", // ✅ ADD THIS
-  teamLeaderName: "",
-  collegeName: "",
-  department: "",
-  yearOfStudy: "",
-  phoneNumber: "",
-  whatsappNumber: "",
-  email: "",
-  teamSize: 1,
-  teamMembers: [],
-  vegCount: 0,
-  nonVegCount: 0,
-  transactionId: "",
-  termsAccepted: false,
-  paymentScreenshot: "",
-  type: type || "tech",
-  amount: 0,
-});
+    teamName: "",
+    eventType: "",
+    eventName: "",
+    nonTechEvent: "",
+    optionalWorkshop: "", // ✅ ADD THIS
+    teamLeaderName: "",
+    collegeName: "",
+    department: "",
+    yearOfStudy: "",
+    phoneNumber: "",
+    whatsappNumber: "",
+    email: "",
+    teamSize: 1,
+    teamMembers: [],
+    vegCount: 0,
+    nonVegCount: 0,
+    transactionId: "",
+    termsAccepted: false,
+    paymentScreenshot: "",
+    type: type || "tech",
+    amount: 0,
+  });
 
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [whatsappLink, setWhatsappLink] = useState("");
@@ -97,41 +106,64 @@ const Register: React.FC = () => {
       });
     }
   }, [isWorkshop, isSharkTank, isEVRacing]);
+  useEffect(() => {
+    if (type !== "tech" || !formData.eventName) return;
+
+    const rule = TECH_EVENT_TEAM_RULES[formData.eventName];
+    if (!rule) return;
+
+    // Force solo
+    if (rule.solo) {
+      setFormData((prev) => ({
+        ...prev,
+        teamSize: 1,
+        teamMembers: [],
+      }));
+    }
+
+    // Clamp team size for max rules
+    if (formData.teamSize > rule.max) {
+      setFormData((prev) => ({
+        ...prev,
+        teamSize: rule.max,
+        teamMembers: prev.teamMembers.slice(0, rule.max - 1),
+      }));
+    }
+  }, [formData.eventName, type]);
+
   // ===============================
   // 💰 Registration Amount Calculation
   // ===============================
-useEffect(() => {
-  let calculatedAmount = 0;
-  const size = Number(formData.teamSize) || 1;
+  useEffect(() => {
+    let calculatedAmount = 0;
+    const size = Number(formData.teamSize) || 1;
 
-  if (type === "ev") {
-    calculatedAmount = size <= 5 ? 4000 : 4000 + (size - 5) * 300;
-  } 
-  else if (type?.startsWith("workshop")) {
-    const workshopId = type.replace("workshop", "");
-    const prices: Record<string, number> = {
-      "1": 300,
-      "2": 200,
-      "3": 200,
-    };
-    calculatedAmount = prices[workshopId] ?? 300;
-  } 
-  else {
-    // ✅ TECH / NON-TECH BASE
-    calculatedAmount = size * 300;
+    if (type === "ev") {
+      calculatedAmount = size <= 5 ? 4000 : 4000 + (size - 5) * 300;
+    } else if (type?.startsWith("workshop")) {
+      const workshopId = type.replace("workshop", "");
+      const prices: Record<string, number> = {
+        "1": 300,
+        "2": 200,
+        "3": 200,
+      };
+      calculatedAmount = prices[workshopId] ?? 300;
+    } else {
+      // ✅ TECH / NON-TECH BASE
+      calculatedAmount = size * 300;
 
-    // ✅ ADD ₹50 IF OPTIONAL WORKSHOP SELECTED
-    if (formData.optionalWorkshop) {
-      calculatedAmount += 50;
+      // ✅ ADD ₹50 IF OPTIONAL WORKSHOP SELECTED
+      if (formData.optionalWorkshop) {
+        calculatedAmount += 50;
+      }
     }
-  }
 
-  setFormData((prev) =>
-    prev.amount === calculatedAmount
-      ? prev
-      : { ...prev, amount: calculatedAmount }
-  );
-}, [type, formData.teamSize, formData.optionalWorkshop]);
+    setFormData((prev) =>
+      prev.amount === calculatedAmount
+        ? prev
+        : { ...prev, amount: calculatedAmount },
+    );
+  }, [type, formData.teamSize, formData.optionalWorkshop]);
 
   // Handle Default Event Names for single-event categories
   useEffect(() => {
@@ -299,6 +331,27 @@ useEffect(() => {
     const name = BANK_DETAILS.accountHolder;
     return `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
   };
+  const techRule =
+    type === "tech" ? TECH_EVENT_TEAM_RULES[formData.eventName] : null;
+
+  const isSoloTechEvent = techRule?.solo === true;
+
+  // ❗ Only workshop allowed (no non-tech)
+  const workshopOnlyTechEvents = [
+    "3D CAD Modeling (Design Challenge)",
+    "Legend in Lathe (Machining)",
+  ];
+
+  const isWorkshopOnlyTech =
+    type === "tech" && workshopOnlyTechEvents.includes(formData.eventName);
+  useEffect(() => {
+    if (isWorkshopOnlyTech && formData.nonTechEvent) {
+      setFormData((prev) => ({
+        ...prev,
+        nonTechEvent: "",
+      }));
+    }
+  }, [isWorkshopOnlyTech]);
 
   return (
     <div className="min-h-screen pt-24 pb-20 px-4 container mx-auto">
@@ -402,18 +455,24 @@ useEffect(() => {
                   name="nonTechEvent"
                   value={formData.nonTechEvent}
                   onChange={handleInputChange}
-                  disabled={!formData.eventName}
-                  className="bg-black/50 border border-white/20 text-white text-sm rounded-none focus:ring-neonOrange focus:border-neonOrange block w-full p-3 transition-all duration-300 backdrop-blur-sm font-body appearance-none cursor-pointer"
+                  disabled={!formData.eventName || isWorkshopOnlyTech}
+                  className="bg-black/50 border border-white/20 text-white text-sm rounded-none
+             focus:ring-neonOrange focus:border-neonOrange block w-full p-3
+             transition-all duration-300 backdrop-blur-sm font-body
+             appearance-none cursor-pointer disabled:opacity-50"
                 >
                   <option value="" className="bg-black text-gray-500">
-                    Select Non-Tech Event (Free)
+                    {isWorkshopOnlyTech
+                      ? "Not allowed for this event"
+                      : "Select Non-Tech Event (Free)"}
                   </option>
 
-                  {nonTechEventOptions.map((e) => (
-                    <option key={e.id} value={e.title} className="bg-black">
-                      {e.title}
-                    </option>
-                  ))}
+                  {!isWorkshopOnlyTech &&
+                    nonTechEventOptions.map((e) => (
+                      <option key={e.id} value={e.title} className="bg-black">
+                        {e.title}
+                      </option>
+                    ))}
                 </select>
 
                 <ChevronDown className="absolute right-3 top-3 text-neonBlue pointer-events-none w-5 h-5" />
@@ -423,26 +482,52 @@ useEffect(() => {
           {type === "tech" && showDropdown && (
             <div className="mb-4 w-full relative">
               <label className="block text-neonBlue text-sm font-mech tracking-wide mb-2 uppercase">
-                Optional Workshop <span className="text-gray-400">(₹50)</span>
+                WORKSHOP <span className="text-gray-400">(Optional)</span>
               </label>
+              <div className="relative">
+                <select
+                  name="optionalWorkshop"
+                  value={formData.optionalWorkshop}
+                  onChange={(e) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      optionalWorkshop: e.target.value,
+                      nonTechEvent: "",
+                    }));
+                  }}
+                  disabled={!formData.eventName || !!formData.nonTechEvent}
+                  className="
+        bg-black/50
+        border border-white/20
+        text-white
+        text-sm
+        rounded-none
+        focus:ring-neonOrange
+        focus:border-neonOrange
+        block w-full
+        p-3
+        transition-all
+        duration-300
+        backdrop-blur-sm
+        font-body
+        appearance-none
+        cursor-pointer
+      "
+                >
+                  <option value="" className="bg-black text-gray-500">
+                    Select Workshop (₹50)
+                  </option>
+                  <option value="workshop2" className="bg-black">
+                    Game Development
+                  </option>
+                  <option value="workshop3" className="bg-black">
+                    ECU
+                  </option>
+                </select>
 
-              <select
-                name="optionalWorkshop"
-                value={formData.optionalWorkshop}
-                onChange={(e) => {
-                  setFormData((prev) => ({
-                    ...prev,
-                    optionalWorkshop: e.target.value,
-                    nonTechEvent: "", // ❗ auto-clear non-tech
-                  }));
-                }}
-                disabled={!formData.eventName || !!formData.nonTechEvent}
-                className="bg-black/50 border border-white/20 text-white p-3 w-full"
-              >
-                <option value="">Select Workshop (Optional)</option>
-                <option value="workshop2">Game Development</option>
-                <option value="workshop3">ECU</option>
-              </select>
+                {/* 🔽 SAME DOWN ARROW */}
+                <ChevronDown className="absolute right-3 top-3 text-neonBlue pointer-events-none w-5 h-5" />
+              </div>
             </div>
           )}
 
@@ -488,12 +573,20 @@ useEffect(() => {
               placeholder="e.g. III"
             />
 
-            {/* Total Team Members Dropdown */}
+            {/* Total Team Members */}
             {isWorkshop || isSharkTank ? (
               <Input
                 name="teamSize"
                 label="Total Team Members"
                 value="1 (Solo Participant)"
+                readOnly
+                className="bg-white/10 text-gray-400 cursor-not-allowed"
+              />
+            ) : isSoloTechEvent ? (
+              <Input
+                name="teamSize"
+                label="Total Team Members"
+                value="1 (Solo Event)"
                 readOnly
                 className="bg-white/10 text-gray-400 cursor-not-allowed"
               />
