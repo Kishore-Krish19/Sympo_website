@@ -1,3 +1,4 @@
+// ../pages/SkillShow.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { SKILL_SHOW_INFO } from '../constants';

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Settings, Drone, Gamepad2, Cpu } from "lucide-react";
 
 /* =======================
-   PISTON BACKGROUND
+   PISTON BACKGROUND (FIXED)
 ======================= */
 const Piston = ({ className }: { className?: string }) => (
   <svg
@@ -16,16 +16,20 @@ const Piston = ({ className }: { className?: string }) => (
   >
     <path d="M6 9v12h12V9" />
     <path d="M4 9h16" />
+
     <motion.path
       d="M7 5h10v4H7z"
+      initial={{ y: 0 }}
       animate={{ y: [0, 8, 0] }}
       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
     />
+
     <motion.line
-      x1="12"
-      y1="9"
-      x2="12"
-      y2="21"
+      x1={12}
+      x2={12}
+      y1={9}
+      y2={21}
+      initial={{ y1: 9, y2: 21 }}
       animate={{ y1: [9, 17, 9], y2: [21, 29, 21] }}
       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
     />
@@ -71,31 +75,34 @@ const iconVariants = {
 ======================= */
 const workshops = [
   {
-    title: "Workshop 1",
-    path: "/workshop/main",
+    title: "DRONE & UAV",
+    path: "/workshop/1",
     icon: Drone,
     animation: "drone",
     color: "text-orange-400",
     border: "border-orange-500",
     fee: "₹ 300 / person",
+    resource: "Industry Technician",
   },
   {
-    title: "Workshop 2",
+    title: "GAME DEVELOPMENT",
     path: "/workshop/2",
     icon: Gamepad2,
     animation: "gamepad",
     color: "text-blue-400",
     border: "border-blue-500",
-    fee: "Coming Soon",
+    fee: "₹ 200 / person",
+    resource: "Student Team",
   },
   {
-    title: "Workshop 3",
+    title: "ECU",
     path: "/workshop/3",
     icon: Cpu,
     animation: "cpu",
     color: "text-purple-400",
     border: "border-purple-500",
-    fee: "Coming Soon",
+    fee: "₹ 200 / person",
+    resource: "Student Team",
   },
 ];
 
@@ -126,7 +133,6 @@ const WorkshopCategories: React.FC = () => {
           >
             <motion.div
               initial="rest"
-              whileHover="hover"
               animate="rest"
               whileHover={{ y: -5, scale: 1.02 }}
               className={`relative h-64 md:h-[19rem] bg-black/40 backdrop-blur-md
@@ -141,7 +147,7 @@ const WorkshopCategories: React.FC = () => {
                 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
               />
 
-              {/* ICON (CONTROLLED BY CARD HOVER) */}
+              {/* ICON */}
               <motion.div
                 variants={iconVariants}
                 animate="rest"
@@ -149,10 +155,10 @@ const WorkshopCategories: React.FC = () => {
                   ws.animation === "drone"
                     ? "droneHover"
                     : ws.animation === "gamepad"
-                    ? "gamepadHover"
-                    : ws.animation === "cpu"
-                    ? "cpuHover"
-                    : "rest"
+                      ? "gamepadHover"
+                      : ws.animation === "cpu"
+                        ? "cpuHover"
+                        : "rest"
                 }
                 className="mb-6"
               >
@@ -165,9 +171,16 @@ const WorkshopCategories: React.FC = () => {
               <h2 className="text-lg md:text-2xl font-mech text-white font-bold text-center z-10">
                 {ws.title}
               </h2>
+              <p className="mt-1 text-lg md:text-base text-gray-300 font-body">
+  Resource Person:{" "}
+  <span className={`${ws.color}`}>
+    {ws.resource}
+  </span>
+</p>
+
 
               {/* FEE */}
-              <p className="text-gray-400 font-mono mt-2 text-xs md:text-sm z-10">
+              <p className="text-gray-400 font-mono mt-2 text-lg md:text-sm z-10">
                 {ws.fee}
               </p>
 

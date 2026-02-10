@@ -39,7 +39,7 @@ export const WORKSHOP_INFO: WorkshopDetails = {
     "Safety, Regulations & Ethics",
     "Career and Future Trends in Drones"
   ],
-  entryFee: "₹ 300 / person"
+  entryFee: "300 / person"
 };
 
 export const SKILL_SHOW_INFO: WorkshopDetails = {
@@ -79,3 +79,54 @@ export const REGISTRATION_CLOSE_DATE = new Date(2026, 2, 1, 23, 59, 0);
 
 // 🔒 Common closed text
 export const REGISTRATION_CLOSED_TEXT = 'REGISTRATION CLOSED';
+
+export const WORKSHOP_CONFIG = {
+  "1": {
+    topic: "DRONE & UAV ( UNMANNED AERIAL VEHICLE )",
+    headingColor: "text-orange-400",
+    iconColor: "text-orange-400",
+    border: "border-orange-500",
+    shadow: "shadow-[0_0_50px_rgba(251,146,60,0.18)]",
+    registerPath: "/register/workshop1",
+  },
+  "2": {
+    topic: "GAME DEVELOPMENT (ENGINE)",
+    headingColor: "text-blue-400",
+    iconColor: "text-blue-400",
+    border: "border-blue-500",
+    shadow: "shadow-[0_0_50px_rgba(96,165,250,0.18)]",
+    registerPath: "/register/workshop2",
+  },
+  "3": {
+    topic: "ECU (ENGINE CONTROL UNIT)",
+    headingColor: "text-purple-400",
+    iconColor: "text-purple-400",
+    border: "border-purple-500",
+    shadow: "shadow-[0_0_50px_rgba(192,132,252,0.18)]",
+    registerPath: "/register/workshop3",
+  },
+} as const;
+
+export const WORKSHOP_DESCRIPTIONS = {
+  "2": {
+    title: "Game Development (Engine)",
+    description: [
+      "Introduction to game engines and their architecture",
+      "Basics of game loop, rendering, and physics",
+      "Hands-on demo using a popular game engine",
+      "Understanding assets, scripting, and logic",
+      "Career paths in game development industry"
+    ],
+  },
+
+  "3": {
+    title: "ECU (Engine Control Unit)",
+    description: [
+      "Introduction to ECU and embedded automotive systems",
+      "Sensors, actuators, and signal processing",
+      "ECU tuning basics and real-time data handling",
+      "Applications in modern vehicles",
+      "Career opportunities in automotive electronics"
+    ],
+  },
+} as const;

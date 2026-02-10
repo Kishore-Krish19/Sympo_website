@@ -57,7 +57,7 @@ const Events: React.FC = () => {
                 {cat.title}
               </h2>
 
-              <p className="text-gray-400 font-mono mt-2 text-xs md:text-sm z-10 group-hover:text-white transition-colors">
+              <p className="text-gray-400 font-mono mt-2 text-lg md:text-lg z-10 group-hover:text-white transition-colors">
                 {cat.fee}
               </p>
               {

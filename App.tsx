@@ -10,14 +10,13 @@ import {
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+/* PAGES */
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Events from "./pages/Events";
 import WorkshopCategories from "./pages/WorkshopCategories";
 import Workshop from "./pages/Workshop";
-import Workshop2 from "./pages/Workshop2";
-import Workshop3 from "./pages/Workshop3";
-
+import WorkshopDescription from "./pages/WorkshopDescription";
 import EVRacing from "./pages/EVRacing";
 import Register from "./pages/Register";
 import Contact from "./pages/Contact";
@@ -25,6 +24,7 @@ import EventList from "./pages/EventList";
 import EventDescription from "./pages/EventDescription";
 import SkillShow from "./pages/SkillShow";
 
+/* DATA */
 import { TECH_EVENTS, NON_TECH_EVENTS } from "./constants";
 
 /* 🔼 Scroll to top on route change */
@@ -84,13 +84,13 @@ const App: React.FC = () => {
 
           {/* EVENT DESCRIPTION */}
           <Route path="/events/:id" element={<EventDescription />} />
-          {/* OTHER PAGES */}
 
+          {/* WORKSHOPS */}
           <Route path="/workshop" element={<WorkshopCategories />} />
-          <Route path="/workshop/main" element={<Workshop />} />
-          <Route path="/workshop/2" element={<Workshop2 />} />
-          <Route path="/workshop/3" element={<Workshop3 />} />
-          <Route path="/workshop/3" element={<Workshop3 />} />
+          <Route path="/workshop/:id" element={<Workshop />} />
+          <Route path="/workshop/:id/description" element={<WorkshopDescription />} />
+
+          {/* OTHER PAGES */}
           <Route path="/skill-show" element={<SkillShow />} />
           <Route path="/ev-racing" element={<EVRacing />} />
           <Route path="/register/:type" element={<Register />} />

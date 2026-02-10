@@ -1,129 +1,164 @@
-// ../pages/Workshop.tsx
 import React from "react";
 import { motion } from "framer-motion";
-import { WORKSHOP_INFO } from "../constants";
+import { useParams, Link } from "react-router-dom";
+import { WORKSHOP_INFO, WORKSHOP_CONFIG } from "../constants";
 import {
   CheckCircle,
   Calendar,
-  Clock,
-  User,
   MapPin,
+  User,
   IndianRupee,
 } from "lucide-react";
 import RegistrationButton from "../components/RegistrationButton";
 
 const Workshop: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const config = WORKSHOP_CONFIG[id as keyof typeof WORKSHOP_CONFIG];
+
+  if (!config || !id) return null;
+
+  /* =========================
+     TRAINER + FEE
+  ========================= */
+  const trainer =
+    id === "2"
+      ? "Mr. Rohith"
+      : id === "3"
+      ? "Mr. Lalith Kishore"
+      : null;
+
+  const entryFee = id === "1" ? "₹ 300 / person" : "₹ 200 / person";
+  const isIndustryWorkshop = id === "1";
+
   return (
     <div className="w-full px-4 pt-20 md:pt-24">
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="w-full bg-black/60 border border-neonOrange/30 backdrop-blur-xl
-               p-8 md:p-12 rounded-2xl
-               shadow-[0_0_50px_rgba(255,170,0,0.1)]
-               relative overflow-hidden"
+        className={`relative w-full max-w-6xl mx-auto
+        p-8 md:p-12 rounded-2xl
+        bg-black/60 backdrop-blur-xl ${config.shadow}`}
       >
-        {/* BACKGROUND ICON */}
-        <div className="absolute top-0 right-0 p-4 opacity-10">
-          <SettingsIcon className="w-64 h-64 text-neonOrange animate-spin-slow" />
-        </div>
+        {/* 🌈 SOFT GLOW */}
+        <div
+          className={`absolute -inset-2 rounded-3xl blur-xl
+          ${config.glow} opacity-70 pointer-events-none`}
+        />
 
-        {/* HEADERS */}
-        <h1 className="text-4xl md:text-5xl font-mech text-white mb-2">
-          WORKSHOP
-        </h1>
-        <h2 className="text-2xl md:text-3xl font-mech text-neonOrange mb-8">
-          {WORKSHOP_INFO.topic}
-        </h2>
+        {/* ✨ INNER GLASS */}
+        <div
+          className="absolute inset-[1.5px] rounded-2xl
+          bg-gradient-to-b from-white/8 to-transparent
+          pointer-events-none"
+        />
+
+        {/* ⚙️ GEAR */}
+        <div className="absolute top-1/2 right-16 -translate-y-1/2 opacity-10 hidden md:block">
+          <SettingsIcon
+            className={`w-72 h-72 ${config.iconColor} animate-spin-slow`}
+          />
+        </div>
 
         {/* CONTENT */}
-        <div className="grid md:grid-cols-2 gap-8 mb-10">
-          {/* LEFT INFO */}
-          <div className="space-y-6">
-            {/* <div className="flex items-center gap-4 text-gray-300">
-              <User className="text-neonBlue" />
-              <span className="font-body text-xl">
-                {WORKSHOP_INFO.trainer}
-              </span>
-            </div> */}
+        <div className="relative z-10">
+          {/* HEADERS */}
+          <h1 className="text-4xl md:text-5xl font-mech text-white mb-2">
+            WORKSHOP
+          </h1>
 
-            <div className="flex items-center gap-4 text-gray-300">
-              <Calendar className="text-neonBlue" />
-              <span className="font-body text-xl">{WORKSHOP_INFO.date}</span>
+          <h2
+            className={`text-2xl md:text-3xl font-mech ${config.headingColor} mb-8`}
+          >
+            {config.topic}
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-10">
+            {/* LEFT INFO */}
+            <div className="space-y-6">
+              {trainer && (
+                <div className="flex items-center gap-4 text-gray-300">
+                  <User className={config.iconColor} />
+                  <span className="text-lg">{trainer}</span>
+                </div>
+              )}
+
+              <div className="flex items-center gap-4 text-gray-300">
+                <Calendar className={config.iconColor} />
+                <span className="text-lg">{WORKSHOP_INFO.date}</span>
+              </div>
+
+              <div className="flex items-center gap-4 text-gray-300">
+                <MapPin className={config.iconColor} />
+                <span className="text-lg">{WORKSHOP_INFO.location}</span>
+              </div>
+
+              <div className="flex items-center gap-4 text-gray-300">
+                <IndianRupee className={config.iconColor} />
+                <span className="text-lg">{entryFee}</span>
+              </div>
+
+              {/* ✅ VIEW DESCRIPTION — BELOW LEFT */}
+              {!isIndustryWorkshop && (
+                <div className="pt-4">
+                  <Link to={`/workshop/${id}/description`}>
+                    <button
+                      className={`
+                        px-4 py-2 text-xs font-mech uppercase tracking-widest
+                        border ${config.headingColor}
+                        ${config.headingColor}
+                        hover:bg-white hover:text-black
+                        transition-all duration-300
+                        rounded-md
+                      `}
+                    >
+                      View Description
+                    </button>
+                  </Link>
+                </div>
+              )}
             </div>
 
-            {/* <div className="flex items-center gap-4 text-gray-300">
-              <Clock className="text-neonBlue" />
-              <span className="font-body text-xl">
-                {WORKSHOP_INFO.time}
-              </span>
-            </div> */}
-
-            {/* VENUE */}
-            <div className="flex items-center gap-4 text-gray-300">
-              <MapPin className="text-neonBlue" />
-              <span className="font-body text-xl">
-                {WORKSHOP_INFO.location}
-              </span>
-            </div>
-
-            {/* FEE */}
-            <div className="flex items-center gap-2 text-gray-300 pl-1">
-              <IndianRupee
-                className="text-neonBlue w-5 h-5"
-                strokeWidth={2.5}
-              />
-              <span className="font-body text-xl">
-                {WORKSHOP_INFO.entryFee}
-              </span>
-            </div>
+            {/* RIGHT SIDE – KEY BENEFITS ONLY FOR WORKSHOP 1 */}
+            {isIndustryWorkshop && (
+              <div className="bg-white/5 rounded-xl p-6 backdrop-blur-md">
+                <h3 className="text-white font-mech mb-4 uppercase tracking-widest">
+                  Key Benefits
+                </h3>
+                <ul className="space-y-3">
+                  {WORKSHOP_INFO.benefits.map((benefit, i) => (
+                    <li key={i} className="flex gap-3 text-gray-400">
+                      <CheckCircle
+                        className={`w-5 h-5 ${config.iconColor}`}
+                      />
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
-          {/* BENEFITS */}
-          <div className="bg-white/5 p-6 rounded-lg border border-white/10">
-            <h3 className="text-white font-mech mb-4 uppercase tracking-widest">
-              Key Benefits
-            </h3>
-            <ul className="space-y-3">
-              {WORKSHOP_INFO.benefits.map((benefit, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3 text-gray-400 font-body"
-                >
-                  <CheckCircle className="w-5 h-5 text-green-500 shrink-0" />
-                  {benefit}
-                </li>
-              ))}
-            </ul>
+          {/* REGISTER */}
+          <div className="text-center">
+            <RegistrationButton
+              registerPath={config.registerPath}
+              openText="REGISTER FOR WORKSHOP"
+            />
           </div>
-        </div>
-
-        {/* REGISTRATION BUTTON (REUSABLE) */}
-        <div className="text-center">
-          <RegistrationButton
-            registerPath="/register/workshop"
-            openText="REGISTER FOR WORKSHOP"
-          />
-
-          {/* <p className="mt-2 text-sm text-gray-400">
-            Registration closes on 1 March at 11:59 PM.
-          </p> */}
         </div>
       </motion.div>
     </div>
   );
 };
 
+/* ⚙️ SETTINGS ICON */
 const SettingsIcon = (props: any) => (
   <svg
     {...props}
-    xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
   >
     <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
     <circle cx="12" cy="12" r="3" />
