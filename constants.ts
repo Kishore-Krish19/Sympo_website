@@ -63,10 +63,10 @@ Skill Show encourages confidence, creativity, innovation, and entrepreneurship, 
 };
 
 export const COORDINATORS: Coordinator[] = [
-  { name: "Dony Charles", phone: "+91 78100 85410" },
-  { name: "Venkataprasath", phone: "+91 70105 91904" },
-  { name: "Vedheswar", phone: "+91 93611 32882" },
-  { name: "Solaivendhan", phone: "+91 70948 77363" },
+  { name: "Mr. Dony Charles", phone: "+91 78100 85410" },
+  { name: "Mr. Venkataprasath", phone: "+91 70105 91904" },
+  { name: "Mr. Vedheswar", phone: "+91 93611 32882" },
+  { name: "Mr. Solaivendhan", phone: "+91 70948 77363" },
 ];
 
 export const nonTechEventOptions = [

@@ -1,22 +1,31 @@
 // ../App.tsx
-import React from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React from "react";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-import Home from './pages/Home';
-import About from './pages/About';
-import Events from './pages/Events';
-import Workshop from './pages/Workshop';
-import EVRacing from './pages/EVRacing';
-import Register from './pages/Register';
-import Contact from './pages/Contact';
-import EventList from './pages/EventList';
-import EventDescription from './pages/EventDescription';
-import SkillShow from './pages/SkillShow';
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Events from "./pages/Events";
+import WorkshopCategories from "./pages/WorkshopCategories";
+import Workshop from "./pages/Workshop";
+import Workshop2 from "./pages/Workshop2";
+import Workshop3 from "./pages/Workshop3";
 
-import { TECH_EVENTS, NON_TECH_EVENTS } from './constants';
+import EVRacing from "./pages/EVRacing";
+import Register from "./pages/Register";
+import Contact from "./pages/Contact";
+import EventList from "./pages/EventList";
+import EventDescription from "./pages/EventDescription";
+import SkillShow from "./pages/SkillShow";
+
+import { TECH_EVENTS, NON_TECH_EVENTS } from "./constants";
 
 /* 🔼 Scroll to top on route change */
 const ScrollToTop = () => {
@@ -76,7 +85,12 @@ const App: React.FC = () => {
           {/* EVENT DESCRIPTION */}
           <Route path="/events/:id" element={<EventDescription />} />
           {/* OTHER PAGES */}
-          <Route path="/workshop" element={<Workshop />} />
+
+          <Route path="/workshop" element={<WorkshopCategories />} />
+          <Route path="/workshop/main" element={<Workshop />} />
+          <Route path="/workshop/2" element={<Workshop2 />} />
+          <Route path="/workshop/3" element={<Workshop3 />} />
+          <Route path="/workshop/3" element={<Workshop3 />} />
           <Route path="/skill-show" element={<SkillShow />} />
           <Route path="/ev-racing" element={<EVRacing />} />
           <Route path="/register/:type" element={<Register />} />

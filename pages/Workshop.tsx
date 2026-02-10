@@ -1,15 +1,16 @@
 // ../pages/Workshop.tsx
-import React from 'react';
-import { motion } from 'framer-motion';
-import { WORKSHOP_INFO } from '../constants';
+import React from "react";
+import { motion } from "framer-motion";
+import { WORKSHOP_INFO } from "../constants";
 import {
   CheckCircle,
   Calendar,
   Clock,
   User,
   MapPin,
-} from 'lucide-react';
-import RegistrationButton from '../components/RegistrationButton';
+  IndianRupee,
+} from "lucide-react";
+import RegistrationButton from "../components/RegistrationButton";
 
 const Workshop: React.FC = () => {
   return (
@@ -39,18 +40,16 @@ const Workshop: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-10">
           {/* LEFT INFO */}
           <div className="space-y-6">
-            <div className="flex items-center gap-4 text-gray-300">
+            {/* <div className="flex items-center gap-4 text-gray-300">
               <User className="text-neonBlue" />
               <span className="font-body text-xl">
                 {WORKSHOP_INFO.trainer}
               </span>
-            </div>
+            </div> */}
 
             <div className="flex items-center gap-4 text-gray-300">
               <Calendar className="text-neonBlue" />
-              <span className="font-body text-xl">
-                {WORKSHOP_INFO.date}
-              </span>
+              <span className="font-body text-xl">{WORKSHOP_INFO.date}</span>
             </div>
 
             {/* <div className="flex items-center gap-4 text-gray-300">
@@ -69,8 +68,11 @@ const Workshop: React.FC = () => {
             </div>
 
             {/* FEE */}
-            <div className="flex items-center gap-4 text-gray-300">
-              <span className="text-neonBlue font-bold text-xl">₹</span>
+            <div className="flex items-center gap-2 text-gray-300 pl-1">
+              <IndianRupee
+                className="text-neonBlue w-5 h-5"
+                strokeWidth={2.5}
+              />
               <span className="font-body text-xl">
                 {WORKSHOP_INFO.entryFee}
               </span>
@@ -107,8 +109,8 @@ const Workshop: React.FC = () => {
             Registration closes on 1 March at 11:59 PM.
           </p> */}
         </div>
-      </motion.div >
-    </div >
+      </motion.div>
+    </div>
   );
 };
 
