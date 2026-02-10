@@ -1,4 +1,3 @@
-// ../pages/WorkshopDescription.tsx
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { WORKSHOP_DESCRIPTIONS, WORKSHOP_CONFIG } from "../constants";
@@ -14,7 +13,8 @@ const WorkshopDescription: React.FC = () => {
     );
   }
 
-  const workshop = WORKSHOP_DESCRIPTIONS[id as keyof typeof WORKSHOP_DESCRIPTIONS];
+  const workshop =
+    WORKSHOP_DESCRIPTIONS[id as keyof typeof WORKSHOP_DESCRIPTIONS];
   const config = WORKSHOP_CONFIG[id as keyof typeof WORKSHOP_CONFIG];
 
   return (
@@ -26,14 +26,60 @@ const WorkshopDescription: React.FC = () => {
 
       {/* DESCRIPTION CARD */}
       <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-lg">
-        <h2 className="text-xl font-mech text-white mb-4 uppercase">
+        <h2 className="text-xl font-mech text-white mb-6 uppercase">
           Workshop Description
         </h2>
 
-        <ul className="list-disc list-inside text-gray-300 space-y-2">
-          {workshop.description.map((point, index) => (
-            <li key={index}>{point}</li>
-          ))}
+        <ul className="space-y-2">
+          {workshop.description.map((point, index) => {
+            /* SECTION HEADINGS */
+            if (point.endsWith(":")) {
+              return (
+                <li key={index} className="list-none mt-6">
+                  <div className="h-px w-full bg-white/10 mb-3" />
+                  <span className="text-white font-mech uppercase tracking-wider">
+                    {point}
+                  </span>
+                </li>
+              );
+            }
+
+            /* SUB-BULLETS */
+            if (point.trim().startsWith("•")) {
+              const content = point.replace("•", "").trim();
+
+              // LINK DETECTION
+              if (content.includes("http")) {
+                const [label, url] = content.split("http");
+                return (
+                  <li key={index} className="ml-6 list-disc text-gray-400">
+                    {label}
+                    <a
+                      href={`http${url}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:underline ml-1"
+                    >
+                      http{url}
+                    </a>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={index} className="ml-6 list-disc text-gray-400">
+                  {content}
+                </li>
+              );
+            }
+
+            /* NORMAL TEXT */
+            return (
+              <li key={index} className="ml-4 list-disc text-gray-400">
+                {point}
+              </li>
+            );
+          })}
         </ul>
       </div>
 

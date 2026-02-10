@@ -111,22 +111,51 @@ export const WORKSHOP_DESCRIPTIONS = {
   "2": {
     title: "Game Development (Engine)",
     description: [
-      "Introduction to game engines and their architecture",
-      "Basics of game loop, rendering, and physics",
-      "Hands-on demo using a popular game engine",
-      "Understanding assets, scripting, and logic",
-      "Career paths in game development industry"
+      "Participants will develop a simple 2D game using pre-built game assets.",
+      "The workshop helps participants understand core game development concepts presented in the PPT through hands-on implementation.",
+      "Each participant will build their own playable prototype during the session.",
+
+      "Additional Session (Based on Available Time):",
+      "• Open discussion on individual game development experiences.",
+      "• Peer-to-peer feedback and rating of games developed during the workshop.",
+      "• Live demonstration of how the discussed concepts are implemented in popular AAA and indie games currently used in the industry (30–60 minutes).",
+
+      "Total Duration: 2.5 Hours",
+
+      "Requirements for Participants:",
+      "• Laptop with mouse",
+      "• GODOT Game Engine installed (Open Source)",
+      "• Mobile phone for internet and communication",
+      "• WhatsApp group for sharing game assets and updates",
+
+      "Developer & Learning Resources:",
+      "• YouTube Channel: DARKLIGHT",
+      "• Channel Link: https://www.youtube.com/@DARKLIGHT-R11",
+
+      "Developed Games:",
+      "• Dino Runner – Remake",
+      "• Top Down Shooter – Demo",
+      "• Nari Game – 2D Platformer",
+      "• 3D Horror Game – Demo",
+
+      "Participants can download and explore some of the above games from:",
+      "• itch.io Profile: https://itch.io/profile/darklight-studios"
     ],
   },
 
   "3": {
     title: "ECU (Engine Control Unit)",
     description: [
-      "Introduction to ECU and embedded automotive systems",
-      "Sensors, actuators, and signal processing",
-      "ECU tuning basics and real-time data handling",
-      "Applications in modern vehicles",
-      "Career opportunities in automotive electronics"
+      "This workshop introduces the fundamentals of Electronic Control Units (ECUs) used in modern automobiles.",
+      "Participants will learn how ECUs process sensor inputs and control actuators to manage engine performance, fuel injection, ignition timing, and emission systems.",
+      "The session focuses on ECU architecture, working principles, and real-world automotive applications.",
+      "Concepts are aligned with core mechanical and automotive engineering fundamentals.",
+
+      "Key Focus Areas:",
+      "• ECU architecture and core functions",
+      "• Sensors and actuators used in vehicles",
+      "• Basic control logic and signal flow",
+      "• Role of ECUs in IC engines, Electric Vehicles (EVs), and Hybrid systems"
     ],
   },
 } as const;

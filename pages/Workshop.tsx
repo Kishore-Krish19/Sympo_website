@@ -74,7 +74,7 @@ const Workshop: React.FC = () => {
 
           <div className="grid md:grid-cols-2 gap-8 mb-10">
             {/* LEFT INFO */}
-            <div className="space-y-6">
+            <div className="space-y-6 text-center md:text-left">
               {trainer && (
                 <div className="flex items-center gap-4 text-gray-300">
                   <User className={config.iconColor} />
