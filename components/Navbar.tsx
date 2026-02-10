@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
 
     { name: 'Events', path: '/events' },
     { name: 'Workshop', path: '/workshop' },
-    { name: 'Skill Show', path: '/skill-show' },
+    { name: 'Shark Tank', path: '/shark-tank' },
     { name: 'EV Racing', path: '/ev-racing' },
 
     { name: 'Contact', path: '/contact' },
@@ -85,13 +85,22 @@ const Navbar: React.FC = () => {
         </button>
 
         <div className={`${isOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-900 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">
+          <ul className="
+  font-medium flex flex-col md:flex-row
+  px-4 py-4 md:py-0
+  mt-4 md:mt-0
+  gap-2 md:gap-8
+  rounded-lg
+  bg-gray-900 md:bg-transparent
+  md:border-0
+">
+
             {links.map((link) => (
               <li key={link.name}>
                 <Link
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={`block py-2 px-3 rounded md:p-0 font-mech tracking-wide transition-all duration-300 relative
+                  className={`block py-2 px-2 rounded md:py-0.5 md:px-0.5 font-mech tracking-wide transition-all duration-300 relative
                     ${isActive(link.path) ? 'text-neonBlue shadow-[0_0_10px_#00f3ff]' : 'text-gray-300 hover:text-white'}
                   `}
                 >

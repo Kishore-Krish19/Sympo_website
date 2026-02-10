@@ -76,8 +76,7 @@ export const EVENT_DESCRIPTIONS: Record<
   ],
 },
 
-
- meme: {
+meme: {
   rules: [
     "The language of the short film must be Tamil only",
     "Duration of the short film must be between 3 to 6 minutes, including title and end credits",
@@ -90,7 +89,6 @@ export const EVENT_DESCRIPTIONS: Record<
     "The short film must clearly convey the selected theme and its message",
     "Judges’ decision will be final and binding",
   ],
-
   themes: [
     "Beyond the Screen – Life and reality outside mobile phones and social media",
     "The Last Chance – A moment of hope, change, or redemption",
@@ -99,4 +97,33 @@ export const EVENT_DESCRIPTIONS: Record<
   ],
 },
 
+// ✅ NOW AT ROOT LEVEL
+water_rocketry: {
+  rules: [
+    "Team size: Maximum 3 members",
+    "Build a rocket using plastic bottles, water, and compressed air only",
+    "No chemicals, explosives, or sharp objects are allowed",
+    "Maximum water level will be specified by the coordinators",
+    "Rocket must be launched only from the given launch pad",
+    "Design creativity (fins, nose cone, balance) is encouraged",
+    "Objective is to achieve maximum height and stable flight",
+    "Safety rules must be strictly followed",
+    "Judges’ decision will be final",
+  ],
+},
+
+trebuchet: {
+  rules: [
+    "Team size: Maximum 3 members",
+    "Design and operate a trebuchet (catapult) to launch a projectile",
+    "Only provided or approved materials are allowed",
+    "Projectile type and weight will be standardized",
+    "Focus on accuracy, range, and stability",
+    "Each team will be given limited launch attempts",
+    "Trebuchet size must be within specified limits",
+    "No manual force allowed during launch (gravity-based only)",
+    "Unsafe or unstable designs will be disqualified",
+    "Judges’ decision will be final",
+  ],
+},
 };

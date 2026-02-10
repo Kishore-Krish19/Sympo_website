@@ -26,7 +26,7 @@ const whatsappLinksByType: Record<string, string> = {
   "non-tech": "https://chat.whatsapp.com/HKLWX6wkgzuI8ysfjXZxqC?mode=gi_t",
   workshop: "https://chat.whatsapp.com/JjMrbwpieT1CjqyA77yyhU?mode=gi_t",
   ev: "https://chat.whatsapp.com/EIOBzWU7fXV0KCBeYfoVP2?mode=gi_t",
-  'skill-show': "https://chat.whatsapp.com/B6QRLt0JFJqEyg76ScTXY6?mode=gi_t", // Placeholder link, using tech for now
+  "shark-tank": "https://chat.whatsapp.com/B6QRLt0JFJqEyg76ScTXY6?mode=gi_t", // Placeholder link, using tech for now
 };
 
 const Register: React.FC = () => {
@@ -39,31 +39,33 @@ const Register: React.FC = () => {
   } | null>(null);
 
   const [formData, setFormData] = useState<RegistrationForm>({
-    teamName: "",
-    eventType: "",
-    eventName: "",
-    nonTechEvent: "",
-    teamLeaderName: "",
-    collegeName: "",
-    department: "",
-    yearOfStudy: "",
-    phoneNumber: "",
-    whatsappNumber: "",
-    email: "",
-    teamSize: 1, // Default 1
-    teamMembers: [], // Empty initially
-    vegCount: 0,
-    nonVegCount: 0,
-    transactionId: "",
-    termsAccepted: false,
-    paymentScreenshot: "",
-    type: type || "tech", // Default to 'tech' if type is undefined
-    amount: 0,
-  });
+  teamName: "",
+  eventType: "",
+  eventName: "",
+  nonTechEvent: "",
+  optionalWorkshop: "", // ✅ ADD THIS
+  teamLeaderName: "",
+  collegeName: "",
+  department: "",
+  yearOfStudy: "",
+  phoneNumber: "",
+  whatsappNumber: "",
+  email: "",
+  teamSize: 1,
+  teamMembers: [],
+  vegCount: 0,
+  nonVegCount: 0,
+  transactionId: "",
+  termsAccepted: false,
+  paymentScreenshot: "",
+  type: type || "tech",
+  amount: 0,
+});
+
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [whatsappLink, setWhatsappLink] = useState("");
-  const isWorkshop = type === "workshop";
-  const isSkillShow = type === "skill-show";
+  const isWorkshop = type?.startsWith("workshop");
+  const isSharkTank = type === "shark-tank";
   const isEVRacing = type === "ev";
   useEffect(() => {
     if (toast) {
@@ -73,7 +75,7 @@ const Register: React.FC = () => {
   }, [toast]);
 
   useEffect(() => {
-    if (isWorkshop || isSkillShow) {
+    if (isWorkshop || isSharkTank) {
       setFormData((prev) => ({
         ...prev,
         teamSize: 1,
@@ -94,42 +96,49 @@ const Register: React.FC = () => {
         return prev;
       });
     }
-  }, [isWorkshop, isSkillShow, isEVRacing]);
+  }, [isWorkshop, isSharkTank, isEVRacing]);
   // ===============================
   // 💰 Registration Amount Calculation
   // ===============================
-  useEffect(() => {
-    let calculatedAmount = 0;
-    const size = Number(formData.teamSize) || 1;
+useEffect(() => {
+  let calculatedAmount = 0;
+  const size = Number(formData.teamSize) || 1;
 
-    if (type === "ev") {
-      // EV Racing: Base 4000 for up to 5 members.
-      // Extra members (>5) cost 300 each.
-      if (size <= 5) {
-        calculatedAmount = 4000;
-      } else {
-        calculatedAmount = 4000 + (size - 5) * 300;
-      }
-    } else if (type === "workshop") {
-      // Workshop: Fixed 300
-      calculatedAmount = 300;
-    } else {
-      // Technical & Non-Technical: 300 per person
-      calculatedAmount = size * 300;
+  if (type === "ev") {
+    calculatedAmount = size <= 5 ? 4000 : 4000 + (size - 5) * 300;
+  } 
+  else if (type?.startsWith("workshop")) {
+    const workshopId = type.replace("workshop", "");
+    const prices: Record<string, number> = {
+      "1": 300,
+      "2": 200,
+      "3": 200,
+    };
+    calculatedAmount = prices[workshopId] ?? 300;
+  } 
+  else {
+    // ✅ TECH / NON-TECH BASE
+    calculatedAmount = size * 300;
+
+    // ✅ ADD ₹50 IF OPTIONAL WORKSHOP SELECTED
+    if (formData.optionalWorkshop) {
+      calculatedAmount += 50;
     }
+  }
 
-    setFormData((prev) => {
-      if (prev.amount === calculatedAmount) return prev;
-      return { ...prev, amount: calculatedAmount };
-    });
-  }, [type, formData.teamSize]);
+  setFormData((prev) =>
+    prev.amount === calculatedAmount
+      ? prev
+      : { ...prev, amount: calculatedAmount }
+  );
+}, [type, formData.teamSize, formData.optionalWorkshop]);
 
   // Handle Default Event Names for single-event categories
   useEffect(() => {
     if (type === "workshop") {
       setFormData((prev) => ({ ...prev, eventName: WORKSHOP_INFO.topic }));
-    } else if (type === "skill-show") {
-      setFormData((prev) => ({ ...prev, eventName: "Skill Show" }));
+    } else if (type === "shark-tank") {
+      setFormData((prev) => ({ ...prev, eventName: "Shark Tank  " }));
     } else if (type === "ev") {
       setFormData((prev) => ({
         ...prev,
@@ -149,8 +158,8 @@ const Register: React.FC = () => {
         return "Non-Tech Registration";
       case "workshop":
         return "Workshop Registration";
-      case "skill-show":
-        return "Skill Show Registration";
+      case "shark-tank":
+        return "Shark Tank Registration";
       case "ev":
         return "EV Racing Registration";
       default:
@@ -182,7 +191,9 @@ const Register: React.FC = () => {
   };
 
   // Handle Team Size Change
-  const handleTeamSizeChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleTeamSizeChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const newSize = parseInt(e.target.value) || 0;
     const membersNeeded = newSize - 1; // Leader is always included
 
@@ -227,7 +238,10 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const eventType =
-      type === "tech" || type === "workshop" || type === "ev" || type === "skill-show"
+      type === "tech" ||
+      type === "workshop" ||
+      type === "ev" ||
+      type === "shark-tank"
         ? "Technical"
         : "Non-Technical";
 
@@ -406,6 +420,31 @@ const Register: React.FC = () => {
               </div>
             </div>
           )}
+          {type === "tech" && showDropdown && (
+            <div className="mb-4 w-full relative">
+              <label className="block text-neonBlue text-sm font-mech tracking-wide mb-2 uppercase">
+                Optional Workshop <span className="text-gray-400">(₹50)</span>
+              </label>
+
+              <select
+                name="optionalWorkshop"
+                value={formData.optionalWorkshop}
+                onChange={(e) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    optionalWorkshop: e.target.value,
+                    nonTechEvent: "", // ❗ auto-clear non-tech
+                  }));
+                }}
+                disabled={!formData.eventName || !!formData.nonTechEvent}
+                className="bg-black/50 border border-white/20 text-white p-3 w-full"
+              >
+                <option value="">Select Workshop (Optional)</option>
+                <option value="workshop2">Game Development</option>
+                <option value="workshop3">ECU</option>
+              </select>
+            </div>
+          )}
 
           <div className="grid md:grid-cols-2 gap-6">
             <Input
@@ -450,7 +489,7 @@ const Register: React.FC = () => {
             />
 
             {/* Total Team Members Dropdown */}
-            {isWorkshop || isSkillShow ? (
+            {isWorkshop || isSharkTank ? (
               <Input
                 name="teamSize"
                 label="Total Team Members"
@@ -523,7 +562,7 @@ const Register: React.FC = () => {
           </div>
 
           {/* Dynamic Members Input Fields */}
-          {!isWorkshop && !isSkillShow && formData.teamMembers.length > 0 && (
+          {!isWorkshop && !isSharkTank && formData.teamMembers.length > 0 && (
             <div className="space-y-4 border-t border-white/10 pt-4">
               <label className="block text-neonBlue text-sm font-mech uppercase">
                 Additional Members
@@ -617,7 +656,9 @@ const Register: React.FC = () => {
               </div>
               <div className="col-span-2 border-t border-white/10 pt-2">
                 <span className="block text-gray-500">UPI ID</span>
-                <span className="text-neonOrange font-bold">{BANK_DETAILS.upiId}</span>
+                <span className="text-neonOrange font-bold">
+                  {BANK_DETAILS.upiId}
+                </span>
               </div>
 
               {/* Dynamic QR Code */}
@@ -630,9 +671,12 @@ const Register: React.FC = () => {
                   />
                 </div>
                 <p className="text-neonBlue text-sm font-bold mt-4 font-mech tracking-wide">
-                  Scan to Pay <span className="text-white text-lg">₹{formData.amount}</span>
+                  Scan to Pay{" "}
+                  <span className="text-white text-lg">₹{formData.amount}</span>
                 </p>
-                <p className="text-xs text-gray-400 mt-1">Exact amount pre-filled</p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Exact amount pre-filled
+                </p>
               </div>
             </div>
 

@@ -1,3 +1,4 @@
+// ../pages/EventDescription.tsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { TECH_EVENTS, NON_TECH_EVENTS } from '../constants';
