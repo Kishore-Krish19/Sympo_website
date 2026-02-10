@@ -27,7 +27,6 @@ const About: React.FC = () => {
       {/* Background Decorations */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
         <Settings className="absolute top-20 -left-10 w-96 h-96 text-[var(--text-secondary)] animate-spin-slow" />
-        <Settings className="absolute bottom-40 -right-10 w-80 h-80 text-[var(--text-secondary)] animate-spin-slow" style={{ animationDirection: 'reverse' }} />
         <Piston className="absolute top-1/4 right-20 w-64 h-64 text-[var(--text-secondary)] opacity-50" />
         <Piston className="absolute bottom-1/4 left-20 w-64 h-64 text-[var(--text-secondary)] opacity-50" />
       </div>
