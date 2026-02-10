@@ -114,13 +114,13 @@ const WorkshopCategories: React.FC = () => {
     <div className="min-h-screen pt-24 px-4 container mx-auto relative overflow-hidden">
       {/* BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
-        <Settings className="absolute -top-10 -left-10 w-[500px] h-[500px] text-gray-500 animate-spin-slow" />
-        <Piston className="absolute top-1/3 right-0 w-96 h-96 text-gray-500 opacity-50" />
+        <Settings className="absolute -top-10 -left-10 w-[500px] h-[500px] text-[var(--text-secondary)] animate-spin-slow" />
+        <Piston className="absolute top-1/3 right-0 w-96 h-96 text-[var(--text-secondary)] opacity-50" />
       </div>
 
       {/* HEADER */}
-      <h1 className="text-center text-3xl md:text-5xl font-mech text-white mb-16 uppercase tracking-widest">
-        Select <span className="text-neonOrange">Workshop</span>
+      <h1 className="text-center text-3xl md:text-5xl font-mech text-[var(--text-primary)] mb-16 uppercase tracking-widest">
+        Select <span className="text-[var(--accent-orange)]">Workshop</span>
       </h1>
 
       {/* CARDS */}
@@ -134,11 +134,10 @@ const WorkshopCategories: React.FC = () => {
             <motion.div
               initial="rest"
               animate="rest"
-              whileHover={{ y: -5, scale: 1.02 }}
-              className={`relative h-64 md:h-[19rem] bg-black/40 backdrop-blur-md
+              className={`relative h-64 md:h-[19rem] bg-[var(--bg-card)] backdrop-blur-md
               border ${ws.border} rounded-xl p-6
               flex flex-col items-center justify-center
-              group overflow-hidden cursor-pointer`}
+              group overflow-hidden cursor-pointer shadow-lg`}
             >
               {/* HOVER GRADIENT */}
               <div
@@ -168,16 +167,16 @@ const WorkshopCategories: React.FC = () => {
               </motion.div>
 
               {/* TITLE */}
-              <h2 className="text-lg md:text-2xl font-mech text-white font-bold text-center z-10">
+              <h2 className="text-lg md:text-2xl font-mech text-[var(--text-primary)] font-bold text-center z-10">
                 {ws.title}
               </h2>
-              <p className="mt-1 text-lg md:text-base text-gray-300 font-body">
+              <p className="mt-1 text-lg md:text-base text-[var(--text-secondary)] font-body">
                 Resource Person:{" "}
                 <span className={`${ws.color}`}>{ws.resource}</span>
               </p>
 
               {/* FEE */}
-              <p className="text-gray-400 font-mono mt-2 text-lg md:text-lg z-10">
+              <p className="text-[var(--text-secondary)] font-mono mt-2 text-xs md:text-sm z-10">
                 {ws.fee}
               </p>
 

@@ -36,11 +36,11 @@ const Countdown = () => {
     <div className="flex gap-4 md:gap-8 mt-12 text-center">
       {Object.entries(timeLeft).map(([unit, value]) => (
         <div key={unit} className="flex flex-col items-center">
-          <div className="bg-black/50 border border-neonBlue/30 rounded-lg p-3 md:p-4 w-16 md:w-24 backdrop-blur-sm shadow-[0_0_10px_rgba(0,243,255,0.1)]">
-            <span className="text-2xl md:text-4xl font-mech text-neonOrange block">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg p-3 md:p-4 w-16 md:w-24 backdrop-blur-sm shadow-[0_0_10px_var(--shadow-color)]">
+            <span className="text-2xl md:text-4xl font-mech text-[var(--accent-orange)] block">
               {String(value).padStart(2, "0")}
             </span>
-            <span className="text-xs md:text-sm text-gray-400 uppercase tracking-wider font-body mt-1">
+            <span className="text-xs md:text-sm text-[var(--text-muted)] uppercase tracking-wider font-body mt-1">
               {unit}
             </span>
           </div>
@@ -86,7 +86,7 @@ const PistonCluster = () => (
       <Piston
         size={64}
         delay={0}
-        color="fill-neonBlue drop-shadow-[0_0_8px_rgba(0,243,255,0.7)]"
+        color="fill-[var(--accent-blue)] drop-shadow-[0_0_8px_var(--shadow-color)]"
       />
     </div>
 
@@ -94,7 +94,7 @@ const PistonCluster = () => (
       <Piston
         size={56}
         delay={0.2}
-        color="fill-neonOrange drop-shadow-[0_0_8px_rgba(255,170,0,0.7)]"
+        color="fill-[var(--accent-orange)] drop-shadow-[0_0_8px_var(--shadow-color)]"
       />
     </div>
 
@@ -102,7 +102,7 @@ const PistonCluster = () => (
       <Piston
         size={48}
         delay={0.4}
-        color="fill-gray-400 drop-shadow-[0_0_6px_rgba(200,200,200,0.6)]"
+        color="fill-[var(--text-muted)] drop-shadow-[0_0_6px_var(--shadow-color)]"
       />
     </div>
   </div>
@@ -111,17 +111,35 @@ const PistonCluster = () => (
    HOME PAGE
 ======================= */
 const Home: React.FC = () => {
-  return (
-    <div className="relative min-h-screen w-full bg-carbon-fiber
-                flex flex-col items-center justify-center
-                pt-20 md:pt-24">
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-neonBlue/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-neonOrange/10 rounded-full blur-[100px]" />
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
-        <Settings className="absolute top-20 left-10 w-64 h-64 text-white/5 animate-spin-slow" />
+  /* Update body class for Tailwind dark mode support if configured, or general CSS */
+  React.useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  // Toggle removed as it is in Navbar now, but keeping state for local logic if needed, 
+  // though strictly speaking we should probably depend on a global context or just the class.
+  // Since the Navbar handles the toggle, this component just reflects the current theme via CSS variables.
+
+  return (
+    <div className="relative min-h-screen w-full bg-[var(--bg-primary)]
+                flex flex-col items-center justify-center
+                pt-20 md:pt-24 transition-colors duration-300">
+
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[100px]"
+          style={{ backgroundColor: 'var(--accent-blue)', opacity: 'var(--blob-opacity)' }} />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full blur-[100px]"
+          style={{ backgroundColor: 'var(--accent-orange)', opacity: 'var(--blob-opacity)' }} />
+
+        <Settings className="absolute top-20 left-10 w-64 h-64 text-[var(--text-secondary)] opacity-10 animate-spin-slow" />
         <Settings
-          className="absolute bottom-20 right-10 w-96 h-96 text-white/5 animate-spin-slow"
+          className="absolute bottom-20 right-10 w-96 h-96 text-[var(--text-secondary)] opacity-10 animate-spin-slow"
           style={{ animationDirection: "reverse" }}
         />
       </div>
@@ -153,7 +171,7 @@ const Home: React.FC = () => {
     invert
     brightness-200
     contrast-200
-    drop-shadow-[0_0_22px_rgba(0,243,255,0.9)]
+    drop-shadow-[0_0_22px_var(--shadow-color)]
   "
             />
           </div>
@@ -168,7 +186,7 @@ const Home: React.FC = () => {
       invert
       brightness-200
       contrast-200
-      drop-shadow-[0_0_18px_rgba(0,243,255,0.7)]
+      drop-shadow-[0_0_18px_var(--shadow-color)]
     "
             />
           </div>
@@ -179,7 +197,7 @@ const Home: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-lg sm:text-2xl md:text-3xl lg:text-4xl
-             text-neonBlue font-mech text-center leading-tight"
+             text-[var(--accent-blue)] font-mech text-center leading-tight"
             >
               {/* Mobile + Desktop → single line */}
               <span className="block md:hidden lg:block">
@@ -194,7 +212,7 @@ const Home: React.FC = () => {
               </span>
             </motion.h3>
 
-            <h2 className="text-sm md:text-2xl text-gray-300 font-mech tracking-[0.2em]">
+            <h2 className="text-sm md:text-2xl text-[var(--text-secondary)] font-mech tracking-[0.2em]">
               DEPARTMENT OF MECHANICAL ENGINEERING
             </h2>
           </div>
@@ -215,7 +233,7 @@ const Home: React.FC = () => {
           </h1>
         </motion.div>
 
-        <div className="h-1 w-24 bg-neonOrange mx-auto rounded-full shadow-[0_0_10px_#ffaa00] mb-12" />
+        <div className="h-1 w-24 bg-[var(--accent-orange)] mx-auto rounded-full shadow-[0_0_10px_var(--accent-orange)] mb-12" />
 
         <div className="flex flex-col items-center gap-12">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
@@ -231,14 +249,14 @@ const Home: React.FC = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 18 }}
                 className="
       px-8 py-4
-      border-2 border-neonBlue
-      text-neonBlue
+      border-2 border-[var(--accent-blue)]
+      text-[var(--accent-blue)]
       font-mech
       rounded-3xl
       inline-flex items-center justify-center
       gap-2
       whitespace-nowrap
-      shadow-[0_0_12px_rgba(0,243,255,0.25)]
+      shadow-[0_0_12px_var(--shadow-color)]
     "
               >
                 <span className="leading-none">Register Now</span>
@@ -268,8 +286,8 @@ const Home: React.FC = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 18 }}
                 className="
       px-8 py-4
-      bg-neonOrange
-      text-black
+      bg-[var(--accent-orange)]
+      text-[var(--text-inverse)]
       font-mech
       rounded-3xl
       inline-flex items-center justify-center
@@ -295,7 +313,7 @@ const Home: React.FC = () => {
           </div>
 
           <div>
-            <h3 className="text-neonBlue font-mech text-xl mb-4">
+            <h3 className="text-[var(--accent-blue)] font-mech text-xl mb-4">
               REGISTRATION ENDS IN
             </h3>
             <Countdown />

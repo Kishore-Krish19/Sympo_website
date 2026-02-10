@@ -17,8 +17,8 @@ const EventActionButtons: React.FC<Props> = ({
       <Link to={descriptionPath}>
         <button
           className="px-5 py-2 text-sm font-mech uppercase
-          border border-neonBlue text-neonBlue
-          hover:bg-neonBlue hover:text-black
+          border border-[var(--accent-blue)] text-[var(--accent-blue)]
+          hover:bg-[var(--accent-blue)] hover:text-[var(--text-inverse)]
           transition rounded"
         >
           Description
@@ -29,9 +29,9 @@ const EventActionButtons: React.FC<Props> = ({
       <Link to={registerPath}>
         <button
           className="px-5 py-2 text-sm font-mech uppercase
-          bg-neonBlue text-black
-          hover:bg-white transition rounded
-          shadow-[0_0_10px_rgba(0,255,255,0.6)]"
+          bg-[var(--accent-blue)] text-[var(--text-inverse)]
+          hover:bg-[var(--bg-secondary)] hover:text-[var(--accent-blue)] transition rounded
+          shadow-[0_0_10px_var(--shadow-color)]"
         >
           Register
         </button>

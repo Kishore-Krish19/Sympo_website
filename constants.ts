@@ -7,11 +7,11 @@ import { video } from 'framer-motion/client';
 export const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
 export const BANK_DETAILS = {
-  accountHolder: "EFFICACY SYMPOSIUM",
+  accountHolder: "Anand S",
   bankName: "State Bank of India",
-  accountNumber: "123456789012",
-  ifscCode: "SBIN0001234",
-  upiId: "efficacy2024@sbi"
+  accountNumber: "43568031557",
+  ifscCode: "SBIN0000928",
+  upiId: "anand2386s@oksbi"
 };
 
 export const TECH_EVENTS: EventDetails[] = [

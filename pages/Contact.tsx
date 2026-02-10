@@ -6,16 +6,16 @@ import { COORDINATORS } from '../constants';
 const Contact: React.FC = () => {
   return (
     <div className="min-h-screen pt-24 px-4 container mx-auto">
-      <h1 className="text-5xl font-mech text-center text-white mb-12">
-        CONTACT <span className="text-neonBlue">US</span>
+      <h1 className="text-5xl font-mech text-center text-[var(--text-primary)] mb-12">
+        CONTACT <span className="text-[var(--accent-blue)]">US</span>
       </h1>
 
       {/* MOBILE-FIRST WRAPPER */}
       <div className="max-w-3xl mx-auto space-y-12">
 
         {/* CONTACT CARD */}
-        <div className="bg-white/5 border border-white/10 p-6 rounded-lg backdrop-blur-sm">
-          <h2 className="text-2xl font-mech text-neonOrange mb-6">
+        <div className="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-lg backdrop-blur-sm shadow-lg">
+          <h2 className="text-2xl font-mech text-[var(--accent-orange)] mb-6">
             Get In Touch
           </h2>
 
@@ -23,13 +23,13 @@ const Contact: React.FC = () => {
             {COORDINATORS.map((coord, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between border-b border-white/5 pb-2"
+                className="flex items-center justify-between border-b border-[var(--border-color)] pb-2"
               >
-                <p className="font-bold text-white">{coord.name}</p>
+                <p className="font-bold text-[var(--text-primary)]">{coord.name}</p>
 
                 <a
                   href={`tel:${coord.phone}`}
-                  className="flex items-center gap-2 text-neonBlue hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-[var(--accent-blue)] hover:text-[var(--text-primary)] transition-colors"
                 >
                   <Phone size={16} /> {coord.phone}
                 </a>
@@ -43,16 +43,16 @@ const Contact: React.FC = () => {
               href="https://www.instagram.com/efficacy2k26?igsh=ZnI0ZWYxdHNrbW5m"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 bg-white/5 rounded-full
-              hover:bg-neonOrange hover:text-black transition-colors"
+              className="p-4 bg-[var(--bg-surface)] rounded-full text-[var(--text-primary)] border border-[var(--border-color)]
+              hover:bg-[var(--accent-orange)] hover:text-black transition-colors shadow-md"
             >
               <Instagram />
             </a>
 
             <a
               href="mailto:efficacy2026.gcee@gmail.com"
-              className="p-4 bg-white/5 rounded-full
-              hover:bg-neonOrange hover:text-black transition-colors"
+              className="p-4 bg-[var(--bg-surface)] rounded-full text-[var(--text-primary)] border border-[var(--border-color)]
+              hover:bg-[var(--accent-orange)] hover:text-black transition-colors shadow-md"
             >
               <Mail />
             </a>
@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
 
         {/* LOCATION */}
         <div>
-          <h2 className="text-2xl font-mech text-neonOrange mb-4 text-center">
+          <h2 className="text-2xl font-mech text-[var(--accent-orange)] mb-4 text-center">
             Location
           </h2>
 
@@ -72,7 +72,7 @@ const Contact: React.FC = () => {
             rel="noopener noreferrer"
             className="block"
           >
-            <div className="bg-white/5 border border-white/10 rounded-lg overflow-hidden h-[240px] md:h-[350px] relative cursor-pointer group">
+            <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg overflow-hidden h-[240px] md:h-[350px] relative cursor-pointer group shadow-lg">
 
               {/* EXACT LOCATION MAP PREVIEW */}
               <iframe
@@ -82,12 +82,12 @@ const Contact: React.FC = () => {
                 style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="pointer-events-none"
+                className="pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity"
               />
 
               {/* OVERLAY HINT */}
               <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                <span className="px-4 py-2 bg-neonOrange text-black font-mech text-sm rounded shadow">
+                <span className="px-4 py-2 bg-[var(--accent-orange)] text-black font-mech text-sm rounded shadow">
                   Open in Google Maps
                 </span>
               </div>

@@ -13,7 +13,7 @@ const EventDescription: React.FC = () => {
   if (!event || !id) {
     return (
       <div className="min-h-screen pt-24 flex items-center justify-center">
-        <p className="text-white text-xl">Event not found</p>
+        <p className="text-[var(--text-primary)] text-xl">Event not found</p>
       </div>
     );
   }
@@ -23,10 +23,13 @@ const EventDescription: React.FC = () => {
   if (!description || !description.rules) {
     return (
       <div className="min-h-screen pt-24 flex items-center justify-center">
-        <p className="text-white text-xl">Rules not available</p>
+        <p className="text-[var(--text-primary)] text-xl">Rules not available</p>
       </div>
     );
   }
+
+  // Determine if the event is tech for the register link
+  const isTech = event.category === 'tech';
 
   // Back path based on category
   const backPath =
@@ -35,45 +38,46 @@ const EventDescription: React.FC = () => {
   return (
     <div className="min-h-screen pt-24 px-4 container mx-auto max-w-3xl pb-20">
       {/* TITLE */}
-      <h1 className="text-4xl md:text-5xl font-mech text-white mb-8 uppercase">
+      <h1 className="text-4xl md:text-5xl font-mech text-[var(--text-primary)] mb-8 uppercase">
         {event.title}
       </h1>
 
       {/* RULES CARD */}
-<div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-lg">
-  <h2 className="text-xl font-mech text-white mb-4 uppercase">
-    Event Rules & Guidelines
-  </h2>
+      <div className="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 md:p-8 rounded-lg shadow-md backdrop-blur-sm">
+        <h2 className="text-xl font-mech text-[var(--text-primary)] mb-4 uppercase">
+          Event Rules & Guidelines
+        </h2>
 
-  <ul className="list-disc list-inside text-gray-300 space-y-2">
-    {description.rules.map((rule, index) => (
-      <li key={index}>{rule}</li>
-    ))}
-  </ul>
+        <ul className="list-disc list-inside text-[var(--text-secondary)] space-y-2">
+          {description.rules.map((rule, index) => (
+            <li key={index}>{rule}</li>
+          ))}
+        </ul>
 
-  {/* THEMES */}
-  {description.themes && (
-    <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-lg mt-8">
-      <h2 className="text-xl font-mech text-white mb-4 uppercase">
-        Themes
-      </h2>
+        {/* THEMES */}
+        {description.themes && (
+          <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] p-6 md:p-8 rounded-lg mt-8">
+            <h2 className="text-xl font-mech text-[var(--text-primary)] mb-4 uppercase">
+              Themes
+            </h2>
 
-      <ul className="list-disc list-inside text-gray-300 space-y-2">
-        {description.themes.map((theme, index) => (
-          <li key={index}>{theme}</li>
-        ))}
-      </ul>
-    </div>
-  )}
-</div>
+            <ul className="list-disc list-inside text-[var(--text-secondary)] space-y-2">
+              {description.themes.map((theme, index) => (
+                <li key={index}>{theme}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
       {/* ACTION BUTTONS */}
       <div className="flex gap-4 mt-10">
         {/* BACK */}
         <Link to={backPath}>
           <button
             className="px-6 py-3 text-sm font-mech uppercase
-            border border-white/30 text-white
-            hover:bg-white hover:text-black transition rounded"
+            border border-[var(--border-color)] text-[var(--text-primary)]
+            hover:bg-[var(--bg-secondary)] hover:text-[var(--accent-blue)] transition rounded"
           >
             Back
           </button>
@@ -83,9 +87,9 @@ const EventDescription: React.FC = () => {
         <Link to={event.path}>
           <button
             className="px-6 py-3 text-sm font-mech uppercase
-            bg-neonBlue text-black
-            hover:bg-white transition rounded
-            shadow-[0_0_10px_rgba(0,255,255,0.6)]"
+            bg-[var(--accent-blue)] text-[var(--text-inverse)]
+            hover:bg-[var(--bg-secondary)] hover:text-[var(--accent-blue)] transition rounded
+            shadow-[0_0_10px_var(--shadow-color)]"
           >
             Register
           </button>

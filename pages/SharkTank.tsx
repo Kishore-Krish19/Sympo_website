@@ -18,27 +18,27 @@ const SharkTank: React.FC = () => {
             <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="w-full bg-black/60 border border-neonOrange/30 backdrop-blur-xl
+                className="w-full bg-[var(--bg-card)] border border-[var(--border-skill)] backdrop-blur-xl
                p-8 md:p-12 rounded-2xl
-                shadow-[0_0_50px_rgba(255,170,0,0.1)]
+                shadow-[0_0_50px_var(--shadow-skill)]
                relative overflow-hidden"
             >
                 {/* BACKGROUND ICON */}
                 <div className="absolute top-0 right-0 p-4 opacity-10">
-                    <Trophy className="w-64 h-64 text-neonOrange animate-pulse" />
+                    <Trophy className="w-64 h-64 text-[var(--color-skill)] animate-pulse" />
                 </div>
 
                 {/* HEADERS */}
-                <h1 className="text-4xl md:text-5xl font-mech text-white mb-2">
-                    Shark Tank
+                <h1 className="text-4xl md:text-5xl font-mech text-[var(--text-primary)] mb-2">
+                    SHARK TANK
                 </h1>
-                <h2 className="text-2xl md:text-3xl font-mech text-neonOrange mb-8">
+                <h2 className="text-2xl md:text-3xl font-mech text-[var(--color-skill)] mb-8">
                     {SHARK_TANK_INFO.topic}
                 </h2>
 
                 {/* DESCRIPTION */}
                 {SHARK_TANK_INFO.description && (
-                    <div className="mb-10 text-gray-300 font-body text-lg leading-relaxed whitespace-pre-line">
+                    <div className="mb-10 text-[var(--text-secondary)] font-body text-lg leading-relaxed whitespace-pre-line">
                         {SHARK_TANK_INFO.description}
                     </div>
                 )}
@@ -47,15 +47,15 @@ const SharkTank: React.FC = () => {
                 <div className="grid md:grid-cols-1 gap-8 mb-10">
                     {/* INFO */}
                     <div className="flex flex-wrap gap-8 justify-center md:justify-start">
-                        <div className="flex items-center gap-4 text-gray-300">
-                            <User className="text-neonBlue" />
+                        <div className="flex items-center gap-4 text-[var(--text-secondary)]">
+                            <User className="text-[var(--accent-blue)]" />
                             <span className="font-body text-xl">
                                 {SHARK_TANK_INFO.trainer}
                             </span>
                         </div>
 
-                        <div className="flex items-center gap-4 text-gray-300">
-                            <Calendar className="text-neonBlue" />
+                        <div className="flex items-center gap-4 text-[var(--text-secondary)]">
+                            <Calendar className="text-[var(--accent-blue)]" />
                             <span className="font-body text-xl">
                                 {SHARK_TANK_INFO.date}
                             </span>
@@ -67,8 +67,8 @@ const SharkTank: React.FC = () => {
 
 
                         {/* FEE */}
-                        <div className="flex items-center gap-4 text-gray-300">
-                            <span className="text-neonBlue font-bold text-xl">₹</span>
+                        <div className="flex items-center gap-4 text-[var(--text-secondary)]">
+                            <span className="text-[var(--accent-blue)] font-bold text-xl">₹</span>
                             <span className="font-body text-xl">
                                 {SHARK_TANK_INFO.entryFee}
                             </span>
