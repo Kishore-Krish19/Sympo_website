@@ -199,3 +199,8 @@ export const WORKSHOP_DESCRIPTIONS = {
     ],
   },
 } as const;
+
+export const OPTIONAL_WORKSHOPS = [
+  { id: "workshop2", title: "Game Development (Workshop)" },
+  { id: "workshop3", title: "ECU (Workshop)" },
+];

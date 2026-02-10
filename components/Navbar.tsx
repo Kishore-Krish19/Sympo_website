@@ -1,7 +1,8 @@
 // ../components/Navbar.tsx
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Settings } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import deptLogo from '../assets/Dept-logo.png';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar: React.FC = () => {
@@ -31,7 +32,7 @@ const Navbar: React.FC = () => {
     { name: 'Workshop', path: '/workshop' },
     { name: 'Shark Tank', path: '/shark-tank' },
     { name: 'EV Racing', path: '/ev-racing' },
-    { name: 'About', path: '/about' },
+
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -43,6 +44,7 @@ const Navbar: React.FC = () => {
         {/* LEFT: Gear + Title */}
         <Link to="/" className="flex items-center gap-3 outline-none focus:outline-none active:outline-none select-none">
           <Settings className="w-7 h-7 text-[var(--accent-blue)] animate-spin-slow" />
+          <img src={deptLogo} alt="Logo" className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(0,243,255,0.7)]" />
           <span
             className="
               text-xl sm:text-2xl md:text-2xl
