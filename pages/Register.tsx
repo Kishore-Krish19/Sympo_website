@@ -763,8 +763,8 @@ const Register: React.FC = () => {
               </div>
 
               {/* Dynamic QR Code */}
-              <div className="col-span-2 flex flex-col items-center justify-center p-4 bg-white rounded-lg border border-[var(--border-color)] mt-4">
-                <div className="bg-white p-2 rounded-lg">
+              <div className="col-span-2 flex flex-col items-center justify-center p-4 bg-black rounded-lg border border-[var(--border-color)] mt-4">
+                <div className="border bg-white p-2 rounded-lg">
                   <QRCode
                     value={generateUPIUrl(formData.amount)}
                     size={180}
