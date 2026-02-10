@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronRight, Settings } from "lucide-react";
+import { ChevronRight, Settings, Calendar, Clock } from "lucide-react";
 import collegeLogo from "../assets/college-logo.png";
 import deptLogo from "../assets/Dept-logo.png";
+import About from "./About";
 
 const Countdown = () => {
   const calculateTimeLeft = () => {
@@ -107,14 +108,14 @@ const PistonCluster = () => (
     </div>
   </div>
 );
+
+
 /* =======================
    HOME PAGE
 ======================= */
 const Home: React.FC = () => {
   return (
-    <div className="relative min-h-screen w-full bg-carbon-fiber
-                flex flex-col items-center justify-center
-                pt-20 md:pt-24">
+    <div className="relative min-h-screen w-full bg-carbon-fiber flex flex-col items-center justify-center pt-20 md:pt-24">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-neonBlue/10 rounded-full blur-[100px]" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-neonOrange/10 rounded-full blur-[100px]" />
@@ -153,7 +154,6 @@ const Home: React.FC = () => {
     invert
     brightness-200
     contrast-200
-    drop-shadow-[0_0_22px_rgba(0,243,255,0.9)]
   "
             />
           </div>
@@ -165,10 +165,6 @@ const Home: React.FC = () => {
               className="
       w-full h-full
       object-contain
-      invert
-      brightness-200
-      contrast-200
-      drop-shadow-[0_0_18px_rgba(0,243,255,0.7)]
     "
             />
           </div>
@@ -178,25 +174,20 @@ const Home: React.FC = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-lg sm:text-2xl md:text-3xl lg:text-4xl
-             text-neonBlue font-mech text-center leading-tight"
+              className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-neonBlue font-mech text-center leading-tight mb-4 md:mb-6"
             >
-              {/* Mobile + Desktop → single line */}
-              <span className="block md:hidden lg:block">
-                GOVERNMENT COLLEGE OF ENGINEERING, ERODE-638 316
-              </span>
-
-              {/* Tablet only → two lines */}
-              <span className="hidden md:block lg:hidden">
-                GOVERNMENT COLLEGE OF ENGINEERING,
-                <br />
-                ERODE-638 316
-              </span>
+              GOVERNMENT COLLEGE OF
+              <br />
+              ENGINEERING, ERODE
             </motion.h3>
 
-            <h2 className="text-sm md:text-2xl text-gray-300 font-mech tracking-[0.2em]">
+            <h2 className="text-sm md:text-2xl text-gray-300 font-mech tracking-[0.2em] mb-4 md:mb-6">
               DEPARTMENT OF MECHANICAL ENGINEERING
             </h2>
+
+            <p className="text-xs md:text-lg text-neonOrange font-mech tracking-[0.4em] uppercase">
+              PROUDLY PRESENTS
+            </p>
           </div>
         </div>
 
@@ -205,19 +196,24 @@ const Home: React.FC = () => {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, type: "spring" }}
-          className="flex items-center justify-center gap-4 md:gap-8 mb-8"
+          className="flex flex-col items-center justify-center mb-8"
         >
           {/* 🔥 PISTON CLUSTER
           <PistonCluster /> */}
 
-          <h1 className="text-5xl sm:text-8xl md:text-12xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 drop-shadow-[0_0_12px_rgba(255,215,0,0.7)]">
+
+          <h1 className="text-4xl sm:text-8xl md:text-12xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 drop-shadow-[0_0_12px_rgba(255,215,0,0.7)] mb-2">
             EFFICACY'26
           </h1>
+
+          <h3 className="text-xs sm:text-base md:text-3xl text-white font-mech tracking-widest text-shadow-sm uppercase">
+            NATIONAL LEVEL TECHNICAL SYMPOSIUM
+          </h3>
         </motion.div>
 
         <div className="h-1 w-24 bg-neonOrange mx-auto rounded-full shadow-[0_0_10px_#ffaa00] mb-12" />
 
-        <div className="flex flex-col items-center gap-12">
+        <div className="flex flex-col items-center gap-12 mb-20">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
             <Link to="/register/tech">
               <motion.button
@@ -294,13 +290,61 @@ const Home: React.FC = () => {
             </Link>
           </div>
 
-          <div>
-            <h3 className="text-neonBlue font-mech text-xl mb-4">
-              REGISTRATION ENDS IN
-            </h3>
-            <Countdown />
+          <div className="w-full max-w-4xl">
+            {/* Split Layout: Event | Dates */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+
+              {/* LEFT: Event Date */}
+              <div className="flex flex-col items-center justify-center p-4 md:p-6 bg-black/40 border border-neonBlue/30 rounded-2xl backdrop-blur-sm shadow-[0_0_15px_rgba(0,243,255,0.1)]">
+                <Calendar className="w-10 h-10 md:w-12 md:h-12 text-neonBlue mb-3 md:mb-4 drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]" />
+                <h3 className="text-gray-400 font-mech tracking-widest text-sm md:text-lg mb-2">EVENT DATE</h3>
+                <p className="text-3xl md:text-4xl text-white font-mech drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">
+                  04 / 03 / 26
+                </p>
+              </div>
+
+              {/* RIGHT: Registration Info */}
+              <div className="flex flex-col items-center justify-center p-6 bg-black/40 border border-neonOrange/30 rounded-2xl backdrop-blur-sm shadow-[0_0_15px_rgba(255,170,0,0.1)] gap-4">
+
+                {/* Online Reg */}
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <Calendar className="w-5 h-5 text-neonOrange" />
+                    <span className="text-gray-300 font-mech tracking-wide">ONLINE REGISTRATION ENDS</span>
+                  </div>
+                  <p className="text-2xl text-white font-mech">01 / 03 / 26</p>
+                </div>
+
+                <div className="w-1/2 h-px bg-white/10" />
+
+                {/* On-spot Reg */}
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <Clock className="w-5 h-5 text-neonOrange" />
+                    <span className="text-gray-300 font-mech tracking-wide">ON-SPOT REGISTRATION</span>
+                  </div>
+                  <p className="text-xl text-white font-mech mb-1">04 / 03 / 26</p>
+                  <p className="text-sm text-neonBlue font-mono">(9:00 AM - 10:00 AM)</p>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Countdown */}
+            <div className="flex flex-col items-center mb-12">
+              <h4 className="text-xl md:text-3xl font-black font-mech mb-4 tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-neonBlue via-white to-neonBlue drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] animate-pulse">
+                COUNTDOWN BEGINS
+              </h4>
+              <Countdown />
+            </div>
           </div>
         </div>
+
+        {/* ABOUT SECTION */}
+        <div id="about" className="w-full">
+          <About />
+        </div>
+
       </div>
     </div>
   );

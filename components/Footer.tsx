@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
     <footer className="bg-black border-t border-white/10 text-white py-6 mt-12">
       <div className="container mx-auto px-4 text-center">
         <p className="font-mech text-lg text-neonBlue mb-2">EFFICACY'26</p>
-        <p className="font-mech text-gray-400 text-sm mb-4">Department of Mechanical Engineering</p>
+        <p className="font-mech text-gray-400 text-sm mb-4">Association of Mechanical Engineering</p>
 
         {/* <div className="flex items-center justify-center gap-2 text-gray-500 text-xs mt-4 border-t border-white/10 pt-4">
           <span>© {new Date().getFullYear()}</span>
