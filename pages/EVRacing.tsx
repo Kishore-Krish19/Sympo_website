@@ -1,7 +1,6 @@
-// ../pages/EVRacing.tsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { easeInOut, motion, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   Zap,
   AlertTriangle,
@@ -13,24 +12,24 @@ import {
 import rulesPdf from "../assets/CHRONX2026-RULEBOOK.pdf";
 
 const EVRacing: React.FC = () => {
-  // 🔑 REQUIRED for mobile reload reliability
   const titleRef = React.useRef<HTMLDivElement | null>(null);
   const isInView = useInView(titleRef, { once: true, amount: 0.6 });
 
   return (
     <div className="w-full px-4 pt-20 md:pt-24">
-      <div className="relative rounded-xl p-4 md:p-8 bg-[var(--bg-card)] overflow-hidden sm:overflow-hidden overflow-visible border border-[var(--border-ev)]">
+      <div className="relative rounded-xl p-4 md:p-8 bg-black overflow-hidden sm:overflow-hidden overflow-visible">
+        
         {/* GREEN NEON BACKGROUND */}
         <motion.div
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 bg-[var(--shadow-ev)] blur-[120px]"
+          className="absolute inset-0 bg-green-500/10 blur-[120px]"
         />
 
         {/* INNER NEON GLOW */}
         <div
           className="absolute inset-0 rounded-xl
-          shadow-[inset_0_0_40px_var(--shadow-ev),_0_0_30px_var(--shadow-ev)]
+          shadow-[inset_0_0_40px_rgba(34,197,94,0.4),_0_0_30px_rgba(34,197,94,0.3)]
           pointer-events-none"
         />
 
@@ -38,14 +37,16 @@ const EVRacing: React.FC = () => {
         <div
           className="absolute inset-0
           bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]
-          opacity-10 pointer-events-none mix-blend-overlay"
+          opacity-20 pointer-events-none"
         />
 
         {/* CONTENT */}
         <div className="relative z-10">
+
           {/* HEADER */}
           <div className="text-center mb-12 relative">
-            {/* ⚡ CHARGING BLINK BACKGROUND */}
+
+            {/* BLINK BACKGROUND */}
             <motion.div
               animate={{
                 opacity: [0.2, 0.5, 0.2],
@@ -61,7 +62,7 @@ const EVRacing: React.FC = () => {
               <div
                 className="
                   w-[420px] h-[140px]
-                  bg-gradient-to-r from-[var(--color-ev)] via-[var(--border-ev)] to-[var(--color-ev)]
+                  bg-gradient-to-r from-green-400 via-green-500 to-green-400
                   blur-[60px]
                   opacity-90
                 "
@@ -72,9 +73,9 @@ const EVRacing: React.FC = () => {
             <motion.div
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="inline-block p-4 rounded-full bg-[var(--shadow-ev)] mb-4 relative z-10"
+              className="inline-block p-4 rounded-full bg-green-500/10 mb-4 relative z-10"
             >
-              <Zap className="w-16 h-16 text-[var(--color-ev)]" />
+              <Zap className="w-16 h-16 text-green-400" />
             </motion.div>
 
             {/* TITLE + BIKES */}
@@ -94,9 +95,9 @@ const EVRacing: React.FC = () => {
                     w-8 h-8
                     sm:w-14 sm:h-14
                     md:w-16 md:h-16
-                    text-[var(--color-ev)]
+                    text-green-400
                     rotate-[-30deg]
-                    drop-shadow-[0_0_14px_var(--shadow-ev)]
+                    drop-shadow-[0_0_14px_rgba(34,197,94,0.9)]
                   "
                 />
               </motion.div>
@@ -104,11 +105,11 @@ const EVRacing: React.FC = () => {
               {/* TITLE */}
               <motion.h1
                 animate={{
-                  color: ["var(--text-primary)", "var(--text-secondary)", "var(--text-primary)"],
+                  color: ["#e5e7eb", "#ffffff", "#e5e7eb"],
                   textShadow: [
-                    "0 0 12px var(--shadow-ev)",
-                    "0 0 30px var(--color-ev)",
-                    "0 0 12px var(--shadow-ev)",
+                    "0 0 12px rgba(34,197,94,0.4)",
+                    "0 0 30px rgba(34,197,94,1)",
+                    "0 0 12px rgba(34,197,94,0.4)",
                   ],
                 }}
                 transition={{
@@ -121,17 +122,20 @@ const EVRacing: React.FC = () => {
                   text-3xl md:text-7xl
                   font-mech italic
                   uppercase tracking-tighter
-                  text-[var(--text-primary)]
                 "
               >
-                EV <span className="text-[var(--color-ev)]">RACING</span>
+                EV <span className="text-green-500">RACING</span>
               </motion.h1>
 
               {/* RIGHT BIKE */}
               <motion.div
                 initial={{ x: 40, opacity: 0 }}
                 animate={isInView ? { x: 6, opacity: 1 } : {}}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  delay: 0.1,
+                }}
                 className="z-0 pointer-events-none"
               >
                 <Bike
@@ -139,10 +143,10 @@ const EVRacing: React.FC = () => {
                     w-8 h-8
                     sm:w-14 sm:h-14
                     md:w-16 md:h-16
-                    text-[var(--color-ev)]
+                    text-green-400
                     scale-x-[-1]
                     rotate-[30deg]
-                    drop-shadow-[0_0_14px_var(--shadow-ev)]
+                    drop-shadow-[0_0_14px_rgba(34,197,94,0.9)]
                   "
                 />
               </motion.div>
@@ -153,8 +157,10 @@ const EVRacing: React.FC = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
               {
-                icon: AlertTriangle, title: "Rules", isRules: true,
-                desc: "Follow the rules and regulations"
+                icon: AlertTriangle,
+                title: "Rules",
+                isRules: true,
+                desc: "Follow the rules and regulations",
               },
               {
                 icon: Route,
@@ -175,50 +181,53 @@ const EVRacing: React.FC = () => {
               <motion.div
                 key={i}
                 whileHover={{ y: -5 }}
-                className="bg-[var(--bg-surface)] border border-[var(--border-color)] p-6 rounded hover:border-[var(--color-ev)] transition-colors shadow-md"
+                className="bg-white/5 border border-white/10 p-6 rounded hover:border-green-400 transition-colors"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <item.icon className="w-10 h-10 text-[var(--color-ev)]" />
+                  <item.icon className="w-10 h-10 text-green-400" />
                   {item.isRules && (
                     <a href={rulesPdf} download="EV_Racing_Rules.pdf">
-                      <button className="px-4 py-2 bg-[var(--color-ev)] text-[var(--text-inverse)] font-mech font-bold text-xs uppercase hover:bg-[var(--border-ev)] transition-colors">
+                      <button className="px-4 py-2 bg-green-500 text-black font-mech font-bold text-xs uppercase">
                         Download
                       </button>
                     </a>
                   )}
                 </div>
-                <h3 className="text-xl font-mech text-[var(--text-primary)] mb-2">
+
+                <h3 className="text-xl font-mech text-white mb-2">
                   {item.title}
                 </h3>
-                <p className="text-[var(--text-secondary)] text-sm">{item.desc}</p>
+
+                <p className="text-gray-400 text-sm">
+                  {item.desc}
+                </p>
               </motion.div>
             ))}
           </div>
 
           {/* REGISTER BUTTON */}
           <div className="flex justify-center">
-            <div className="flex justify-center">
-              <Link to="/register/ev">
-                <button
-                  className="
-                  px-12 py-4 bg-[var(--color-ev)] text-[var(--text-inverse)] font-mech font-bold
+            <Link to="/register/ev">
+              <button
+                className="
+                  px-12 py-4 bg-green-500 text-black font-mech font-bold
                   text-xl uppercase tracking-widest
-                  hover:bg-[var(--border-ev)]
-                  shadow-[0_0_20px_var(--shadow-ev)]
+                  hover:bg-green-400
+                  shadow-[0_0_20px_rgba(34,197,94,0.6)]
                   skew-x-[-12deg]
-                  transition-all
                 "
-                >
-                  <span className="block skew-x-[12deg]">
-                    Register Team
-                  </span>
-                </button>
-              </Link>
-            </div>
+              >
+                <span className="block skew-x-[12deg]">
+                  Register Team
+                </span>
+              </button>
+            </Link>
           </div>
+
         </div>
       </div>
     </div>
   );
 };
+
 export default EVRacing;
