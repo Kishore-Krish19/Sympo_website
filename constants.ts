@@ -74,27 +74,7 @@ export const WORKSHOP_INFO: WorkshopDetails = {
     "Safety, Regulations & Ethics",
     "Career and Future Trends in Drones"
   ],
-  entryFee: "300 / person"
-};
-
-export const SHARK_TANK_INFO: WorkshopDetails = {
-  topic: "Shark Tank",
-  trainer: "Showcase Your Skills",
-  date: "March 4, 2026",
-
-  benefits: [
-    "Exhibit your innovative projects",
-    "Networking with industry experts",
-    "Win exciting prizes",
-    "Certificate of Participation",
-    "Feedback from mentors"
-  ],
-  entryFee: "300 / person",
-  description: `Shark Tank is a non-technical showcase event organized to provide students with a platform to demonstrate their talents, practical skills, innovations, and entrepreneurial ideas in front of peers, faculty members, and guests.
-
-The event brings together creative performances, skill-based demonstrations, and student startup showcases under one stage. Students can express their abilities through performing arts, game development, ECU tuning demonstrations, and student-led startup stalls, highlighting their skills beyond academics.
-
-Shark Tank encourages confidence, creativity, innovation, and entrepreneurship, allowing students to explore real-world applications of their talents while interacting with a wider audience. This event promotes all-round development and nurtures a culture of learning, leadership, and self-expression within the campus.`
+  entryFee: "500 / person"
 };
 
 export const COORDINATORS: Coordinator[] = [
@@ -120,7 +100,7 @@ export const REGISTRATION_CLOSED_TEXT = 'REGISTRATION CLOSED';
 export const WORKSHOP_CONFIG = {
   "1": {
     topic: "DRONE & UAV ( UNMANNED AERIAL VEHICLE )",
-    price: "300",
+    price: "500",
     headingColor: "text-orange-400",
     iconColor: "text-orange-400",
     border: "border-orange-500",
@@ -129,8 +109,8 @@ export const WORKSHOP_CONFIG = {
     registerPath: "/register/workshop1",
   },
   "2": {
-    topic: "GAME DEVELOPMENT (ENGINE)",
-    price: "200",
+    topic: "GAME DEVELOPMENT",
+    price: "300",
     headingColor: "text-blue-400",
     iconColor: "text-blue-400",
     border: "border-blue-500",
@@ -140,7 +120,7 @@ export const WORKSHOP_CONFIG = {
   },
   "3": {
     topic: "ECU (ENGINE CONTROL UNIT)",
-    price: "200",
+    price: "300",
     headingColor: "text-purple-400",
     iconColor: "text-purple-400",
     border: "border-purple-500",
@@ -152,7 +132,7 @@ export const WORKSHOP_CONFIG = {
 
 export const WORKSHOP_DESCRIPTIONS = {
   "2": {
-    title: "Game Development (Engine)",
+    title: "Game Development",
     description: [
       "Participants will develop a simple 2D game using pre-built game assets.",
       "The workshop helps participants understand core game development concepts presented in the PPT through hands-on implementation.",
@@ -189,16 +169,17 @@ export const WORKSHOP_DESCRIPTIONS = {
   "3": {
     title: "ECU (Engine Control Unit)",
     description: [
-      "This workshop introduces the fundamentals of Electronic Control Units (ECUs) used in modern automobiles.",
-      "Participants will learn how ECUs process sensor inputs and control actuators to manage engine performance, fuel injection, ignition timing, and emission systems.",
-      "The session focuses on ECU architecture, working principles, and real-world automotive applications.",
-      "Concepts are aligned with core mechanical and automotive engineering fundamentals.",
+      "Automobile Electronics & Engine Management Systems",
+      "We provide clear and practical knowledge on modern automobile systems, including Engine Control Modules (ECM), sensors and actuators, and their real-time working principles. Our content also covers DEF (Diesel Exhaust Fluid) emission systems, car tuning and ECU optimization, and the working of automobile meters and damping mechanisms.",
+      "Designed for students, technicians, and automotive enthusiasts, our explanations focus on accuracy, simplicity, and real-world application.",
 
-      "Key Focus Areas:",
-      "• ECU architecture and core functions",
-      "• Sensors and actuators used in vehicles",
-      "• Basic control logic and signal flow",
-      "• Role of ECUs in IC engines, Electric Vehicles (EVs), and Hybrid systems"
+      "Areas Covered:",
+      "Engine control module (explanation)",
+      "What is sensor and How sensors works",
+      "What is actuator and How actuator works",
+      "Explaination of DEF system",
+      "Car tunning",
+      "Meter dampering and detailed explanation of automobile"
     ],
   },
 } as const;

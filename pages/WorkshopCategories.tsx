@@ -81,7 +81,7 @@ const workshops = [
     animation: "drone",
     color: "text-orange-400",
     border: "border-orange-500",
-    fee: "₹ 300 / person",
+    fee: "₹ 500 / person",
     resource: "Industry Technician",
   },
   {
@@ -91,7 +91,7 @@ const workshops = [
     animation: "gamepad",
     color: "text-blue-400",
     border: "border-blue-500",
-    fee: "₹ 200 / person",
+    fee: "₹ 300 / person",
     resource: "Student Team",
   },
   {
@@ -101,7 +101,7 @@ const workshops = [
     animation: "cpu",
     color: "text-purple-400",
     border: "border-purple-500",
-    fee: "₹ 200 / person",
+    fee: "₹ 300 / person",
     resource: "Student Team",
   },
 ];

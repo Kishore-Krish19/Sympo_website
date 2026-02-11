@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronRight, Settings, Calendar, Clock } from "lucide-react";
+import { ChevronRight, Settings, Calendar, Clock, Download } from "lucide-react";
 import collegeLogo from "../assets/college-logo.png";
 import deptLogo from "../assets/Dept-logo.png";
 import About from "./About";
@@ -137,7 +137,8 @@ const Home: React.FC = () => {
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full blur-[100px]"
           style={{ backgroundColor: 'var(--accent-orange)', opacity: 'var(--blob-opacity)' }} />
 
-        <Settings className="absolute top-20 left-10 w-64 h-64 text-[var(--text-secondary)] opacity-10 animate-spin-slow" />
+        <Settings className="absolute top-80 left-10 w-64 h-64 text-[var(--text-secondary)] opacity-10 animate-spin-slow" />
+        {/* <Settings className="absolute bottom-10 right-10 w-64 h-64 text-[var(--text-secondary)] opacity-10 animate-spin-slow" /> */}
         <Settings
           className="absolute bottom-20 right-10 w-96 h-96 text-[var(--text-secondary)] opacity-10 animate-spin-slow"
           style={{ animationDirection: "reverse" }}
@@ -165,11 +166,7 @@ const Home: React.FC = () => {
             <img
               src={collegeLogo}
               alt="College Logo"
-              className="
-    w-full h-full
-    object-contain
-    brightness-100 contrast-100 dark:brightness-100 dark:contrast-100
-  "
+              className="w-full h-full logo object-contain brightness-100 contrast-100 dark:brightness-100 dark:contrast-100"
             />
           </div>
 
@@ -191,9 +188,9 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-[var(--accent-blue)] font-mech text-center leading-tight mb-4 md:mb-6"
             >
-              GOVERNMENT COLLEGE OF
+              GOVERNMENT COLLEGE OF ENGINEERING,
               <br />
-              ENGINEERING, ERODE
+              ERODE - 638316
             </motion.h3>
 
             <h2 className="text-sm md:text-2xl text-[var(--text-secondary)] font-mech tracking-[0.2em] mb-4 md:mb-6">
@@ -304,6 +301,43 @@ const Home: React.FC = () => {
                 </motion.span>
               </motion.button>
             </Link>
+
+            <a href="/Efficacy26_Poster.pdf" download="Efficacy26_Poster.pdf">
+              <motion.button
+                whileHover="hover"
+                initial="rest"
+                animate="rest"
+                variants={{
+                  rest: { scale: 1 },
+                  hover: { scale: 1.08 },
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                className="
+      px-8 py-4
+      bg-[var(--accent-blue)]
+      text-white
+      font-mech
+      rounded-3xl
+      inline-flex items-center justify-center
+      gap-2
+      whitespace-nowrap
+      shadow-[0_0_14px_rgba(0,120,255,0.35)]
+    "
+              >
+                <span className="leading-none">Download Poster</span>
+
+                <motion.span
+                  variants={{
+                    rest: { y: 0 },
+                    hover: { y: 4 },
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="flex items-center leading-none"
+                >
+                  <Download className="w-5 h-5" />
+                </motion.span>
+              </motion.button>
+            </a>
           </div>
 
           <div className="w-full max-w-4xl">

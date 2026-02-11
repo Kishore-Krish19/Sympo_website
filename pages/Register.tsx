@@ -16,7 +16,6 @@ import {
   BANK_DETAILS,
   nonTechEventOptions,
 } from "../constants";
-// const [topAlert, setTopAlert] = useState<string | null>(null);
 
 // ===============================
 // 📲 WhatsApp Group Links (by Event Type)
@@ -25,8 +24,7 @@ const whatsappLinksByType: Record<string, string> = {
   tech: "https://chat.whatsapp.com/B6QRLt0JFJqEyg76ScTXY6?mode=gi_t",
   "non-tech": "https://chat.whatsapp.com/HKLWX6wkgzuI8ysfjXZxqC?mode=gi_t",
   workshop: "https://chat.whatsapp.com/JjMrbwpieT1CjqyA77yyhU?mode=gi_t",
-  ev: "https://chat.whatsapp.com/EIOBzWU7fXV0KCBeYfoVP2?mode=gi_t",
-  "shark-tank": "https://chat.whatsapp.com/B6QRLt0JFJqEyg76ScTXY6?mode=gi_t", // Placeholder link, using tech for now
+  ev: "https://chat.whatsapp.com/EIOBzWU7fXV0KCBeYfoVP2?mode=gi_t"
 };
 const TECH_EVENT_TEAM_RULES: Record<
   string,
@@ -74,7 +72,6 @@ const Register: React.FC = () => {
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [whatsappLink, setWhatsappLink] = useState("");
   const isWorkshop = type?.startsWith("workshop");
-  const isSharkTank = type === "shark-tank";
   const isEVRacing = type === "ev";
   useEffect(() => {
     if (toast) {
@@ -84,7 +81,7 @@ const Register: React.FC = () => {
   }, [toast]);
 
   useEffect(() => {
-    if (isWorkshop || isSharkTank) {
+    if (isWorkshop) {
       setFormData((prev) => ({
         ...prev,
         teamSize: 1,
@@ -105,7 +102,7 @@ const Register: React.FC = () => {
         return prev;
       });
     }
-  }, [isWorkshop, isSharkTank, isEVRacing]);
+  }, [isWorkshop, isEVRacing]);
   useEffect(() => {
     if (type !== "tech" || !formData.eventName) return;
 
@@ -169,8 +166,6 @@ const Register: React.FC = () => {
   useEffect(() => {
     if (type === "workshop") {
       setFormData((prev) => ({ ...prev, eventName: WORKSHOP_INFO.topic }));
-    } else if (type === "shark-tank") {
-      setFormData((prev) => ({ ...prev, eventName: "Shark Tank  " }));
     } else if (type === "ev") {
       setFormData((prev) => ({
         ...prev,
@@ -190,8 +185,6 @@ const Register: React.FC = () => {
         return "Non-Tech Registration";
       case "workshop":
         return "Workshop Registration";
-      case "shark-tank":
-        return "Shark Tank Registration";
       case "ev":
         return "EV Racing Registration";
       default:
@@ -272,8 +265,7 @@ const Register: React.FC = () => {
     const eventType =
       type === "tech" ||
         type === "workshop" ||
-        type === "ev" ||
-        type === "shark-tank"
+        type === "ev"
         ? "Technical"
         : "Non-Technical";
 
@@ -574,7 +566,7 @@ const Register: React.FC = () => {
             />
 
             {/* Total Team Members */}
-            {isWorkshop || isSharkTank ? (
+            {isWorkshop ? (
               <Input
                 name="teamSize"
                 label="Total Team Members"
@@ -664,7 +656,7 @@ const Register: React.FC = () => {
           </div>
 
           {/* Dynamic Members Input Fields */}
-          {!isWorkshop && !isSharkTank && formData.teamMembers.length > 0 && (
+          {!isWorkshop && formData.teamMembers.length > 0 && (
             <div className="space-y-4 border-t border-[var(--border-color)] pt-4">
               <label className="block text-[var(--accent-blue)] text-sm font-mech uppercase">
                 Additional Members
@@ -841,15 +833,6 @@ const Register: React.FC = () => {
                 : "Submit"}
           </button>
         </form>
-        {/* {toast && toast.type !== "success" && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`fixed bottom-10 right-10 p-4 rounded shadow-lg bg-red-600 text-white z-50`}
-          >
-            {toast.msg}
-          </motion.div>
-        )} */}
 
         {registrationSuccess && (
           <div className="mt-6 p-5 border border-green-500 bg-green-500/10 text-center">

@@ -22,7 +22,6 @@ import Register from "./pages/Register";
 import Contact from "./pages/Contact";
 import EventList from "./pages/EventList";
 import EventDescription from "./pages/EventDescription";
-import SharkTank from "./pages/SharkTank";
 
 /* DATA */
 import { TECH_EVENTS, NON_TECH_EVENTS } from "./constants";
@@ -102,7 +101,6 @@ const App: React.FC = () => {
 
           {/* OTHER PAGES */}
           {/* <Route path="/shark-tank" element={<SharkTank />} /> */}
-          <Route path="/shark-tank" element={<SharkTank />} />
           <Route path="/ev-racing" element={<EVRacing />} />
           <Route path="/register/:type" element={<Register />} />
           <Route path="/contact" element={<Contact />} />

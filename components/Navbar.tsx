@@ -27,12 +27,9 @@ const Navbar: React.FC = () => {
 
   const links = [
     { name: 'Home', path: '/' },
-
     { name: 'Events', path: '/events' },
     { name: 'Workshop', path: '/workshop' },
-    { name: 'Shark Tank', path: '/shark-tank' },
     { name: 'EV Racing', path: '/ev-racing' },
-
     { name: 'Contact', path: '/contact' },
   ];
 
