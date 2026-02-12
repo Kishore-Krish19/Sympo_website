@@ -27,7 +27,7 @@ const Workshop: React.FC = () => {
         ? "Mr. Lalith Kishore"
         : null;
 
-  const entryFee = id === "1" ? "₹ 300 / person" : "₹ 200 / person";
+  const entryFee = id === "1" ? "₹ 500 / person" : "₹ 300 / person";
   const isIndustryWorkshop = id === "1";
 
   return (

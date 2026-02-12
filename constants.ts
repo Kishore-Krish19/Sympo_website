@@ -104,8 +104,8 @@ export const WORKSHOP_CONFIG = {
     headingColor: "text-orange-400",
     iconColor: "text-orange-400",
     border: "border-orange-500",
-    shadow: "shadow-[0_0_50px_rgba(251,146,60,0.18)]",
-    glow: "bg-orange-500",
+    shadow: "shadow-[0_0_70px_rgba(251,146,60,0.18)]",
+    glow: "bg-orange-0",
     registerPath: "/register/workshop1",
   },
   "2": {
@@ -114,8 +114,8 @@ export const WORKSHOP_CONFIG = {
     headingColor: "text-blue-400",
     iconColor: "text-blue-400",
     border: "border-blue-500",
-    shadow: "shadow-[0_0_50px_rgba(96,165,250,0.18)]",
-    glow: "bg-blue-500",
+    shadow: "shadow-[0_0_70px_rgba(96,165,250,0.18)]",
+    glow: "bg-blue-0",
     registerPath: "/register/workshop2",
   },
   "3": {
@@ -124,8 +124,8 @@ export const WORKSHOP_CONFIG = {
     headingColor: "text-purple-400",
     iconColor: "text-purple-400",
     border: "border-purple-500",
-    shadow: "shadow-[0_0_50px_rgba(192,132,252,0.18)]",
-    glow: "bg-purple-500",
+    shadow: "shadow-[0_0_70px_rgba(192,132,252,0.18)]",
+    glow: "bg-purple-0",
     registerPath: "/register/workshop3",
   },
 } as const;
