@@ -99,6 +99,18 @@ const Register: React.FC = () => {
             teamMembers: prev.teamMembers.slice(0, 5),
           };
         }
+        if (prev.teamSize < 5) {
+          // Ensure at least 5 members (Leader + 4 others)
+          const currentMembers = [...prev.teamMembers];
+          const needed = 4 - currentMembers.length;
+          const additional = Array(Math.max(0, needed)).fill("");
+
+          return {
+            ...prev,
+            teamSize: 5,
+            teamMembers: [...currentMembers, ...additional].slice(0, 4), // Should be exactly 4 additional members for size 5
+          };
+        }
         return prev;
       });
     }
@@ -138,21 +150,31 @@ const Register: React.FC = () => {
     if (type === "ev") {
       calculatedAmount = size <= 5 ? 4000 : 4000 + (size - 5) * 300;
     } else if (type?.startsWith("workshop")) {
-      const workshopId = type.replace("workshop", "");
-      const prices: Record<string, number> = {
-        "1": 300,
-        "2": 200,
-        "3": 200,
-      };
-      calculatedAmount = prices[workshopId] ?? 300;
-    } else {
-      // ✅ TECH / NON-TECH BASE
+      // 🏷️ WORKSHOP PRICING
+      // Drone (1) -> 500
+      // Game Dev (2) / ECU (3) -> 300
+      if (
+        formData.eventName.toLowerCase().includes("drone") ||
+        formData.eventName.toLowerCase().includes("uav")
+      ) {
+        calculatedAmount = size * 500;
+      } else {
+        // Game Dev / ECU -> 300
+        calculatedAmount = size * 300;
+      }
+    } else if (type === "tech") {
+      // ✅ TECH CALCULATION
+      // Base: 300 per person
       calculatedAmount = size * 300;
 
-      // ✅ ADD ₹50 IF OPTIONAL WORKSHOP SELECTED
-      if (formData.optionalWorkshop) {
-        calculatedAmount += 50;
+      // Rule: Team Size 1 can add workshop (flat +50)
+      if (size === 1 && formData.optionalWorkshop) {
+        calculatedAmount += 50; // Flat fee, not per person (strictly for size 1 anyway)
       }
+      // Rule: Team Size > 1 gets Free non-tech (no extra cost)
+    } else {
+      // Non-Tech or others
+      calculatedAmount = size * 300;
     }
 
     setFormData((prev) =>
@@ -160,21 +182,45 @@ const Register: React.FC = () => {
         ? prev
         : { ...prev, amount: calculatedAmount },
     );
-  }, [type, formData.teamSize, formData.optionalWorkshop]);
+  }, [type, formData.teamSize, formData.optionalWorkshop, formData.eventName]);
 
   // Handle Default Event Names for single-event categories
   useEffect(() => {
-    if (type === "workshop") {
-      setFormData((prev) => ({ ...prev, eventName: WORKSHOP_INFO.topic }));
-    } else if (type === "ev") {
+
+    if (type === "ev") {
       setFormData((prev) => ({
         ...prev,
         eventName: "Electric Vehicle Racing",
       }));
-    } else {
+    } else if (!type?.startsWith("workshop") && type !== "tech" && type !== "non-tech") {
+      // Fallback for others if any
       setFormData((prev) => ({ ...prev, eventName: "" }));
     }
+    // For 'tech' and 'non-tech', eventName starts empty (dropdown)
   }, [type]);
+
+  // ===============================
+  // 🔄 MUTEX LOGIC (Tech Events)
+  // ===============================
+  useEffect(() => {
+    if (type !== "tech") return;
+
+    const size = formData.teamSize;
+
+    // RULE A: Team Size 2 or 3
+    if (size > 1) {
+      if (formData.optionalWorkshop) {
+        setFormData(prev => ({ ...prev, optionalWorkshop: "" }));
+      }
+    }
+
+    // RULE B: Team Size 1
+    if (size === 1) {
+      if (formData.nonTechEvent) {
+        setFormData(prev => ({ ...prev, nonTechEvent: "" }));
+      }
+    }
+  }, [formData.teamSize, type, formData.optionalWorkshop, formData.nonTechEvent]);
 
   // Dynamic Title based on URL
   const getTitle = () => {
@@ -306,7 +352,8 @@ const Register: React.FC = () => {
     if (result.success === true) {
       setToast({ msg: "Registration successful!", type: "success" });
       setRegistrationSuccess(true);
-      const link = whatsappLinksByType[type || "tech"];
+      const linkKey = type?.startsWith("workshop") ? "workshop" : (type || "tech");
+      const link = whatsappLinksByType[linkKey];
       setWhatsappLink(link);
 
       // setTimeout(() => navigate('/'), 3000);
@@ -394,12 +441,14 @@ const Register: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Event Selection Dropdown */}
-          {showDropdown && (
+          {(showDropdown || type?.startsWith("workshop")) && (
             <div className="mb-4 w-full relative">
               <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
                 {type === "tech"
                   ? "Technical Event Name"
-                  : "Non-Technical Event Name"}{" "}
+                  : type === "non-tech"
+                    ? "Non-Technical Event Name"
+                    : "Workshop Topic"}{" "}
                 <span className="text-red-500">*</span>
               </label>
               <div className="relative">
@@ -413,19 +462,98 @@ const Register: React.FC = () => {
                   <option value="" className="bg-[var(--bg-secondary)] text-[var(--text-muted)]">
                     Select an Event
                   </option>
-                  {eventOptions.map((e) => (
-                    <option key={e.id} value={e.title} className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
-                      {e.title}
-                    </option>
-                  ))}
+                  {type === "tech" &&
+                    TECH_EVENTS.map((e) => (
+                      <option key={e.id} value={e.title} className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
+                        {e.title}
+                      </option>
+                    ))}
+                  {type === "non-tech" &&
+                    NON_TECH_EVENTS.map((e) => (
+                      <option key={e.id} value={e.title} className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
+                        {e.title}
+                      </option>
+                    ))}
+                  {type?.startsWith("workshop") && (
+                    <>
+                      <option value="DRONE & UAV ( UNMANNED AERIAL VEHICLE )" className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
+                        DRONE & UAV (₹500)
+                      </option>
+                      <option value="Game Development" className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
+                        Game Development (₹300)
+                      </option>
+                      <option value="ECU (ENGINE CONTROL UNIT)" className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
+                        ECU (₹300)
+                      </option>
+                    </>
+                  )}
                 </select>
                 <ChevronDown className="absolute right-3 top-3 text-[var(--accent-blue)] pointer-events-none w-5 h-5" />
               </div>
             </div>
           )}
 
-          {/* Auto-filled Event Name (Read Only) */}
-          {!showDropdown && formData.eventName && (
+          {/* Total Team Members */}
+          {isWorkshop ? (
+            <Input
+              name="teamSize"
+              label="Total Team Members"
+              value="1 (Solo Participant)"
+              readOnly
+              className="bg-[var(--bg-surface)] text-[var(--text-muted)] cursor-not-allowed"
+            />
+          ) : isSoloTechEvent ? (
+            <Input
+              name="teamSize"
+              label="Total Team Members"
+              value="1 (Solo Event)"
+              readOnly
+              className="bg-[var(--bg-surface)] text-[var(--text-muted)] cursor-not-allowed"
+            />
+          ) : isSoloTechEvent ? (
+            <Input
+              name="teamSize"
+              label="Total Team Members"
+              value="1 (Solo Event)"
+              readOnly
+              className="bg-[var(--bg-surface)] text-[var(--text-muted)] cursor-not-allowed"
+            />
+          ) : isEVRacing ? (
+            <Input
+              type="number"
+              name="teamSize"
+              label="Total Team Members"
+              value={formData.teamSize}
+              onChange={handleTeamSizeChange}
+              min="5"
+              required
+            />
+          ) : (
+            <div className="mb-4 w-full relative">
+              <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
+                Total Team Members <span className="text-red-500">*</span>
+              </label>
+
+              <div className="relative">
+                <select
+                  name="teamSize"
+                  value={formData.teamSize}
+                  onChange={handleTeamSizeChange}
+                  className="bg-[var(--bg-input)] border border-[var(--border-input)] text-[var(--text-primary)] text-sm rounded-none focus:ring-[var(--accent-orange)] focus:border-[var(--accent-orange)] block w-full p-3 cursor-pointer appearance-none"
+                  required
+                >
+                  <option value="1" className="bg-[var(--bg-secondary)]">1 (Leader Only)</option>
+                  <option value="2" className="bg-[var(--bg-secondary)]">2 (Leader + 1)</option>
+                  <option value="3" className="bg-[var(--bg-secondary)]">3 (Leader + 2)</option>
+                </select>
+
+                <ChevronDown className="absolute right-3 top-3 text-[var(--accent-blue)] w-5 h-5 pointer-events-none" />
+              </div>
+            </div>
+          )}
+
+          {/* Auto-filled Event Name (Read Only) - ONLY if not showing dropdown */}
+          {!(showDropdown || type?.startsWith("workshop")) && formData.eventName && (
             <Input
               name="eventName"
               label="Event Name"
@@ -434,31 +562,35 @@ const Register: React.FC = () => {
               className="bg-[var(--bg-surface)] text-[var(--text-muted)] border-none"
             />
           )}
-          {/* Optional Non-Technical Event (ONLY for Tech Registration) */}
-          {type === "tech" && showDropdown && (
-            <div className="mb-4 w-full relative">
+
+          {/* ONE Non-Technical Event (ONLY for Tech Registration) */}
+          {type === "tech" && (
+            <div className={`mb-4 w-full relative ${formData.teamSize === 1 ? "opacity-50" : ""}`}>
               <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
                 Non-Technical Event Name{" "}
-                <span className="text-[var(--text-muted)]">(Optional)</span>
+                <span className="text-[var(--text-muted)]">(Optional - Free)</span>
               </label>
 
               <div className="relative">
                 <select
                   name="nonTechEvent"
                   value={formData.nonTechEvent}
-                  onChange={handleInputChange}
-                  disabled={!formData.eventName || isWorkshopOnlyTech}
+                  onChange={(e) => {
+                    setFormData(prev => ({ ...prev, nonTechEvent: e.target.value, optionalWorkshop: "" }));
+                  }}
+                  disabled={!formData.eventName || isWorkshopOnlyTech || formData.teamSize === 1}
                   className="bg-[var(--bg-input)] border border-[var(--border-input)] text-[var(--text-primary)] text-sm rounded-none
              focus:ring-[var(--accent-orange)] focus:border-[var(--accent-orange)] block w-full p-3
              transition-all duration-300 backdrop-blur-sm font-body
-             appearance-none cursor-pointer disabled:opacity-50"
+             appearance-none cursor-pointer disabled:cursor-not-allowed"
                 >
                   <option value="" className="bg-[var(--bg-secondary)] text-[var(--text-muted)]">
-                    {isWorkshopOnlyTech
-                      ? "Not allowed for this event"
-                      : "Select Non-Tech Event (Free)"}
+                    {formData.teamSize === 1
+                      ? "Not allowed for Solo Participants"
+                      : isWorkshopOnlyTech
+                        ? "Not allowed for this event"
+                        : "Select Non-Tech Event (Free)"}
                   </option>
-
                   {!isWorkshopOnlyTech &&
                     nonTechEventOptions.map((e) => (
                       <option key={e.id} value={e.title} className="bg-[var(--bg-secondary)]">
@@ -471,10 +603,12 @@ const Register: React.FC = () => {
               </div>
             </div>
           )}
-          {type === "tech" && showDropdown && (
-            <div className="mb-4 w-full relative">
+
+          {/* Optional Workshop Add-on (ONLY for Tech Registration) */}
+          {type === "tech" && (
+            <div className={`mb-4 w-full relative ${formData.teamSize > 1 ? "opacity-50" : ""}`}>
               <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
-                WORKSHOP <span className="text-[var(--text-muted)]">(Optional)</span>
+                WORKSHOP ADD-ON <span className="text-[var(--text-muted)]">(Optional)</span>
               </label>
               <div className="relative">
                 <select
@@ -487,7 +621,7 @@ const Register: React.FC = () => {
                       nonTechEvent: "",
                     }));
                   }}
-                  disabled={!formData.eventName || !!formData.nonTechEvent}
+                  disabled={!formData.eventName || !!formData.nonTechEvent || formData.teamSize > 1}
                   className="
         bg-[var(--bg-input)]
         border border-[var(--border-input)]
@@ -504,15 +638,18 @@ const Register: React.FC = () => {
         font-body
         appearance-none
         cursor-pointer
+        disabled:cursor-not-allowed
       "
                 >
                   <option value="" className="bg-[var(--bg-secondary)] text-[var(--text-muted)]">
-                    Select Workshop (₹50)
+                    {formData.teamSize > 1
+                      ? "Not available for Teams (Solo Only)"
+                      : "Select Workshop (+₹50)"}
                   </option>
-                  <option value="workshop2" className="bg-[var(--bg-secondary)]">
+                  <option value="Game Development" className="bg-[var(--bg-secondary)]">
                     Game Development
                   </option>
-                  <option value="workshop3" className="bg-[var(--bg-secondary)]">
+                  <option value="ECU" className="bg-[var(--bg-secondary)]">
                     ECU
                   </option>
                 </select>
@@ -548,7 +685,7 @@ const Register: React.FC = () => {
             required
           />
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             <Input
               name="department"
               label="Department"
@@ -564,65 +701,6 @@ const Register: React.FC = () => {
               required
               placeholder="e.g. III"
             />
-
-            {/* Total Team Members */}
-            {isWorkshop ? (
-              <Input
-                name="teamSize"
-                label="Total Team Members"
-                value="1 (Solo Participant)"
-                readOnly
-                className="bg-[var(--bg-surface)] text-[var(--text-muted)] cursor-not-allowed"
-              />
-            ) : isSoloTechEvent ? (
-              <Input
-                name="teamSize"
-                label="Total Team Members"
-                value="1 (Solo Event)"
-                readOnly
-                className="bg-[var(--bg-surface)] text-[var(--text-muted)] cursor-not-allowed"
-              />
-            ) : isSoloTechEvent ? (
-              <Input
-                name="teamSize"
-                label="Total Team Members"
-                value="1 (Solo Event)"
-                readOnly
-                className="bg-[var(--bg-surface)] text-[var(--text-muted)] cursor-not-allowed"
-              />
-            ) : isEVRacing ? (
-              <Input
-                type="number"
-                name="teamSize"
-                label="Total Team Members"
-                value={formData.teamSize}
-                onChange={handleTeamSizeChange}
-                min="1"
-                required
-              />
-            ) : (
-              <div className="mb-4 w-full relative">
-                <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
-                  Total Team Members <span className="text-red-500">*</span>
-                </label>
-
-                <div className="relative">
-                  <select
-                    name="teamSize"
-                    value={formData.teamSize}
-                    onChange={handleTeamSizeChange}
-                    className="bg-[var(--bg-input)] border border-[var(--border-input)] text-[var(--text-primary)] text-sm rounded-none focus:ring-[var(--accent-orange)] focus:border-[var(--accent-orange)] block w-full p-3 cursor-pointer appearance-none"
-                    required
-                  >
-                    <option value="1" className="bg-[var(--bg-secondary)]">1 (Leader Only)</option>
-                    <option value="2" className="bg-[var(--bg-secondary)]">2 (Leader + 1)</option>
-                    <option value="3" className="bg-[var(--bg-secondary)]">3 (Leader + 2)</option>
-                  </select>
-
-                  <ChevronDown className="absolute right-3 top-3 text-[var(--accent-blue)] w-5 h-5 pointer-events-none" />
-                </div>
-              </div>
-            )}
           </div>
 
 
@@ -645,6 +723,8 @@ const Register: React.FC = () => {
               required
               pattern="[0-9]{10}"
             />
+          </div>
+          <div>
             <Input
               type="email"
               name="email"
@@ -654,7 +734,6 @@ const Register: React.FC = () => {
               required
             />
           </div>
-
           {/* Dynamic Members Input Fields */}
           {!isWorkshop && formData.teamMembers.length > 0 && (
             <div className="space-y-4 border-t border-[var(--border-color)] pt-4">
@@ -713,8 +792,12 @@ const Register: React.FC = () => {
             />
             <p className="text-xs text-[var(--text-muted)] mt-1">
               {type === "ev"
-                ? "EV Racing: ₹4000 for 5 members"
-                : "₹300 per participant"}
+                ? "EV Racing: ₹4000 for 5 members (Minimum)"
+                : type?.startsWith("workshop") &&
+                  (formData.eventName.toLowerCase().includes("drone") ||
+                    formData.eventName.toLowerCase().includes("uav"))
+                  ? "₹500 per participant"
+                  : "₹300 per participant"}
             </p>
           </div>
 

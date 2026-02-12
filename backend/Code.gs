@@ -15,6 +15,56 @@ function doPost(e) {
     var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
 
     // ===============================
+    // 🛡️ VALIDATION RULES
+    // ===============================
+    
+    // 1️⃣ TECH EVENT VALIDATION
+    if (data.type === "tech") {
+      var size = Number(data.teamSize);
+      
+      // RULE: Team Size 1
+      if (size === 1) {
+        if (data.nonTechEvent && data.nonTechEvent !== "") {
+          throw new Error("Solo participants cannot register for a Non-Tech event (only for teams of 2 or 3).");
+        }
+        // OK to have optionalWorkshop (Game Dev or ECU)
+        if (data.optionalWorkshop) {
+          if (data.optionalWorkshop.toLowerCase().indexOf("drone") !== -1 || data.optionalWorkshop.toLowerCase().indexOf("uav") !== -1) {
+             throw new Error("Drone Workshop is not available as an add-on.");
+          }
+        }
+      }
+      
+      // RULE: Team Size > 1
+      if (size > 1) {
+        if (data.optionalWorkshop && data.optionalWorkshop !== "") {
+          throw new Error("Workshop add-on is only available for Solo participants.");
+        }
+        // OK to have nonTechEvent
+      }
+    }
+
+    // 2️⃣ WORKSHOP AMOUNT VALIDATION
+    if (data.type === "workshop") {
+      var size = Number(data.teamSize);
+      var expectedAmount = 0;
+
+      if (eventName.toLowerCase().indexOf("drone") !== -1 || eventName.toLowerCase().indexOf("uav") !== -1) {
+        expectedAmount = 500 * size;
+      } else {
+        // Game Dev or ECU (Updated to 300)
+        expectedAmount = 300 * size;
+      }
+      
+      // If data.amount is provided, validate it. 
+      // Note: Front-end sends amount, but sometimes it might be string or number.
+      if (data.amount && Number(data.amount) !== expectedAmount) {
+         throw new Error("Invalid workshop amount. Expected: " + expectedAmount + ", Received: " + data.amount);
+      }
+    }
+
+
+    // ===============================
     // 1️⃣ MAIN REGISTRATION SHEET
     // ===============================
     var sheet = ss.getSheetByName(sheetName);
@@ -209,6 +259,70 @@ function doPost(e) {
     }
 
     // ===============================
+    // 🔁 OPTIONAL WORKSHOP (TECH ADD-ON)
+    // ===============================
+    if (data.optionalWorkshop && data.optionalWorkshop !== "") {
+
+      var workshopSheetName = "Workshop_Registrations";
+      var workshopSheet = ss.getSheetByName(workshopSheetName);
+
+      if (!workshopSheet) {
+        workshopSheet = ss.insertSheet(workshopSheetName);
+        workshopSheet.appendRow([
+          "Timestamp",
+          "Team Name",
+          "Event Name",
+          "Leader",
+          "College",
+          "Dept",
+          "Year",
+          "Phone Number",
+          "WhatsApp Number",
+          "Email",
+          "Total Members",
+          "Additional Members",
+          "Transaction ID",
+          "Screenshot URL"
+        ]);
+      }
+
+      // 🚫 DUPLICATE CHECK (Team + Event)
+      var existingData = workshopSheet.getDataRange().getValues();
+
+      for (var i = 1; i < existingData.length; i++) {
+        var existingTeam = existingData[i][1];   // Team Name
+        var existingEvent = existingData[i][2];  // Event Name
+
+        if (
+          existingTeam === data.teamName &&
+          existingEvent === data.optionalWorkshop
+        ) {
+           throw new Error(
+             "This team has already registered for the selected workshop: " + data.optionalWorkshop
+           );
+        }
+      }
+      
+      // ✅ SAFE TO INSERT
+      workshopSheet.appendRow([
+        new Date(),
+        data.teamName,
+        data.optionalWorkshop, // Event Name
+        data.teamLeaderName,
+        data.collegeName,
+        data.department,
+        data.yearOfStudy,
+        data.phoneNumber,
+        data.whatsappNumber,
+        data.email,
+        data.teamSize,
+        (data.teamMembers || []).join(", "),
+        data.transactionId,
+        fileUrl
+      ]);
+    }
+
+    // ===============================
     // 4️⃣ FOOD COUNT SHEET
     // ===============================
     var foodSheetName = "Food Count";
@@ -276,6 +390,14 @@ function doPost(e) {
 
     if (data.nonTechEvent && data.nonTechEvent !== "") {
       message += "📌 Additional Non-Technical Event: " + data.nonTechEvent + " (Free)\n";
+    }
+
+    if (data.optionalWorkshop && data.optionalWorkshop !== "") {
+       message += "📌 Additional Workshop (Tech Add-on): " + data.optionalWorkshop + " (₹50)\n";
+    }
+
+    if (data.type === "workshop") {
+       message += "📌 Workshop Fee: ₹" + (data.amount || "0") + "\n";
     }
 
     message +=
