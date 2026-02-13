@@ -38,6 +38,7 @@ const TECH_EVENT_TEAM_RULES: Record<
 
 const Register: React.FC = () => {
   const { type } = useParams<{ type: string }>();
+  const isNonTech = type === "non-tech" || type === "water-rocketry" || type === "trebuchet";
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<{
@@ -192,7 +193,11 @@ const Register: React.FC = () => {
         ...prev,
         eventName: "Electric Vehicle Racing",
       }));
-    } else if (!type?.startsWith("workshop") && type !== "tech" && type !== "non-tech") {
+    } else if (type === "water-rocketry") {
+      setFormData((prev) => ({ ...prev, eventName: "Water Rocketry" }));
+    } else if (type === "trebuchet") {
+      setFormData((prev) => ({ ...prev, eventName: "Trebuchet" }));
+    } else if (!type?.startsWith("workshop") && type !== "tech" && !isNonTech) {
       // Fallback for others if any
       setFormData((prev) => ({ ...prev, eventName: "" }));
     }
@@ -228,6 +233,8 @@ const Register: React.FC = () => {
       case "tech":
         return "Technical Event Registration";
       case "non-tech":
+      case "water-rocketry":
+      case "trebuchet":
         return "Non-Tech Registration";
       case "workshop":
         return "Workshop Registration";
@@ -241,13 +248,13 @@ const Register: React.FC = () => {
   // Get Options for Dropdown
   const getEventOptions = () => {
     if (type === "tech") return TECH_EVENTS;
-    if (type === "non-tech") return NON_TECH_EVENTS;
+    if (isNonTech) return NON_TECH_EVENTS;
     return [];
   };
 
   const eventOptions = getEventOptions();
   const showDropdown =
-    (type === "tech" || type === "non-tech") && eventOptions.length > 0;
+    (type === "tech" || isNonTech) && eventOptions.length > 0;
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -352,7 +359,7 @@ const Register: React.FC = () => {
     if (result.success === true) {
       setToast({ msg: "Registration successful!", type: "success" });
       setRegistrationSuccess(true);
-      const linkKey = type?.startsWith("workshop") ? "workshop" : (type || "tech");
+      const linkKey = type?.startsWith("workshop") ? "workshop" : (isNonTech ? "non-tech" : (type || "tech"));
       const link = whatsappLinksByType[linkKey];
       setWhatsappLink(link);
 
@@ -446,7 +453,7 @@ const Register: React.FC = () => {
               <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
                 {type === "tech"
                   ? "Technical Event Name"
-                  : type === "non-tech"
+                  : isNonTech
                     ? "Non-Technical Event Name"
                     : "Workshop Topic"}{" "}
                 <span className="text-red-500">*</span>
@@ -468,7 +475,7 @@ const Register: React.FC = () => {
                         {e.title}
                       </option>
                     ))}
-                  {type === "non-tech" &&
+                  {isNonTech &&
                     NON_TECH_EVENTS.map((e) => (
                       <option key={e.id} value={e.title} className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
                         {e.title}
