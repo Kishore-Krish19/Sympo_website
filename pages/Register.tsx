@@ -350,10 +350,13 @@ const Register: React.FC = () => {
     }
 
     setLoading(true);
-    const result = await submitRegistration(type || "tech", {
-      ...formData,
-      eventType,
-    });
+    const result = await submitRegistration(
+      isNonTech ? "non-tech" : type || "tech", // ✅ Ensure "non-tech" is passed for all non-tech events
+      {
+        ...formData,
+        eventType,
+      }
+    );
     setLoading(false);
 
     if (result.success === true) {
