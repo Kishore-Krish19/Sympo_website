@@ -119,7 +119,7 @@ export const WORKSHOP_CONFIG = {
     registerPath: "/register/workshop2",
   },
   "3": {
-    topic: "ECU (ENGINE CONTROL UNIT)",
+    topic: "ECU (ELECTRONIC CONTROL UNIT)",
     price: "300",
     headingColor: "text-purple-400",
     iconColor: "text-purple-400",
@@ -167,7 +167,7 @@ export const WORKSHOP_DESCRIPTIONS = {
   },
 
   "3": {
-    title: "ECU (Engine Control Unit)",
+    title: "ECU (Electronic Control Unit)",
     description: [
       "Automobile Electronics & Engine Management Systems",
       "We provide clear and practical knowledge on modern automobile systems, including Engine Control Modules (ECM), sensors and actuators, and their real-time working principles. Our content also covers DEF (Diesel Exhaust Fluid) emission systems, car tuning and ECU optimization, and the working of automobile meters and damping mechanisms.",
