@@ -153,12 +153,12 @@ body {
   --border-ev: #22c55e;
   --shadow-ev: rgba(74, 222, 128, 0.3);
 
-  /* --logo-dark: invert(1); */
+  --logo-dark: invert(1);
 }
 
-/* .logo{
+.logo{
   filter:var(--logo-dark);
-} */
+}
 
 body {
   display: flex;

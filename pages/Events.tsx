@@ -14,10 +14,17 @@ const Piston = ({ className }: { className?: string }) => (
       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
     />
     <motion.line
-      x1="12" y1="9" x2="12" y2="21"
-      animate={{ y1: [9, 17, 9], y2: [21, 29, 21] }}
+      x1="12"
+      y1="9"
+      x2="12"
+      y2="21"
+      animate={{
+        attrY1: [9, 17, 9],
+        attrY2: [21, 29, 21]
+      }}
       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
     />
+
   </svg>
 );
 

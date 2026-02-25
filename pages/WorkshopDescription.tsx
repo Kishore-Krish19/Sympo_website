@@ -20,24 +20,24 @@ const WorkshopDescription: React.FC = () => {
   return (
     <div className="min-h-screen pt-24 px-4 container mx-auto max-w-3xl pb-20">
       {/* TITLE */}
-      <h1 className="text-4xl md:text-5xl font-mech text-white mb-8 uppercase">
+      <h1 className="text-4xl md:text-5xl font-mech text-[var(--text-primary)] mb-8 uppercase">
         {workshop.title}
       </h1>
 
       {/* DESCRIPTION CARD */}
-      <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-lg">
-        <h2 className="text-xl font-mech text-white mb-6 uppercase">
+      <div className="bg-[var(--bg-card)] border border-[var(--border-nontech)] p-6 md:p-8 rounded-lg">
+        <h2 className="text-xl font-mech text-[var(--text-primary)] mb-6 uppercase">
           Workshop Description
         </h2>
 
-        <ul className="space-y-2">
+        <ul className="space-y-2 text-[var(--text-secondary)]">
           {workshop.description.map((point, index) => {
             /* SECTION HEADINGS */
             if (point.endsWith(":")) {
               return (
                 <li key={index} className="list-none mt-6">
-                  <div className="h-px w-full bg-white/10 mb-3" />
-                  <span className="text-white font-mech uppercase tracking-wider">
+                  <div className="h-px w-full bg-[var(--border-nontech)] mb-3" />
+                  <span className="text-[var(--text-primary)] font-mech uppercase tracking-wider">
                     {point}
                   </span>
                 </li>
@@ -52,7 +52,7 @@ const WorkshopDescription: React.FC = () => {
               if (content.includes("http")) {
                 const [label, url] = content.split("http");
                 return (
-                  <li key={index} className="ml-6 list-disc text-gray-400">
+                  <li key={index} className="ml-6 list-disc text-[var(--text-secondary)]">
                     {label}
                     <a
                       href={`http${url}`}
@@ -67,7 +67,7 @@ const WorkshopDescription: React.FC = () => {
               }
 
               return (
-                <li key={index} className="ml-6 list-disc text-gray-400">
+                <li key={index} className="ml-6 list-disc text-[var(--text-secondary)]">
                   {content}
                 </li>
               );
@@ -75,7 +75,7 @@ const WorkshopDescription: React.FC = () => {
 
             /* NORMAL TEXT */
             return (
-              <li key={index} className="ml-4 list-disc text-gray-400">
+              <li key={index} className="ml-4 list-disc text-[var(--text-secondary)]">
                 {point}
               </li>
             );
@@ -89,8 +89,8 @@ const WorkshopDescription: React.FC = () => {
         <Link to={`/workshop/${id}`}>
           <button
             className="px-6 py-3 text-sm font-mech uppercase
-            border border-white/30 text-white
-            hover:bg-white hover:text-black transition rounded"
+            border border-[var(--border-nontech)] text-[var(--text-primary)]
+            hover:bg-[var(--bg-card)] hover:text-[var(--text-primary)] transition rounded"
           >
             Back
           </button>
@@ -101,7 +101,7 @@ const WorkshopDescription: React.FC = () => {
           <button
             className={`px-6 py-3 text-sm font-mech uppercase
             ${config.headingColor.replace("text", "bg")}
-            text-black hover:bg-white transition rounded shadow`}
+            text-[var(--text-primary)] hover:bg-[var(--bg-card)] hover:text-[var(--text-primary)] transition rounded shadow`}
           >
             Register
           </button>

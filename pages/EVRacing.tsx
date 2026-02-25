@@ -17,7 +17,7 @@ const EVRacing: React.FC = () => {
 
   return (
     <div className="w-full px-4 pt-20 md:pt-24">
-      <div className="relative rounded-xl p-4 md:p-8 bg-black overflow-hidden sm:overflow-hidden overflow-visible">
+      <div className="relative rounded-xl p-4 md:p-8 bg-[var(--bg-card)] overflow-hidden sm:overflow-hidden overflow-visible">
         
         {/* GREEN NEON BACKGROUND */}
         <motion.div
@@ -105,7 +105,7 @@ const EVRacing: React.FC = () => {
               {/* TITLE */}
               <motion.h1
                 animate={{
-                  color: ["#e5e7eb", "#ffffff", "#e5e7eb"],
+                  color: ["var(--text-primary)", "var(--text-primary)", "var(--text-primary)"],
                   textShadow: [
                     "0 0 12px rgba(34,197,94,0.4)",
                     "0 0 30px rgba(34,197,94,1)",
@@ -118,7 +118,7 @@ const EVRacing: React.FC = () => {
                   ease: "easeInOut",
                 }}
                 className="
-                  relative z-10
+                  relative z-10 text-[var(--text-primary)] 
                   text-3xl md:text-7xl
                   font-mech italic
                   uppercase tracking-tighter
@@ -181,7 +181,7 @@ const EVRacing: React.FC = () => {
               <motion.div
                 key={i}
                 whileHover={{ y: -5 }}
-                className="bg-white/5 border border-white/10 p-6 rounded hover:border-green-400 transition-colors"
+                className="bg-[var(--bg-card)] border border-[var(--border-nontech)] p-6 rounded hover:border-green-400 transition-colors"
               >
                 <div className="flex items-center justify-between mb-4">
                   <item.icon className="w-10 h-10 text-green-400" />
@@ -194,11 +194,11 @@ const EVRacing: React.FC = () => {
                   )}
                 </div>
 
-                <h3 className="text-xl font-mech text-white mb-2">
+                <h3 className="text-xl font-mech text-[var(--text-primary)] mb-2">
                   {item.title}
                 </h3>
 
-                <p className="text-gray-400 text-sm">
+                <p className="text-[var(--text-secondary)] text-sm">
                   {item.desc}
                 </p>
               </motion.div>

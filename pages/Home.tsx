@@ -109,7 +109,6 @@ const PistonCluster = () => (
   </div>
 );
 
-
 /* =======================
    HOME PAGE
 ======================= */
@@ -125,10 +124,6 @@ const Home: React.FC = () => {
     }
   }, [theme]);
 
-  // Toggle removed as it is in Navbar now, but keeping state for local logic if needed, 
-  // though strictly speaking we should probably depend on a global context or just the class.
-  // Since the Navbar handles the toggle, this component just reflects the current theme via CSS variables.
-
   return (
     <div className="relative min-h-screen w-full bg-[var(--bg-primary)] flex flex-col items-center justify-center pt-20 md:pt-24 transition-colors duration-300">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
@@ -137,7 +132,7 @@ const Home: React.FC = () => {
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full blur-[100px]"
           style={{ backgroundColor: 'var(--accent-orange)', opacity: 'var(--blob-opacity)' }} />
 
-        <Settings className="absolute top-80 left-10 w-64 h-64 text-[var(--text-secondary)] opacity-10 animate-spin-slow" />
+        {/* <Settings className="absolute top-80 left-10 w-64 h-64 text-[var(--text-secondary)] opacity-10 animate-spin-slow" /> */}
         {/* <Settings className="absolute bottom-10 right-10 w-64 h-64 text-[var(--text-secondary)] opacity-10 animate-spin-slow" /> */}
         <Settings
           className="absolute bottom-20 right-10 w-96 h-96 text-[var(--text-secondary)] opacity-10 animate-spin-slow"
@@ -166,10 +161,9 @@ const Home: React.FC = () => {
             <img
               src={collegeLogo}
               alt="College Logo"
-              className="w-full h-full logo object-contain brightness-100 contrast-100 dark:brightness-100 dark:contrast-100"
+              className="w-full h-full logo object-contain"
             />
           </div>
-
           <div className="order-2 md:order-3 w-36 h-36 md:w-44 md:h-44 flex items-center justify-center shrink-0">
             <img
               src={deptLogo}
@@ -212,7 +206,6 @@ const Home: React.FC = () => {
         >
           {/* 🔥 PISTON CLUSTER
           <PistonCluster /> */}
-
 
           <h1 className="text-4xl sm:text-8xl md:text-12xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-500 via-yellow-600 to-yellow-800 drop-shadow-lg mb-2">
             EFFICACY'26

@@ -8,7 +8,10 @@ export const submitRegistration = async (
 ) => {
   let sheetName = "";
 
-  switch (category) {
+  // Normalize category (e.g. workshop1 -> workshop)
+  const normalizedCategory = category?.startsWith("workshop") ? "workshop" : category;
+
+  switch (normalizedCategory) {
     case "tech":
       sheetName = "Tech_Registrations";
       break;
@@ -25,7 +28,7 @@ export const submitRegistration = async (
 
   const payload = {
     sheetName,
-    eventType: data.type,
+    type: normalizedCategory, // explicit type for backend logic
     ...data,
     submittedAt: new Date().toISOString()
   };

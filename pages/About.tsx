@@ -13,10 +13,17 @@ const Piston = ({ className }: { className?: string }) => (
       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
     />
     <motion.line
-      x1="12" y1="9" x2="12" y2="21"
-      animate={{ y1: [9, 17, 9], y2: [21, 29, 21] }}
+      x1="12"
+      y1="9"
+      x2="12"
+      y2="21"
+      animate={{
+        attrY1: [9, 17, 9],
+        attrY2: [21, 29, 21]
+      }}
       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
     />
+
   </svg>
 );
 
@@ -60,8 +67,8 @@ const About: React.FC = () => {
               <li>Malpractice leads to immediate disqualification.</li>
               <li>Organizers reserve the right to modify rules.</li>
               <li>Judges’ decisions are final.</li>
-              <li>Formal dress code is encouraged.</li>
-              <li>Participate 30 mins before the event.</li>
+              <li>Wearing formal clothes is compulsory.</li>
+              <li>Participants must reach the venue by 9:00 AM.</li>
             </ul>
           </section>
 
