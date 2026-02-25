@@ -807,7 +807,7 @@ const Register: React.FC = () => {
                   (formData.eventName.toLowerCase().includes("drone") ||
                     formData.eventName.toLowerCase().includes("uav"))
                   ? "₹399 per participant"
-                  : "₹299 per participant"}
+                  : "₹249 per participant"}
             </p>
           </div>
 
