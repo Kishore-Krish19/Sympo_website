@@ -15,10 +15,10 @@ export const BANK_DETAILS = {
 };
 
 export const TECH_EVENTS: EventDetails[] = [
-  { id: 'pp', title: 'Paper Presentation', description: 'Showcase your innovative ideas and research.', icon: PenTool, path: '/register/tech', category: 'tech', entryFee: '₹ 300 / person' },
-  { id: 'cad', title: '3D CAD Modeling (Design Challenge)', description: 'Test your modeling skills in Fusion 360/SolidWorks.', icon: Settings, path: '/register/tech', category: 'tech', entryFee: '₹ 300 / person' },
-  { id: 'quiz', title: 'Mech Core Quiz', description: 'Battle of brains on mechanical concepts.', icon: Brain, path: '/register/tech', category: 'tech', entryFee: '₹ 300 / person' },
-  { id: 'expo', title: 'Legend in Lathe (Machining)', description: 'Display your final year or hobby projects.', icon: Wrench, path: '/register/tech', category: 'tech', entryFee: '₹ 300 / person' },
+  { id: 'pp', title: 'Paper Presentation', description: 'Showcase your innovative ideas and research.', icon: PenTool, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
+  { id: 'cad', title: '3D CAD Modeling (Design Challenge)', description: 'Test your modeling skills in Fusion 360/SolidWorks.', icon: Settings, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
+  { id: 'quiz', title: 'Mech Core Quiz', description: 'Battle of brains on mechanical concepts.', icon: Brain, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
+  { id: 'expo', title: 'Legend in Lathe (Machining)', description: 'Display your final year or hobby projects.', icon: Wrench, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
 ];
 
 export const NON_TECH_EVENTS: EventDetails[] = [
@@ -29,7 +29,7 @@ export const NON_TECH_EVENTS: EventDetails[] = [
     icon: Camera,
     path: '/register/non-tech',
     category: 'non-tech',
-    entryFee: '₹ 300 / person',
+    entryFee: '₹ 249 / person',
   },
   {
     id: 'meme',
@@ -38,7 +38,7 @@ export const NON_TECH_EVENTS: EventDetails[] = [
     icon: Video,
     path: '/register/non-tech',
     category: 'non-tech',
-    entryFee: '₹ 300 / person',
+    entryFee: '₹ 249 / person',
   },
   {
     id: 'water_rocketry',
@@ -47,7 +47,7 @@ export const NON_TECH_EVENTS: EventDetails[] = [
     icon: Rocket,
     path: '/register/water-rocketry',
     category: 'non-tech',
-    entryFee: '₹ 300 / team',
+    entryFee: '₹ 249 / team',
   },
   {
     id: 'trebuchet',
@@ -56,7 +56,7 @@ export const NON_TECH_EVENTS: EventDetails[] = [
     icon: Target,
     path: '/register/trebuchet',
     category: 'non-tech',
-    entryFee: '₹ 300 / team',
+    entryFee: '₹ 249 / team',
   },
 ];
 
@@ -74,7 +74,7 @@ export const WORKSHOP_INFO: WorkshopDetails = {
     "Safety, Regulations & Ethics",
     "Career and Future Trends in Drones"
   ],
-  entryFee: "500 / person"
+  entryFee: "399 / person"
 };
 
 export const COORDINATORS: Coordinator[] = [
@@ -100,7 +100,7 @@ export const REGISTRATION_CLOSED_TEXT = 'REGISTRATION CLOSED';
 export const WORKSHOP_CONFIG = {
   "1": {
     topic: "DRONE & UAV ( UNMANNED AERIAL VEHICLE )",
-    price: "500",
+    price: "399",
     headingColor: "text-orange-400",
     iconColor: "text-orange-400",
     border: "border-orange-500",
@@ -110,7 +110,7 @@ export const WORKSHOP_CONFIG = {
   },
   "2": {
     topic: "GAME DEVELOPMENT",
-    price: "300",
+    price: "299",
     headingColor: "text-blue-400",
     iconColor: "text-blue-400",
     border: "border-blue-500",
@@ -120,7 +120,7 @@ export const WORKSHOP_CONFIG = {
   },
   "3": {
     topic: "ECU (ENGINE CONTROL UNIT)",
-    price: "300",
+    price: "299",
     headingColor: "text-purple-400",
     iconColor: "text-purple-400",
     border: "border-purple-500",

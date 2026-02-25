@@ -22,9 +22,9 @@ const Piston = ({ className }: { className?: string }) => (
 );
 
 const categories = [
-  { title: 'Tech Events', path: '/tech-events', icon: Cpu, colorVar: 'var(--color-tech)', borderVar: 'var(--border-tech)', iconColor: 'text-[var(--color-tech)]', borderBase: 'border-[var(--border-tech)]', fee: '₹ 300 / person', note: 'One Non-Tech event free with Tech registration' },
-  { title: 'Non-Tech Events', path: '/non-tech-events', icon: Camera, colorVar: 'var(--color-nontech)', borderVar: 'var(--border-nontech)', iconColor: 'text-[var(--color-nontech)]', borderBase: 'border-[var(--border-nontech)]', fee: '₹ 300 / person' },
-  { title: 'Workshop', path: '/workshop', icon: Settings, colorVar: 'var(--color-workshop)', borderVar: 'var(--border-workshop)', iconColor: 'text-[var(--color-workshop)]', borderBase: 'border-[var(--border-workshop)]', fee: 'Starting from ₹ 300 / person' },
+  { title: 'Tech Events', path: '/tech-events', icon: Cpu, colorVar: 'var(--color-tech)', borderVar: 'var(--border-tech)', iconColor: 'text-[var(--color-tech)]', borderBase: 'border-[var(--border-tech)]', fee: '₹ 249 / person', note: 'One Non-Tech event free with Tech registration' },
+  { title: 'Non-Tech Events', path: '/non-tech-events', icon: Camera, colorVar: 'var(--color-nontech)', borderVar: 'var(--border-nontech)', iconColor: 'text-[var(--color-nontech)]', borderBase: 'border-[var(--border-nontech)]', fee: '₹ 249 / person' },
+  { title: 'Workshop', path: '/workshop', icon: Settings, colorVar: 'var(--color-workshop)', borderVar: 'var(--border-workshop)', iconColor: 'text-[var(--color-workshop)]', borderBase: 'border-[var(--border-workshop)]', fee: 'Starting from ₹ 249 / person' },
   { title: 'EV Racing', path: '/ev-racing', icon: Zap, colorVar: 'var(--color-ev)', borderVar: 'var(--border-ev)', iconColor: 'text-[var(--color-ev)]', borderBase: 'border-[var(--border-ev)]', fee: '₹ 4000 for 5 members ' },
 ];
 

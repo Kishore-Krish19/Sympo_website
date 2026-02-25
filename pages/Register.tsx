@@ -136,18 +136,18 @@ const Register: React.FC = () => {
     const size = Number(formData.teamSize) || 1;
 
     if (type === "ev") {
-      calculatedAmount = size <= 5 ? 4000 : 4000 + (size - 5) * 300;
+      calculatedAmount = size <= 5 ? 4000 : 4000 + (size - 5) * 249;
     } else if (type?.startsWith("workshop")) {
       const workshopId = type.replace("workshop", "");
       const prices: Record<string, number> = {
-        "1": 300,
+        "1": 249,
         "2": 200,
         "3": 200,
       };
-      calculatedAmount = prices[workshopId] ?? 300;
+      calculatedAmount = prices[workshopId] ?? 249;
     } else {
       // ✅ TECH / NON-TECH BASE
-      calculatedAmount = size * 300;
+      calculatedAmount = size * 249;
 
       // ✅ ADD ₹50 IF OPTIONAL WORKSHOP SELECTED
       if (formData.optionalWorkshop) {
