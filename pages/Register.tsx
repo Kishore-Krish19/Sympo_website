@@ -800,7 +800,7 @@ const Register: React.FC = () => {
               readOnly
               className="bg-[var(--bg-surface)] text-[var(--accent-orange)] font-bold cursor-not-allowed"
             />
-            <p className="text-xs text-[var(--text-muted)] mt-1">
+            {/* <p className="text-xs text-[var(--text-muted)] mt-1">
               {type === "ev"
                 ? "EV Racing: ₹4000 for 5 members (Minimum)"
                 : type?.startsWith("workshop") &&
@@ -808,7 +808,7 @@ const Register: React.FC = () => {
                     formData.eventName.toLowerCase().includes("uav"))
                   ? "₹399 per participant"
                   : "₹249 per participant"}
-            </p>
+            </p> */}
           </div>
 
           {/* Payment Details Section */}
