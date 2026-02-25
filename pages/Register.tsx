@@ -151,35 +151,22 @@ const Register: React.FC = () => {
     if (type === "ev") {
       calculatedAmount = size <= 5 ? 4000 : 4000 + (size - 5) * 249;
     } else if (type?.startsWith("workshop")) {
-<<<<<<< HEAD
-      const workshopId = type.replace("workshop", "");
-      const prices: Record<string, number> = {
-        "1": 249,
-        "2": 200,
-        "3": 200,
-      };
-      calculatedAmount = prices[workshopId] ?? 249;
-    } else {
-      // ✅ TECH / NON-TECH BASE
-      calculatedAmount = size * 249;
-=======
       // 🏷️ WORKSHOP PRICING
-      // Drone (1) -> 500
-      // Game Dev (2) / ECU (3) -> 300
+      // Drone (1) -> 399
+      // Game Dev (2) / ECU (3) -> 299
       if (
         formData.eventName.toLowerCase().includes("drone") ||
         formData.eventName.toLowerCase().includes("uav")
       ) {
-        calculatedAmount = size * 500;
+        calculatedAmount = size * 399;
       } else {
         // Game Dev / ECU -> 300
-        calculatedAmount = size * 300;
+        calculatedAmount = size * 299;
       }
     } else if (type === "tech") {
       // ✅ TECH CALCULATION
       // Base: 300 per person
-      calculatedAmount = size * 300;
->>>>>>> f70ffefbbc4ea8ae05f4519ee6a3af7bb0be0e3e
+      calculatedAmount = size * 249;
 
       // Rule: Team Size 1 can add workshop (flat +50)
       if (size === 1 && formData.optionalWorkshop) {
@@ -188,7 +175,7 @@ const Register: React.FC = () => {
       // Rule: Team Size > 1 gets Free non-tech (no extra cost)
     } else {
       // Non-Tech or others
-      calculatedAmount = size * 300;
+      calculatedAmount = size * 249;
     }
 
     setFormData((prev) =>
@@ -500,13 +487,13 @@ const Register: React.FC = () => {
                   {type?.startsWith("workshop") && (
                     <>
                       <option value="DRONE & UAV ( UNMANNED AERIAL VEHICLE )" className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
-                        DRONE & UAV (₹500)
+                        DRONE & UAV (₹399)
                       </option>
                       <option value="Game Development" className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
-                        Game Development (₹300)
+                        Game Development (₹299)
                       </option>
                       <option value="ECU (ENGINE CONTROL UNIT)" className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
-                        ECU (₹300)
+                        ECU (₹299)
                       </option>
                     </>
                   )}
@@ -610,7 +597,7 @@ const Register: React.FC = () => {
                   <option value="" className="bg-[var(--bg-secondary)] text-[var(--text-muted)]">
                     {formData.teamSize === 1
                       ? "Not allowed for Solo Participants"
-                      : isWorkshopOnlyTech
+                      : isWorkshopOnlyTech  
                         ? "Not allowed for this event"
                         : "Select Non-Tech Event (Free)"}
                   </option>
@@ -819,8 +806,8 @@ const Register: React.FC = () => {
                 : type?.startsWith("workshop") &&
                   (formData.eventName.toLowerCase().includes("drone") ||
                     formData.eventName.toLowerCase().includes("uav"))
-                  ? "₹500 per participant"
-                  : "₹300 per participant"}
+                  ? "₹399 per participant"
+                  : "₹299 per participant"}
             </p>
           </div>
 

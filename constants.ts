@@ -119,13 +119,8 @@ export const WORKSHOP_CONFIG = {
     registerPath: "/register/workshop2",
   },
   "3": {
-<<<<<<< HEAD
-    topic: "ECU (ENGINE CONTROL UNIT)",
-    price: "299",
-=======
     topic: "ECU (ELECTRONIC CONTROL UNIT)",
-    price: "300",
->>>>>>> f70ffefbbc4ea8ae05f4519ee6a3af7bb0be0e3e
+    price: "299",
     headingColor: "text-purple-400",
     iconColor: "text-purple-400",
     border: "border-purple-500",
