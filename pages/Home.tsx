@@ -9,7 +9,7 @@ import About from "./About";
 
 const Countdown = () => {
   const calculateTimeLeft = () => {
-    const targetDate = new Date("2026-03-01T23:59:59");
+    const targetDate = new Date("2026-03-04T09:59:59");
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
 
@@ -295,7 +295,7 @@ const Home: React.FC = () => {
               </motion.button>
             </Link>
 
-            <a href="/Efficacy26_Poster.pdf" download="Efficacy26_Poster.pdf">
+            <a href="/OFFER_POSTER.pdf" download="OFFER_POSTER.pdf">
               <motion.button
                 whileHover="hover"
                 initial="rest"
@@ -317,7 +317,7 @@ const Home: React.FC = () => {
       shadow-[0_0_14px_rgba(0,120,255,0.35)]
     "
               >
-                <span className="leading-none">Download Poster</span>
+                <span className="leading-none">Offer Poster</span>
 
                 <motion.span
                   variants={{
@@ -355,7 +355,7 @@ const Home: React.FC = () => {
                     <Calendar className="w-5 h-5 text-[var(--accent-orange)]" />
                     <span className="text-[var(--text-secondary)] font-mech tracking-wide">ONLINE REGISTRATION ENDS</span>
                   </div>
-                  <p className="text-2xl text-[var(--text-primary)] font-mech">01 / 03 / 26</p>
+                  <p className="text-2xl text-[var(--text-primary)] font-mech">02 / 03 / 26</p>
                 </div>
 
                 <div className="w-1/2 h-px bg-[var(--border-color)]" />

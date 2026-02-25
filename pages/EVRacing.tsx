@@ -9,7 +9,7 @@ import {
   Trophy,
   Bike,
 } from "lucide-react";
-import rulesPdf from "../assets/CHRONX2026-RULEBOOK.pdf";
+import rulesPdf from "../assets/EV_Racing_Rules.pdf";
 
 const EVRacing: React.FC = () => {
   const titleRef = React.useRef<HTMLDivElement | null>(null);
