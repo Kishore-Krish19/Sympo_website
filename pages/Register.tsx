@@ -21,7 +21,7 @@ import {
 // 📲 WhatsApp Group Links (by Event Type)
 // ===============================
 const whatsappLinksByType: Record<string, string> = {
-  tech: "https://chat.whatsapp.com/B6QRLt0JFJqEyg76ScTXY6?mode=gi_t",
+  tech: "https://chat.whatsapp.com/DsASinC6NV76MC88bOMfP7?mode=gi_t",
   "non-tech": "https://chat.whatsapp.com/HKLWX6wkgzuI8ysfjXZxqC?mode=gi_t",
   workshop: "https://chat.whatsapp.com/JjMrbwpieT1CjqyA77yyhU?mode=gi_t",
   ev: "https://chat.whatsapp.com/EIOBzWU7fXV0KCBeYfoVP2?mode=gi_t"
