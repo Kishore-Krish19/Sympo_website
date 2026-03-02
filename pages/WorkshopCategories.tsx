@@ -74,7 +74,7 @@ const iconVariants = {
    WORKSHOP DATA
 ======================= */
 const workshops = [
-  {
+  /* {
     title: "DRONE & UAV",
     path: "/workshop/1",
     icon: Drone,
@@ -83,7 +83,7 @@ const workshops = [
     border: "border-orange-500",
     fee: "₹ 399 / person",
     resource: "Industry Technician",
-  },
+  }, */
   {
     title: "GAME DEVELOPMENT",
     path: "/workshop/2",

@@ -355,7 +355,8 @@ const Home: React.FC = () => {
                     <Calendar className="w-5 h-5 text-[var(--accent-orange)]" />
                     <span className="text-[var(--text-secondary)] font-mech tracking-wide">ONLINE REGISTRATION ENDS</span>
                   </div>
-                  <p className="text-2xl text-[var(--text-primary)] font-mech">02 / 03 / 26</p>
+                  <p className="text-2xl text-[var(--text-primary)] font-mech">03 / 03 / 26</p>
+                  <p className="text-sm text-[var(--accent-blue)] font-mech">close at 09:59 PM</p>
                 </div>
 
                 <div className="w-1/2 h-px bg-[var(--border-color)]" />

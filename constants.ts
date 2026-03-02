@@ -91,14 +91,14 @@ export const nonTechEventOptions = [
   { id: 4, title: "Trebuchet" },
 ];
 // 🔒 Common registration closing date for all events
-// Closes on 1st March at 11:59 PM
-export const REGISTRATION_CLOSE_DATE = new Date(2026, 2, 1, 23, 59, 0);
+// Closes on 3rd March at 9:59 PM
+export const REGISTRATION_CLOSE_DATE = new Date(2026, 2, 3, 21, 59, 0);
 
 // 🔒 Common closed text
 export const REGISTRATION_CLOSED_TEXT = 'REGISTRATION CLOSED';
 
 export const WORKSHOP_CONFIG = {
-  "1": {
+  /* "1": {
     topic: "DRONE & UAV ( UNMANNED AERIAL VEHICLE )",
     price: "399",
     headingColor: "text-orange-400",
@@ -107,7 +107,7 @@ export const WORKSHOP_CONFIG = {
     shadow: "shadow-[0_0_70px_rgba(251,146,60,0.18)]",
     glow: "bg-orange-0",
     registerPath: "/register/workshop1",
-  },
+  }, */
   "2": {
     topic: "GAME DEVELOPMENT",
     price: "299",

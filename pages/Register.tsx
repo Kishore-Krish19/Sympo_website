@@ -12,9 +12,10 @@ import QRCode from "react-qr-code";
 import {
   TECH_EVENTS,
   NON_TECH_EVENTS,
-  WORKSHOP_INFO,
+  /* WORKSHOP_INFO, */
   BANK_DETAILS,
   nonTechEventOptions,
+  REGISTRATION_CLOSE_DATE,
 } from "../constants";
 
 // ===============================
@@ -24,7 +25,7 @@ const whatsappLinksByType: Record<string, string> = {
   tech: "https://chat.whatsapp.com/DsASinC6NV76MC88bOMfP7?mode=gi_t",
   "non-tech": "https://chat.whatsapp.com/HKLWX6wkgzuI8ysfjXZxqC?mode=gi_t",
   workshop: "https://chat.whatsapp.com/JjMrbwpieT1CjqyA77yyhU?mode=gi_t",
-  ev: "https://chat.whatsapp.com/EIOBzWU7fXV0KCBeYfoVP2?mode=gi_t"
+  // ev: "https://chat.whatsapp.com/EIOBzWU7fXV0KCBeYfoVP2?mode=gi_t"
 };
 const TECH_EVENT_TEAM_RULES: Record<
   string,
@@ -73,7 +74,7 @@ const Register: React.FC = () => {
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [whatsappLink, setWhatsappLink] = useState("");
   const isWorkshop = type?.startsWith("workshop");
-  const isEVRacing = type === "ev";
+  const isEVRacing = false; // type === "ev";
   useEffect(() => {
     if (toast) {
       const t = setTimeout(() => setToast(null), 1500);
@@ -91,30 +92,30 @@ const Register: React.FC = () => {
       return;
     }
 
-    if (isEVRacing) {
-      setFormData((prev) => {
-        if (prev.teamSize > 6) {
-          return {
-            ...prev,
-            teamSize: 6,
-            teamMembers: prev.teamMembers.slice(0, 5),
-          };
-        }
-        if (prev.teamSize < 5) {
-          // Ensure at least 5 members (Leader + 4 others)
-          const currentMembers = [...prev.teamMembers];
-          const needed = 4 - currentMembers.length;
-          const additional = Array(Math.max(0, needed)).fill("");
+    // if (isEVRacing) {
+    //   setFormData((prev) => {
+    //     if (prev.teamSize > 6) {
+    //       return {
+    //         ...prev,
+    //         teamSize: 6,
+    //         teamMembers: prev.teamMembers.slice(0, 5),
+    //       };
+    //     }
+    //     if (prev.teamSize < 5) {
+    //       // Ensure at least 5 members (Leader + 4 others)
+    //       const currentMembers = [...prev.teamMembers];
+    //       const needed = 4 - currentMembers.length;
+    //       const additional = Array(Math.max(0, needed)).fill("");
 
-          return {
-            ...prev,
-            teamSize: 5,
-            teamMembers: [...currentMembers, ...additional].slice(0, 4), // Should be exactly 4 additional members for size 5
-          };
-        }
-        return prev;
-      });
-    }
+    //       return {
+    //         ...prev,
+    //         teamSize: 5,
+    //         teamMembers: [...currentMembers, ...additional].slice(0, 4), // Should be exactly 4 additional members for size 5
+    //       };
+    //     }
+    //     return prev;
+    //   });
+    // }
   }, [isWorkshop, isEVRacing]);
   useEffect(() => {
     if (type !== "tech" || !formData.eventName) return;
@@ -148,15 +149,15 @@ const Register: React.FC = () => {
     let calculatedAmount = 0;
     const size = Number(formData.teamSize) || 1;
 
-    if (type === "ev") {
+    /* if (type === "ev") {
       calculatedAmount = size <= 5 ? 4000 : 4000 + (size - 5) * 249;
-    } else if (type?.startsWith("workshop")) {
+    } else */ if (type?.startsWith("workshop")) {
       // 🏷️ WORKSHOP PRICING
       // Drone (1) -> 399
       // Game Dev (2) / ECU (3) -> 299
       if (
-        formData.eventName.toLowerCase().includes("drone") ||
-        formData.eventName.toLowerCase().includes("uav")
+        false /* formData.eventName.toLowerCase().includes("drone") ||
+        formData.eventName.toLowerCase().includes("uav") */
       ) {
         calculatedAmount = size * 399;
       } else {
@@ -188,12 +189,12 @@ const Register: React.FC = () => {
   // Handle Default Event Names for single-event categories
   useEffect(() => {
 
-    if (type === "ev") {
+    /* if (type === "ev") {
       setFormData((prev) => ({
         ...prev,
         eventName: "Electric Vehicle Racing",
       }));
-    } else if (type === "water-rocketry") {
+    } else */ if (type === "water-rocketry") {
       setFormData((prev) => ({ ...prev, eventName: "Water Rocketry" }));
     } else if (type === "trebuchet") {
       setFormData((prev) => ({ ...prev, eventName: "Trebuchet" }));
@@ -238,8 +239,8 @@ const Register: React.FC = () => {
         return "Non-Tech Registration";
       case "workshop":
         return "Workshop Registration";
-      case "ev":
-        return "EV Racing Registration";
+      // case "ev":
+      //   return "EV Racing Registration";
       default:
         return "Registration";
     }
@@ -317,8 +318,8 @@ const Register: React.FC = () => {
     e.preventDefault();
     const eventType =
       type === "tech" ||
-        type === "workshop" ||
-        type === "ev"
+        type === "workshop" 
+        /* || type === "ev" */
         ? "Technical"
         : "Non-Technical";
 
@@ -401,6 +402,26 @@ const Register: React.FC = () => {
       }));
     }
   }, [isWorkshopOnlyTech]);
+
+  // 🔒 GLOBAL REGISTRATION CLOSE CHECK
+  if (new Date() > REGISTRATION_CLOSE_DATE) {
+    return (
+      <div className="min-h-screen pt-32 pb-20 px-4 container mx-auto text-center flex flex-col items-center justify-center">
+        <h1 className="text-4xl md:text-6xl font-mech text-[var(--accent-orange)] mb-6 uppercase tracking-widest drop-shadow-[0_0_15px_rgba(234,88,12,0.5)]">
+          Registration Closed
+        </h1>
+        <p className="text-xl md:text-2xl text-[var(--text-muted)] font-mech tracking-wide mb-12">
+          Thank you for your interest. Registration for EFFICACY'26 has officially closed.
+        </p>
+        <button
+          onClick={() => navigate('/')}
+          className="px-8 py-4 bg-[var(--accent-blue)] text-white font-mech tracking-widest rounded-lg hover:bg-[var(--accent-orange)] transition-all duration-300 shadow-lg text-lg uppercase"
+        >
+          Back to Home
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen pt-24 pb-20 px-4 container mx-auto">
@@ -486,9 +507,9 @@ const Register: React.FC = () => {
                     ))}
                   {type?.startsWith("workshop") && (
                     <>
-                      <option value="DRONE & UAV ( UNMANNED AERIAL VEHICLE )" className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
+                      {/* <option value="DRONE & UAV ( UNMANNED AERIAL VEHICLE )" className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
                         DRONE & UAV (₹399)
-                      </option>
+                      </option> */}
                       <option value="Game Development" className="bg-[var(--bg-secondary)] text-[var(--text-primary)]">
                         Game Development (₹299)
                       </option>
@@ -528,7 +549,7 @@ const Register: React.FC = () => {
               readOnly
               className="bg-[var(--bg-surface)] text-[var(--text-muted)] cursor-not-allowed"
             />
-          ) : isEVRacing ? (
+          ) /* : isEVRacing ? (
             <Input
               type="number"
               name="teamSize"
@@ -538,7 +559,7 @@ const Register: React.FC = () => {
               min="5"
               required
             />
-          ) : (
+          ) */ : (
             <div className="mb-4 w-full relative">
               <label className="block text-[var(--accent-blue)] text-sm font-mech tracking-wide mb-2 uppercase">
                 Total Team Members <span className="text-red-500">*</span>
