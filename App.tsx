@@ -101,7 +101,7 @@ const App: React.FC = () => {
 
           {/* OTHER PAGES */}
           {/* <Route path="/shark-tank" element={<SharkTank />} /> */}
-          <Route path="/ev-racing" element={<EVRacing />} />
+          {/* <Route path="/ev-racing" element={<EVRacing />} /> */}
           <Route path="/register/:type" element={<Register />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
