@@ -9,7 +9,7 @@ import About from "./About";
 
 const Countdown = () => {
   const calculateTimeLeft = () => {
-    const targetDate = new Date("2026-03-04T09:59:59");
+    const targetDate = new Date("2026-03-03T09:59:59");
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
 
@@ -243,7 +243,7 @@ const Home: React.FC = () => {
       hover:bg-[var(--accent-blue)] hover:text-white transition-colors
     "
               >
-                <span className="leading-none">Register Now</span>
+                <span className="leading-none" disabled>Register Now</span>
 
                 <motion.span
                   variants={{
@@ -353,10 +353,10 @@ const Home: React.FC = () => {
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-1">
                     <Calendar className="w-5 h-5 text-[var(--accent-orange)]" />
-                    <span className="text-[var(--text-secondary)] font-mech tracking-wide">ONLINE REGISTRATION ENDS</span>
+                    <span className="text-[var(--text-secondary)] font-mech tracking-wide">ONLINE REGISTRATION ENDED</span>
                   </div>
                   <p className="text-2xl text-[var(--text-primary)] font-mech">03 / 03 / 26</p>
-                  <p className="text-sm text-[var(--accent-blue)] font-mech">close at 09:59 PM</p>
+                  <p className="text-sm text-[var(--accent-blue)] font-mech">closed at 09:59 PM</p>
                 </div>
 
                 <div className="w-1/2 h-px bg-[var(--border-color)]" />
@@ -377,7 +377,7 @@ const Home: React.FC = () => {
             {/* Countdown */}
             <div className="flex flex-col items-center mb-12">
               <h4 className="text-xl md:text-3xl font-black font-mech mb-4 tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-blue)] via-[var(--text-primary)] to-[var(--accent-blue)] drop-shadow-md animate-pulse">
-                COUNTDOWN BEGINS
+                COUNTDOWN ENDED
               </h4>
               <Countdown />
             </div>
