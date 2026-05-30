@@ -121,18 +121,6 @@ Entry fee: ₹ 249 / person or per team (as specified)
 
 ---
 
-## Bank Details
-
-To complete registration, make payment via the details below:
-
-- **Account Holder:** Anand S
-- **Bank Name:** State Bank of India
-- **Account Number:** 43568031557
-- **IFSC Code:** SBIN0000928
-- **UPI ID:** anand2386s@oksbi
-
----
-
 ## Local Development
 
 **Prerequisites:** Node.js
