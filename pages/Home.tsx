@@ -295,7 +295,7 @@ const Home: React.FC = () => {
               </motion.button>
             </Link>
 
-            <a href="/OFFER_POSTER.pdf" download="OFFER_POSTER.pdf">
+            <a href="/assets/Dept-logo.png" target="blank">
               <motion.button
                 whileHover="hover"
                 initial="rest"
