@@ -33,7 +33,7 @@ export const EVENT_DESCRIPTIONS: Record<
   quiz: {
   rules: [
     "Each team consist of  maximum 3 members",
-    "Questions will be based on mechanical engineering fundamentals",
+    "Questions will be based on Computer Science engineering fundamentals",
     "The quiz will be conducted in multiple rounds including MCQ, Rapid Fire, Visual, and Buzzer rounds",
     "Use of mobile phones, electronic devices, or any unfair means is strictly prohibited",
     "Participants must answer within the stipulated time limit for each round",

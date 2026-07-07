@@ -411,7 +411,7 @@ const Register: React.FC = () => {
           Registration Closed
         </h1>
         <p className="text-xl md:text-2xl text-[var(--text-muted)] font-mech tracking-wide mb-12">
-          Thank you for your interest. Registration for EFFICACY'26 has officially closed.
+          Thank you for your interest. Registration for Sympo'26 has officially closed.
         </p>
         <button
           onClick={() => navigate('/')}

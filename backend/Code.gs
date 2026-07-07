@@ -380,11 +380,11 @@ function doPost(e) {
         eventTypeLabel = "Event";
     }
 
-    var subject = "EFFICACY Registration Confirmation – " + eventTypeLabel;
+    var subject = "Sympo Registration Confirmation – " + eventTypeLabel;
 
     var message =
       "Hello " + data.teamLeaderName + ",\n\n" +
-      "Your registration for EFFICACY has been successfully completed.\n\n" +
+      "Your registration for Sympo has been successfully completed.\n\n" +
       "📌 Event Category: " + eventTypeLabel + "\n" +
       "📌 Event Name: " + data.eventName + "\n";
 
@@ -413,7 +413,7 @@ function doPost(e) {
       "Name: Venkataprasath R (Coordinator)\n" +
       "Phone: 7010591904 \n\n" +
       "Regards,\n" +
-      "Team EFFICACY";
+      "Team Sympo";
 
     MailApp.sendEmail({
       to: data.email,

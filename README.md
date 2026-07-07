@@ -1,10 +1,10 @@
-# EFFICACY – National Level Technical Symposium Website
+# Sympo – National Level Technical Symposium Website
 
-Created for the Symposium **"EFFICACY"**, organized by the Department of Mechanical Engineering, Government College of Engineering, Erode.
+Created for the Symposium **"Sympo"**, organized by the Department of Computer Science Engineering, Government College of Engineering, Erode.
 
 ## Table of Contents
 
-- [About EFFICACY](#about-efficacy)
+- [About Sympo](#about-Sympo)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Event Categories](#event-categories)
@@ -19,9 +19,9 @@ Created for the Symposium **"EFFICACY"**, organized by the Department of Mechani
 
 ---
 
-## About EFFICACY
+## About Sympo
 
-**EFFICACY** is a National Level Technical Symposium organized by the Department of Mechanical Engineering to provide a platform for young engineers to showcase technical knowledge and innovation. The event bridges theoretical learning with real-world applications, encouraging precision and scientific reasoning. Through technical competitions, EFFICACY nurtures innovation and teamwork.
+**Sympo** is a National Level Technical Symposium organized by the Department of Computer Science Engineering to provide a platform for young engineers to showcase technical knowledge and innovation. The event bridges theoretical learning with real-world applications, encouraging precision and scientific reasoning. Through technical competitions, Sympo nurtures innovation and teamwork.
 
 ### Guidelines
 
@@ -64,7 +64,7 @@ Created for the Symposium **"EFFICACY"**, organized by the Department of Mechani
 ### Technical Events
 - **Paper Presentation**: Showcase your innovative ideas and research.
 - **3D CAD Modeling (Design Challenge)**: Test modeling skills in Fusion 360/SolidWorks.
-- **Mech Core Quiz**: Competition on mechanical concepts.
+- **Mech Core Quiz**: Competition on Computer Science concepts.
 - **Legend in Lathe (Machining)**: Display projects (final year/hobby).
 
 Entry fee: ₹ 249 / person
@@ -85,7 +85,7 @@ Entry fee: ₹ 249 / person or per team (as specified)
 - **Topic:** Drone / UAV (Unmanned Aerial Vehicle)
 - **Trainer:** Dr. Alan Grant (Tesla Alumni)
 - **Date:** March 4, 2026 | **Time:** 11:00 AM – 1:00 PM
-- **Location:** Mechanical Department, GCE Erode
+- **Location:** Computer Science Department, GCE Erode
 - **Benefits:**
   - Basics of Drone & UAV Systems
   - Drone Components & Flight Control
@@ -196,4 +196,4 @@ Distributed under the MIT License.
 ---
 
 **Official Symposium Website Repository:**  
-[https://github.com/Kishore-Krish19/EFFICACY_website](https://github.com/Kishore-Krish19/EFFICACY_website)
+[https://github.com/Kishore-Krish19/Sympo_website](https://github.com/Kishore-Krish19/Sympo_website)

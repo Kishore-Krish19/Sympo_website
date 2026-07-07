@@ -7,18 +7,18 @@ import { video } from 'framer-motion/client';
 export const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
 export const BANK_DETAILS = {
-  accountHolder: "Anand S",
-  bankName: "State Bank of India",
-  accountNumber: "43568031557",
-  ifscCode: "SBIN0000928",
+  accountHolder: "Anand Kumar",
+  bankName: "Bank of Asia",
+  accountNumber: "123123123123",
+  ifscCode: "ABCD0000123",
   upiId: "anand2386s@oksbi"
 };
 
 export const TECH_EVENTS: EventDetails[] = [
   { id: 'pp', title: 'Paper Presentation', description: 'Showcase your innovative ideas and research.', icon: PenTool, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
-  { id: 'cad', title: '3D CAD Modeling (Design Challenge)', description: 'Test your modeling skills in Fusion 360/SolidWorks.', icon: Settings, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
-  { id: 'quiz', title: 'Mech Core Quiz', description: 'Battle of brains on mechanical concepts.', icon: Brain, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
-  { id: 'expo', title: 'Legend in Lathe (Machining)', description: 'Display your final year or hobby projects.', icon: Wrench, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
+  { id: 'cad', title: '3D Modeling (Design Challenge)', description: 'Test your modeling skills in Blender.', icon: Settings, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
+  { id: 'quiz', title: 'Technical Quiz', description: 'Battle of brains on Computer Science concepts.', icon: Brain, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
+  { id: 'expo', title: 'Legend in Java', description: 'Display your final year or hobby projects.', icon: Wrench, path: '/register/tech', category: 'tech', entryFee: '₹ 249 / person' },
 ];
 
 export const NON_TECH_EVENTS: EventDetails[] = [
@@ -66,7 +66,7 @@ export const WORKSHOP_INFO: WorkshopDetails = {
   trainer: "Dr. Alan Grant (Tesla Alumni)",
   date: "March 4, 2026",
   time: "11:00 AM - 1:00 PM",
-  location: "Mechanical department, GCE Erode",
+  location: "Computer Science department, GCE Erode",
   benefits: [
     "Basics of Drone & UAV Systems",
     "Drone Components & Flight Control",
@@ -78,10 +78,9 @@ export const WORKSHOP_INFO: WorkshopDetails = {
 };
 
 export const COORDINATORS: Coordinator[] = [
-  { name: "Mr. Dony Charles", phone: "+91 78100 85410" },
-  { name: "Mr. Venkataprasath", phone: "+91 70105 91904" },
-  { name: "Mr. Vedheswar", phone: "+91 93611 32882" },
-  { name: "Mr. Solaivendhan", phone: "+91 70948 77363" },
+  { name: "Alex Mercer", phone: "+91 12345 12345" },
+  { name: "Sarah Connor", phone: "+91 12345 12345" },
+
 ];
 
 export const nonTechEventOptions = [

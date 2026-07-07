@@ -6,8 +6,8 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-[var(--bg-nav)] border-t border-[var(--border-color)] text-[var(--text-primary)] py-6 mt-12 transition-colors duration-300">
       <div className="container mx-auto px-4 text-center">
-        <p className="font-mech text-lg text-[var(--accent-blue)] mb-2">EFFICACY'26</p>
-        <p className="font-mech text-[var(--text-secondary)] text-sm mb-4">Department of Mechanical Engineering</p>
+        <p className="font-mech text-lg text-[var(--accent-blue)] mb-2">Sympo'26</p>
+        <p className="font-mech text-[var(--text-secondary)] text-sm mb-4">Department of Computer Science Engineering</p>
 
         {/* <div className="flex items-center justify-center gap-2 text-[var(--text-muted)] text-xs mt-4 border-t border-[var(--border-color)] pt-4">
           <span>© {new Date().getFullYear()}</span>

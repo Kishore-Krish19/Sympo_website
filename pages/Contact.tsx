@@ -40,7 +40,7 @@ const Contact: React.FC = () => {
           {/* SOCIAL ICONS */}
           <div className="mt-8 flex justify-center gap-8">
             <a
-              href="https://www.instagram.com/efficacy2k26?igsh=ZnI0ZWYxdHNrbW5m"
+              href="https://www.instagram.com/Sympo2k26?igsh=ZnI0ZWYxdHNrbW5m"
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 bg-[var(--bg-surface)] rounded-full text-[var(--text-primary)] border border-[var(--border-color)]
@@ -50,7 +50,7 @@ const Contact: React.FC = () => {
             </a>
 
             <a
-              href="mailto:efficacy2026.gcee@gmail.com"
+              href="mailto:Sympo2026.gcee@gmail.com"
               className="p-4 bg-[var(--bg-surface)] rounded-full text-[var(--text-primary)] border border-[var(--border-color)]
               hover:bg-[var(--accent-orange)] hover:text-black transition-colors shadow-md"
             >

@@ -42,7 +42,7 @@ const About: React.FC = () => {
         animate={{ x: 0, opacity: 1 }}
         className="text-3xl md:text-6xl font-mech text-[var(--accent-orange)] mb-8 md:mb-12 border-b border-[var(--border-color)] pb-4"
       >
-        ABOUT EFFICACY
+        ABOUT Sympo
       </motion.h1>
 
       <div className="grid md:grid-cols-2 gap-8 md:gap-12 text-left">
@@ -50,10 +50,10 @@ const About: React.FC = () => {
           <section className="bg-[var(--bg-card)] p-6 md:p-8 rounded-2xl border border-[var(--border-color)] backdrop-blur-sm h-full shadow-lg">
             <h2 className="text-2xl md:text-3xl text-[var(--accent-blue)] font-mech mb-4 md:mb-6 drop-shadow-sm">The Symposium</h2>
             <p className="mb-6 text-[var(--text-primary)] font-medium leading-relaxed">
-              EFFICACY is a National Level Technical Symposium organized by the Department of Mechanical Engineering to provide a platform for young engineers to showcase technical knowledge and innovation. Inspired by engineering mechanics, EFFICACY emphasizes analytical thinking and practical problem-solving.
+              Sympo is a National Level Technical Symposium organized by the Department of Computer Science Engineering to provide a platform for young engineers to showcase technical knowledge and innovation. Inspired by engineering mechanics, Sympo emphasizes analytical thinking and practical problem-solving.
             </p>
             <p className="text-[var(--text-primary)] font-medium leading-relaxed">
-              The event bridges theoretical learning with real-world applications, encouraging precision and scientific reasoning. Through technical competitions, EFFICACY nurtures innovation and professional excellence among aspiring mechanical engineers.
+              The event bridges theoretical learning with real-world applications, encouraging precision and scientific reasoning. Through technical competitions, Sympo nurtures innovation and professional excellence among aspiring Computer Science engineers.
             </p>
           </section>
         </div>

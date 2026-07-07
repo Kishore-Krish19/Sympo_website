@@ -188,7 +188,7 @@ const Home: React.FC = () => {
             </motion.h3>
 
             <h2 className="text-sm md:text-2xl text-[var(--text-secondary)] font-mech tracking-[0.2em] mb-4 md:mb-6">
-              DEPARTMENT OF MECHANICAL ENGINEERING
+              DEPARTMENT OF Computer Science ENGINEERING
             </h2>
 
             <p className="text-xs md:text-lg text-[var(--accent-orange)] font-mech tracking-[0.4em] uppercase">
@@ -197,7 +197,7 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* EFFICACY */}
+        {/* Sympo */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -208,7 +208,7 @@ const Home: React.FC = () => {
           <PistonCluster /> */}
 
           <h1 className="text-4xl sm:text-8xl md:text-12xl font-black font-mech text-transparent bg-clip-text bg-gradient-to-b from-yellow-500 via-yellow-600 to-yellow-800 drop-shadow-lg mb-2">
-            EFFICACY'26
+            Sympo'26
           </h1>
 
           <h3 className="text-xs sm:text-base md:text-3xl text-[var(--text-primary)] font-mech tracking-widest text-shadow-sm uppercase">

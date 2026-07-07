@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
               drop-shadow-[0_0_12px_rgba(255,215,0,0.7)]
             "
           >
-            EFFICACY'26
+            Sympo'26
           </span>
         </Link>
 
